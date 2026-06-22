@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: "Inter", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --lad-red: #c8102e;
+  --lad-black: #0a0a0a;
+  --lad-white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: #0a0a0a;
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: #c8102e;
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c8102e;
+  border-radius: 999px;
+}
+
+@layer components {
+  .container-lad {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-20 lg:py-28;
+  }
+
+  .heading-xl {
+    @apply font-display text-5xl font-black leading-tight tracking-tight md:text-6xl lg:text-7xl;
+  }
+
+  .heading-lg {
+    @apply font-display text-3xl font-bold leading-tight md:text-4xl lg:text-5xl;
+  }
+
+  .heading-md {
+    @apply font-display text-2xl font-bold leading-tight md:text-3xl;
+  }
+
+  .body-lg {
+    @apply text-lg leading-relaxed text-gray-600;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-lad-red px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition duration-300 hover:bg-lad-red-dark;
+  }
+
+  .btn-white {
+    @apply inline-flex items-center justify-center gap-2 bg-white px-6 py-3 text-sm font-bold uppercase tracking-wider text-lad-black transition duration-300 hover:bg-gray-100;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-lad-black px-6 py-3 text-sm font-bold uppercase tracking-wider text-lad-black transition duration-300 hover:border-lad-red hover:bg-lad-red hover:text-white;
+  }
+
+  .card-hover {
+    @apply transition duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  .border-lad {
+    @apply border-l-4 border-lad-red bg-white p-6 shadow-sm;
+  }
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.bg-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
