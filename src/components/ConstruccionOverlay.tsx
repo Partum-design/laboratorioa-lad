@@ -181,6 +181,11 @@ export default function ConstruccionOverlay() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useParticles(canvasRef);
 
+  useEffect(() => {
+    const el = document.getElementById("construccion-flash-block");
+    if (el) el.remove();
+  }, []);
+
   return (
     <AnimatePresence>
       <div
