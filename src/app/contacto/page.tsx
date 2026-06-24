@@ -87,7 +87,12 @@ export default function ContactoPage() {
     <PageTransition>
       {/* Hero */}
       <section className="relative overflow-hidden bg-lad-black pb-20 pt-32">
-        <div className="absolute inset-0 bg-grid opacity-20" />
+        <div className="absolute inset-0">
+          <video autoPlay muted loop playsInline preload="auto" className="h-full w-full object-cover opacity-30">
+            <source src="/vids/contacto/hero.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-r from-lad-black/90 via-lad-black/70 to-transparent" />
+        </div>
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />
         <div className="container-lad relative z-10">
           <p className="mb-6 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Contáctanos</p>

@@ -4,7 +4,6 @@ import PageTransition from "@/components/PageTransition";
 import ScrollReveal from "@/components/ScrollReveal";
 import { AnimatePresence, motion } from "framer-motion";
 import { gsap } from "gsap";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 function IconHeart() {
@@ -149,7 +148,9 @@ export default function UnetePage() {
       {/* Hero */}
       <section ref={heroRef} className="relative overflow-hidden bg-lad-black pb-28 pt-36">
         <div className="absolute inset-0">
-          <Image src="/img/ai-generated-6a1c47083bfcf.png" alt="Equipo LAD" fill className="object-cover opacity-30" />
+          <video autoPlay muted loop playsInline preload="auto" className="h-full w-full object-cover opacity-30">
+            <source src="/vids/unete/hero.mp4" type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-gradient-to-r from-lad-black via-lad-black/95 to-lad-black/70" />
         </div>
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />

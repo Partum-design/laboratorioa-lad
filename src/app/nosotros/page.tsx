@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -28,8 +28,39 @@ function IconEye() {
 }
 function IconShield() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    </svg>
+  );
+}
+function IconFlask() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+      <path d="M9 3h6m-5 0v6l-5 9a1 1 0 0 0 .9 1.5h12.2a1 1 0 0 0 .9-1.5L14 9V3" />
+    </svg>
+  );
+}
+function IconMagnetic() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+      <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+      <line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" />
+    </svg>
+  );
+}
+function IconRayos() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    </svg>
+  );
+}
+function IconMicro() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+      <path d="M6 18h8" /><path d="M3 22h18" /><path d="M14 22a7 7 0 1 0 0-14h-1" />
+      <path d="M9 14h2" /><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z" />
+      <path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3" />
     </svg>
   );
 }
@@ -55,10 +86,55 @@ function IconAward() {
   );
 }
 
-const equipo = [
-  { nombre: "Dr. Carlos Mendoza", cargo: "Director Médico", esp: "Patología Clínica", img: "/img/image-1.png" },
-  { nombre: "Dra. Ana Torres", cargo: "Jefa de Laboratorio", esp: "Bioquímica Clínica", img: "/img/image.png" },
-  { nombre: "Q.F.B. Luis Ramos", cargo: "Analista Senior", esp: "Microbiología", img: "/img/ai-generated-6a1c4771ba72a.png" },
+const areas = [
+  {
+    nombre: "Hematología",
+    desc: "Analizadores automáticos de última generación para biometría hemática, coagulación y morfología celular con alta precisión.",
+    video: ["/vids/nosotros/hematologia1.mp4", "/vids/nosotros/hematologia2.mp4"],
+    img: null,
+    icono: <IconFlask />,
+    badge: "Área principal",
+  },
+  {
+    nombre: "Resonancia Magnética",
+    desc: "Equipo de resonancia de alto campo para obtención de imágenes detalladas de tejidos blandos, articulaciones y órganos internos.",
+    video: ["/vids/nosotros/resonancia.mp4"],
+    img: null,
+    icono: <IconMagnetic />,
+    badge: "",
+  },
+  {
+    nombre: "Rayos X / Radiología",
+    desc: "Sistemas digitales de radiología con procesamiento inmediato de imágenes y almacenamiento seguro en la nube para consulta remota.",
+    video: ["/vids/nosotros/xray1.mp4", "/vids/nosotros/xray2.mp4"],
+    img: null,
+    icono: <IconRayos />,
+    badge: "",
+  },
+  {
+    nombre: "Química Clínica",
+    desc: "Plataforma automatizada de química sanguínea, perfiles metabólicos, hepáticos, renales y lipídicos con resultados en tiempo récord.",
+    video: null,
+    img: "/img/ai-generated-6a1dc1076908f.png",
+    icono: <IconFlask />,
+    badge: "",
+  },
+  {
+    nombre: "Microbiología",
+    desc: "Laboratorio de cultivos, antibiogramas e identificación bacteriana con incubadoras de control automatizado y lectura espectrométrica.",
+    video: null,
+    img: "/img/ChatGPT-Image-2-jun-2026-12_10_37-p.m-1.png",
+    icono: <IconMicro />,
+    badge: "",
+  },
+  {
+    nombre: "Inmunología y Hormonas",
+    desc: "Analizadores de quimioluminiscencia para marcadores tumorales, hormonas tiroideas, pruebas infecciosas y autoinmunidad.",
+    video: null,
+    img: "/img/image-1.png",
+    icono: <IconShield />,
+    badge: "",
+  },
 ];
 
 const hitos = [
@@ -75,6 +151,46 @@ const valores = [
   { icon: <IconShield />, label: "Tecnología avanzada" },
   { icon: <IconAward />, label: "Equipo experto" },
 ];
+
+function AreaMedia({ area }: { area: typeof areas[0] }) {
+  const [idx, setIdx] = useState(0);
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    v.muted = true;
+    v.play().catch(() => {});
+    const next = () => {
+      if (area.video && area.video.length > 1) setIdx((i) => (i + 1) % area.video!.length);
+      else { v.currentTime = 0; v.play().catch(() => {}); }
+    };
+    v.addEventListener("ended", next);
+    return () => v.removeEventListener("ended", next);
+  }, [idx, area.video]);
+
+  if (area.video) {
+    return (
+      <video
+        key={idx}
+        ref={ref}
+        src={area.video[idx]}
+        muted
+        playsInline
+        preload="auto"
+        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+    );
+  }
+  return (
+    <Image
+      src={area.img!}
+      alt={area.nombre}
+      fill
+      className="object-cover transition-transform duration-500 group-hover:scale-105"
+    />
+  );
+}
 
 export default function NosotrosPage() {
   const timelineRef = useRef<HTMLDivElement>(null);
@@ -98,7 +214,9 @@ export default function NosotrosPage() {
       {/* Hero */}
       <section className="relative overflow-hidden pb-24 pt-36">
         <div className="absolute inset-0">
-          <Image src="/img/ChatGPT-Image-2-jun-2026-12_10_37-p.m-1.png" alt="LAD nosotros" fill className="object-cover" />
+          <video autoPlay muted loop playsInline preload="auto" className="h-full w-full object-cover">
+            <source src="/vids/nosotros/hero.mp4" type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-lad-black/85" />
         </div>
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />
@@ -144,7 +262,9 @@ export default function NosotrosPage() {
           </ScrollReveal>
           <ScrollReveal direction="right">
             <div className="relative h-[520px] overflow-hidden">
-              <Image src="/img/ChatGPT-Image-2-jun-2026-12_10_37-p.m.png" alt="Equipo LAD" fill className="object-cover" />
+              <video autoPlay muted loop playsInline preload="auto" className="h-full w-full object-cover">
+                <source src="/vids/nosotros/mision.mp4" type="video/mp4" />
+              </video>
             </div>
           </ScrollReveal>
         </div>
@@ -169,30 +289,50 @@ export default function NosotrosPage() {
         </div>
       </section>
 
-      {/* Equipo */}
+      {/* Áreas y Equipamiento */}
       <section className="section-padding bg-white">
         <div className="container-lad">
-          <div className="mb-14 text-center">
-            <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Equipo</p>
-            <h2 className="heading-lg">Profesionales <span className="text-lad-red">certificados</span></h2>
-          </div>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {equipo.map((persona, index) => (
-              <ScrollReveal key={persona.nombre} delay={index * 0.12}>
-                <div className="border border-gray-100 hover:border-lad-red transition-colors">
-                  <div className="relative h-72">
-                    <Image src={persona.img} alt={persona.nombre} fill className="object-cover" />
+          <ScrollReveal>
+            <div className="mb-14 text-center">
+              <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Infraestructura</p>
+              <h2 className="heading-lg">Nuestras áreas y <span className="text-lad-red">equipamiento</span></h2>
+              <p className="mx-auto mt-4 max-w-2xl text-justify text-gray-500">
+                Contamos con tecnología de vanguardia en cada área del laboratorio, garantizando resultados precisos, rápidos y confiables para cada paciente.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {areas.map((area, index) => (
+              <ScrollReveal key={area.nombre} delay={index * 0.1}>
+                <div className="group relative overflow-hidden border border-gray-100 transition-all hover:border-lad-red hover:shadow-lg">
+                  {/* Media */}
+                  <div className="relative h-56 overflow-hidden">
+                    <AreaMedia area={area} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-lad-black/70 to-transparent" />
+                    {/* Badge */}
+                    {area.badge && (
+                      <span className="absolute left-4 top-4 bg-lad-red px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
+                        {area.badge}
+                      </span>
+                    )}
+                    {/* Ícono flotante */}
+                    <div className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center bg-lad-red text-white">
+                      {area.icono}
+                    </div>
                   </div>
+                  {/* Texto */}
                   <div className="p-6">
-                    <h3 className="font-display text-xl font-bold">{persona.nombre}</h3>
-                    <p className="mt-1 text-sm font-bold text-lad-red">{persona.cargo}</p>
-                    <p className="mt-2 text-sm text-gray-500">{persona.esp}</p>
+                    <h3 className="mb-2 font-display text-xl font-bold text-lad-black">{area.nombre}</h3>
+                    <p className="text-justify text-sm leading-relaxed text-gray-600">{area.desc}</p>
                   </div>
                 </div>
               </ScrollReveal>
             ))}
           </div>
-          <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
+
+          {/* Valores al fondo */}
+          <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
             {valores.map((v) => (
               <div key={v.label} className="flex items-center gap-3 bg-lad-gray-light p-5">
                 <div className="text-lad-red">{v.icon}</div>

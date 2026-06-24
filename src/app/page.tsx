@@ -5,9 +5,8 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -90,10 +89,15 @@ const valores = [
   { icon: <IconCheck />, title: "Calidad", desc: "Certificación ISO 9001:2015 que garantiza excelencia en cada proceso del laboratorio." },
 ];
 
+const heroVideos = ["/vids/inicio/hero1.mp4", "/vids/inicio/hero2.mp4", "/vids/inicio/hero3.mp4"];
+
 export default function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const counterRefs = useRef<HTMLSpanElement[]>([]);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const quienesSomosRef = useRef<HTMLVideoElement>(null);
+  const [heroIdx, setHeroIdx] = useState(0);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -141,12 +145,39 @@ export default function HomePage() {
     return () => ctx.revert();
   }, []);
 
+  // Cicla hero videos al terminar cada uno
+  useEffect(() => {
+    const v = heroVideoRef.current;
+    if (!v) return;
+    const next = () => setHeroIdx((i) => (i + 1) % heroVideos.length);
+    v.addEventListener("ended", next);
+    v.muted = true;
+    v.play().catch(() => {});
+    return () => v.removeEventListener("ended", next);
+  }, [heroIdx]);
+
+  // Autoplay "quiénes somos"
+  useEffect(() => {
+    const v = quienesSomosRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.play().catch(() => {});
+  }, []);
+
   return (
     <PageTransition>
       {/* Hero */}
       <section ref={heroRef} className="relative flex h-screen min-h-[620px] items-center overflow-hidden">
         <div className="hero-bg absolute inset-0 -top-10">
-          <Image src="/img/ai-generated-6a1dc1076908f.png" alt="LAD Laboratorio" fill priority className="object-cover" />
+          <video
+            key={heroIdx}
+            ref={heroVideoRef}
+            src={heroVideos[heroIdx]}
+            muted
+            playsInline
+            preload="auto"
+            className="h-full w-full object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-lad-black/90 via-lad-black/70 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-lad-black/60 to-transparent" />
         </div>
@@ -223,7 +254,15 @@ export default function HomePage() {
         <div className="container-lad grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           <ScrollReveal direction="left">
             <div className="relative h-[480px] overflow-hidden">
-              <Image src="/img/image.png" alt="Interior de laboratorio LAD" fill className="object-cover" />
+              <video
+                ref={quienesSomosRef}
+                src="/vids/inicio/quienes-somos.mp4"
+                muted
+                loop
+                playsInline
+                preload="auto"
+                className="h-full w-full object-cover"
+              />
               <div className="absolute bottom-6 right-6 bg-lad-red p-6 text-center text-white">
                 <p className="font-display text-3xl font-black">15+</p>
                 <p className="text-xs">años de excelencia</p>
