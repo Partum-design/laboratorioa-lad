@@ -16,14 +16,18 @@ export default function ConstruccionOverlay() {
     if (!dismissed || preview === "1") setVisible(true);
   }, []);
 
+  // Forzar play en todos los videos cuando el overlay se muestra
   useEffect(() => {
     if (!visible) return;
-    videoRefs.current.forEach((v) => {
-      if (v) {
+    const timer = setTimeout(() => {
+      videoRefs.current.forEach((v) => {
+        if (!v) return;
         v.muted = true;
+        v.volume = 0;
         v.play().catch(() => {});
-      }
-    });
+      });
+    }, 100);
+    return () => clearTimeout(timer);
   }, [visible]);
 
   function handleEnter() {
@@ -40,26 +44,30 @@ export default function ConstruccionOverlay() {
           transition={{ duration: 0.8 }}
           className="fixed inset-0 z-[200] flex flex-col overflow-hidden bg-lad-black"
         >
-          {/* Mosaico de videos — todos reproduciendo a la vez */}
+          {/* Mosaico 2×2 de videos */}
           <div className="absolute inset-0 grid grid-cols-2 grid-rows-2">
             {videos.map((src, i) => (
               <video
                 key={i}
                 ref={(el) => { videoRefs.current[i] = el; }}
                 src={src}
-                muted
                 loop
                 playsInline
                 preload="auto"
+                disablePictureInPicture
+                onCanPlay={(e) => {
+                  const v = e.currentTarget;
+                  v.muted = true;
+                  v.volume = 0;
+                  v.play().catch(() => {});
+                }}
                 className="h-full w-full object-cover"
               />
             ))}
           </div>
 
-          {/* Overlay oscuro sobre los videos */}
           <div className="absolute inset-0 bg-lad-black/65" />
 
-          {/* Contenido centrado */}
           <div className="relative z-10 flex flex-1 flex-col items-center justify-center gap-8 px-6 text-center">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -90,7 +98,7 @@ export default function ConstruccionOverlay() {
               <h1 className="font-display text-4xl font-black uppercase tracking-wider text-white md:text-6xl">
                 Laboratorio<br />
                 <span className="text-lad-red">de Apoyo y</span><br />
-                Diagnostico
+                Diagnóstico
               </h1>
               <p className="mx-auto max-w-md text-justify text-base leading-relaxed text-gray-300">
                 Pronto tendremos algo increíble para ti. Estamos trabajando para brindarte la mejor experiencia posible.
@@ -108,7 +116,6 @@ export default function ConstruccionOverlay() {
             </motion.button>
           </div>
 
-          {/* Firma Partum Design */}
           <div className="relative z-10 py-4 text-center">
             <p className="text-[10px] font-light uppercase tracking-[0.4em] text-white/30">
               Partum Design · Desarrollo en proceso

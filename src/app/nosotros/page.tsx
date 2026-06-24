@@ -1,12 +1,14 @@
 "use client";
 
 import PageTransition from "@/components/PageTransition";
+import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -154,30 +156,14 @@ const valores = [
 
 function AreaMedia({ area }: { area: typeof areas[0] }) {
   const [idx, setIdx] = useState(0);
-  const ref = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const v = ref.current;
-    if (!v) return;
-    v.muted = true;
-    v.play().catch(() => {});
-    const next = () => {
-      if (area.video && area.video.length > 1) setIdx((i) => (i + 1) % area.video!.length);
-      else { v.currentTime = 0; v.play().catch(() => {}); }
-    };
-    v.addEventListener("ended", next);
-    return () => v.removeEventListener("ended", next);
-  }, [idx, area.video]);
 
   if (area.video) {
     return (
-      <video
+      <VideoAuto
         key={idx}
-        ref={ref}
         src={area.video[idx]}
-        muted
-        playsInline
-        preload="auto"
+        loop={area.video.length === 1}
+        onEnded={area.video.length > 1 ? () => setIdx((i) => (i + 1) % area.video!.length) : undefined}
         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
     );
@@ -214,9 +200,7 @@ export default function NosotrosPage() {
       {/* Hero */}
       <section className="relative overflow-hidden pb-24 pt-36">
         <div className="absolute inset-0">
-          <video autoPlay muted loop playsInline preload="auto" className="h-full w-full object-cover">
-            <source src="/vids/nosotros/hero.mp4" type="video/mp4" />
-          </video>
+          <VideoAuto src="/vids/nosotros/hero.mp4" className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-lad-black/85" />
         </div>
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />
@@ -262,9 +246,7 @@ export default function NosotrosPage() {
           </ScrollReveal>
           <ScrollReveal direction="right">
             <div className="relative h-[520px] overflow-hidden">
-              <video autoPlay muted loop playsInline preload="auto" className="h-full w-full object-cover">
-                <source src="/vids/nosotros/mision.mp4" type="video/mp4" />
-              </video>
+              <VideoAuto src="/vids/nosotros/mision.mp4" className="h-full w-full object-cover" />
             </div>
           </ScrollReveal>
         </div>

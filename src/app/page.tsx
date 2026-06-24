@@ -5,6 +5,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import VideoAuto from "@/components/VideoAuto";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -95,8 +96,6 @@ export default function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const counterRefs = useRef<HTMLSpanElement[]>([]);
-  const heroVideoRef = useRef<HTMLVideoElement>(null);
-  const quienesSomosRef = useRef<HTMLVideoElement>(null);
   const [heroIdx, setHeroIdx] = useState(0);
 
   useEffect(() => {
@@ -145,37 +144,17 @@ export default function HomePage() {
     return () => ctx.revert();
   }, []);
 
-  // Cicla hero videos al terminar cada uno
-  useEffect(() => {
-    const v = heroVideoRef.current;
-    if (!v) return;
-    const next = () => setHeroIdx((i) => (i + 1) % heroVideos.length);
-    v.addEventListener("ended", next);
-    v.muted = true;
-    v.play().catch(() => {});
-    return () => v.removeEventListener("ended", next);
-  }, [heroIdx]);
-
-  // Autoplay "quiénes somos"
-  useEffect(() => {
-    const v = quienesSomosRef.current;
-    if (!v) return;
-    v.muted = true;
-    v.play().catch(() => {});
-  }, []);
 
   return (
     <PageTransition>
       {/* Hero */}
       <section ref={heroRef} className="relative flex h-screen min-h-[620px] items-center overflow-hidden">
         <div className="hero-bg absolute inset-0 -top-10">
-          <video
+          <VideoAuto
             key={heroIdx}
-            ref={heroVideoRef}
             src={heroVideos[heroIdx]}
-            muted
-            playsInline
-            preload="auto"
+            loop={false}
+            onEnded={() => setHeroIdx((i) => (i + 1) % heroVideos.length)}
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-lad-black/90 via-lad-black/70 to-transparent" />
@@ -254,13 +233,8 @@ export default function HomePage() {
         <div className="container-lad grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
           <ScrollReveal direction="left">
             <div className="relative h-[480px] overflow-hidden">
-              <video
-                ref={quienesSomosRef}
+              <VideoAuto
                 src="/vids/inicio/quienes-somos.mp4"
-                muted
-                loop
-                playsInline
-                preload="auto"
                 className="h-full w-full object-cover"
               />
               <div className="absolute bottom-6 right-6 bg-lad-red p-6 text-center text-white">

@@ -1,6 +1,7 @@
 "use client";
 
 import PageTransition from "@/components/PageTransition";
+import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
@@ -74,9 +75,7 @@ export default function EstudiosPage() {
       {/* Hero */}
       <section className="relative overflow-hidden bg-lad-black pb-24 pt-32">
         <div className="absolute inset-0">
-          <video autoPlay muted loop playsInline preload="auto" className="h-full w-full object-cover opacity-30">
-            <source src="/vids/estudios/hero.mp4" type="video/mp4" />
-          </video>
+          <VideoAuto src="/vids/estudios/hero.mp4" className="h-full w-full object-cover opacity-30" />
           <div className="absolute inset-0 bg-gradient-to-r from-lad-black/90 via-lad-black/70 to-transparent" />
         </div>
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />
