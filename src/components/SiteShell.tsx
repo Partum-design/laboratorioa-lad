@@ -3,6 +3,7 @@
 import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import ConstruccionOverlay from "./ConstruccionOverlay";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
@@ -15,6 +16,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
 
   return (
     <>
+      <ConstruccionOverlay />
       <Navbar />
       <AnimatePresence mode="wait" initial={false}>
         <main key={pathname} className="min-h-screen">

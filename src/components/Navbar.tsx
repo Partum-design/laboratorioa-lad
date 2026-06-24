@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { gsap } from "gsap";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -55,10 +56,14 @@ export default function Navbar() {
     >
       <nav ref={navRef} className="container-lad flex h-20 items-center justify-between">
         <div ref={logoRef}>
-          <Link href="/" className="group flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center bg-lad-red transition group-hover:scale-95">
-              <span className="font-display text-sm font-black tracking-wider text-white">LAD</span>
-            </div>
+          <Link href="/" className="group flex items-center gap-2">
+            <Image
+              src="/logo/logo-lad.png"
+              alt="LAD Logo"
+              width={52}
+              height={52}
+              className="object-contain transition group-hover:scale-95 drop-shadow"
+            />
             <div className={`transition-colors ${textColor}`}>
               <p className="font-display text-sm font-black uppercase leading-none tracking-wider">Laboratorio</p>
               <p className="mt-0.5 text-xs font-light leading-none opacity-70">Apoyo y Diagnostico</p>

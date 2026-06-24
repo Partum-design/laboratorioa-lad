@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 
 const links = [
@@ -17,9 +18,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center bg-lad-red">
-                <span className="font-display text-base font-black text-white">LAD</span>
-              </div>
+              <Image
+                src="/logo/logo-lad.png"
+                alt="LAD Logo"
+                width={60}
+                height={60}
+                className="object-contain drop-shadow"
+              />
               <div>
                 <p className="font-display text-sm font-black uppercase tracking-wider">Laboratorio</p>
                 <p className="mt-0.5 text-xs font-light opacity-60">Apoyo y Diagnostico</p>
@@ -63,7 +68,7 @@ export default function Footer() {
           <p className="text-xs text-gray-500">
             © {new Date().getFullYear()} LAD Laboratorio de Apoyo y Diagnostico. Todos los derechos reservados.
           </p>
-          <p className="text-xs text-gray-600">Hecho por Partum Design</p>
+          <p className="text-[10px] uppercase tracking-[0.35em] text-gray-600">Partum Design · Desarrollo en proceso</p>
         </div>
       </div>
     </footer>

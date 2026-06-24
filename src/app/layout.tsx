@@ -6,6 +6,10 @@ export const metadata: Metadata = {
   title: "LAD - Laboratorio de Apoyo y Diagnostico",
   description:
     "Laboratorio de Apoyo y Diagnostico. Precision que genera confianza, resultados que importan. ISO 9001:2015.",
+  icons: {
+    icon: "/logo/logo-lad.png",
+    apple: "/logo/logo-lad.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
