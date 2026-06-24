@@ -183,10 +183,7 @@ export default function ConstruccionOverlay() {
 
   return (
     <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
+      <div
         className="fixed inset-0 z-[200] flex flex-col overflow-hidden bg-lad-black"
       >
         {/* Videos de fondo */}
@@ -269,7 +266,7 @@ export default function ConstruccionOverlay() {
             Partum Design · Desarrollo en proceso
           </a>
         </motion.div>
-      </motion.div>
+      </div>
     </AnimatePresence>
   );
 }
