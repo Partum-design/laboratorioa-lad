@@ -2,17 +2,29 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const videos = ["/vids/vid1.mp4", "/vids/vid2.mp4", "/vids/vid3.mp4", "/vids/vid4.mp4"];
 
 export default function ConstruccionOverlay() {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   useEffect(() => {
+    const preview = new URLSearchParams(window.location.search).get("preview");
     const dismissed = sessionStorage.getItem("construccion-dismissed");
-    if (dismissed) setVisible(false);
+    if (!dismissed || preview === "1") setVisible(true);
   }, []);
+
+  useEffect(() => {
+    if (!visible) return;
+    videoRefs.current.forEach((v) => {
+      if (v) {
+        v.muted = true;
+        v.play().catch(() => {});
+      }
+    });
+  }, [visible]);
 
   function handleEnter() {
     sessionStorage.setItem("construccion-dismissed", "1");
@@ -33,11 +45,12 @@ export default function ConstruccionOverlay() {
             {videos.map((src, i) => (
               <video
                 key={i}
+                ref={(el) => { videoRefs.current[i] = el; }}
                 src={src}
-                autoPlay
                 muted
                 loop
                 playsInline
+                preload="auto"
                 className="h-full w-full object-cover"
               />
             ))}
