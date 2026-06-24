@@ -3,9 +3,9 @@ import SiteShell from "@/components/SiteShell";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "LAD - Laboratorio de Apoyo y Diagnostico",
+  title: "LAD - Laboratorio de Apoyo y Diagnóstico",
   description:
-    "Laboratorio de Apoyo y Diagnostico. Precision que genera confianza, resultados que importan. ISO 9001:2015.",
+    "Laboratorio de Apoyo y Diagnóstico. Precisión que genera confianza, resultados que importan. ISO 9001:2015.",
   icons: {
     icon: "/logo/logo-lad.png",
     apple: "/logo/logo-lad.png",

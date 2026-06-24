@@ -84,7 +84,7 @@ export default function ConstruccionOverlay() {
             >
               <div className="flex items-center justify-center gap-3">
                 <div className="h-px w-12 bg-lad-red" />
-                <span className="text-xs font-bold uppercase tracking-[0.4em] text-lad-red">Sitio en construccion</span>
+                <span className="text-xs font-bold uppercase tracking-[0.4em] text-lad-red">Sitio en construcción</span>
                 <div className="h-px w-12 bg-lad-red" />
               </div>
               <h1 className="font-display text-4xl font-black uppercase tracking-wider text-white md:text-6xl">
@@ -92,8 +92,8 @@ export default function ConstruccionOverlay() {
                 <span className="text-lad-red">de Apoyo y</span><br />
                 Diagnostico
               </h1>
-              <p className="mx-auto max-w-md text-base leading-relaxed text-gray-300">
-                Pronto tendremos algo increible para ti. Estamos trabajando para brindarte la mejor experiencia.
+              <p className="mx-auto max-w-md text-justify text-base leading-relaxed text-gray-300">
+                Pronto tendremos algo increíble para ti. Estamos trabajando para brindarte la mejor experiencia posible.
               </p>
             </motion.div>
 

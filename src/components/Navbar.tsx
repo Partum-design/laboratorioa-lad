@@ -12,7 +12,7 @@ const navLinks = [
   { href: "/estudios", label: "Estudios" },
   { href: "/nosotros", label: "Nosotros" },
   { href: "/contacto", label: "Contacto" },
-  { href: "/unete", label: "Unete" },
+  { href: "/unete", label: "Únete" },
 ];
 
 export default function Navbar() {
