@@ -75,19 +75,23 @@ body {
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-lad-red px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition duration-300 hover:bg-lad-red-dark;
+    @apply inline-flex items-center justify-center gap-2 bg-lad-red px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-lad-red-dark hover:scale-[1.02] hover:shadow-lg hover:shadow-lad-red/25 active:scale-[0.98];
   }
 
   .btn-white {
-    @apply inline-flex items-center justify-center gap-2 bg-white px-6 py-3 text-sm font-bold uppercase tracking-wider text-lad-black transition duration-300 hover:bg-gray-100;
+    @apply inline-flex items-center justify-center gap-2 bg-white px-6 py-3 text-sm font-bold uppercase tracking-wider text-lad-black transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-gray-100 hover:scale-[1.02] hover:shadow-lg hover:shadow-black/10 active:scale-[0.98];
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 border border-lad-black px-6 py-3 text-sm font-bold uppercase tracking-wider text-lad-black transition duration-300 hover:border-lad-red hover:bg-lad-red hover:text-white;
+    @apply inline-flex items-center justify-center gap-2 border border-lad-black px-6 py-3 text-sm font-bold uppercase tracking-wider text-lad-black transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-lad-red hover:bg-lad-red hover:text-white hover:scale-[1.02] active:scale-[0.98];
   }
 
   .card-hover {
-    @apply transition duration-300 hover:-translate-y-1 hover:shadow-xl;
+    @apply transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-xl;
+  }
+
+  .video-frame {
+    @apply overflow-hidden rounded-2xl ring-1 ring-white/10;
   }
 
   .border-lad {
@@ -105,4 +109,15 @@ body {
 .bg-dots {
   background-image: radial-gradient(rgba(255, 255, 255, 0.18) 1px, transparent 1px);
   background-size: 18px 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
