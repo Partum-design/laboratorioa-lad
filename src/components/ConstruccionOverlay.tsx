@@ -5,7 +5,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 
-const videos = ["/vids/vid1.mp4", "/vids/vid2.mp4", "/vids/vid3.mp4", "/vids/vid4.mp4"];
+const videos = [
+  "/vids/inicio/hero1.mp4",
+  "/vids/estudios/hero.mp4",
+  "/vids/nosotros/resonancia.mp4",
+  "/vids/contacto/hero.mp4",
+];
 const STORAGE_KEY = "lad:construction-preview";
 
 // ── Partículas ──────────────────────────────────────────────────────────────
