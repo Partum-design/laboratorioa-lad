@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "LAD - Laboratorio de Apoyo y Diagnóstico",
   description:
-    "Laboratorio de Apoyo y Diagnóstico. Precisión que genera confianza, resultados que importan. ISO 9001:2015.",
+    "Laboratorio de Apoyo y Diagnóstico con análisis clínicos, paquetes preventivos y atención por WhatsApp. Sistema de calidad ISO 9001:2015.",
   icons: {
     icon: "/logo/logo-lad.png",
     apple: "/logo/logo-lad.png",

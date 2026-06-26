@@ -1,14 +1,16 @@
 "use client";
 
+import { LAD_PHONE_DISPLAY, LAD_TEL_LINK, LAD_WHATSAPP_LINK } from "@/lib/contact";
 import Image from "next/image";
 import Link from "next/link";
 
 const links = [
   { href: "/", label: "Inicio" },
-  { href: "/estudios", label: "Estudios" },
+  { href: "/estudios#catalogo", label: "Estudios" },
+  { href: "/estudios#paquetes", label: "Paquetes" },
   { href: "/nosotros", label: "Nosotros" },
-  { href: "/contacto", label: "Contacto" },
-  { href: "/unete", label: "Únete al equipo" },
+  { href: "/contacto#agenda", label: "Contacto" },
+  { href: "/unete#vacantes", label: "Únete al equipo" },
 ];
 
 export default function Footer() {
@@ -27,11 +29,11 @@ export default function Footer() {
               />
               <div>
                 <p className="font-display text-sm font-black uppercase tracking-wider">Laboratorio</p>
-                <p className="mt-0.5 text-xs font-light opacity-60">Apoyo y Diagnostico</p>
+                <p className="mt-0.5 text-xs font-light opacity-60">Apoyo y Diagnóstico</p>
               </div>
             </Link>
             <p className="max-w-xs text-justify text-sm leading-relaxed text-gray-400">
-              Precisión que genera confianza, resultados que importan. Certificados ISO 9001:2015.
+              Diagnóstico clínico con procesos certificados, trato claro y resultados listos para tomar decisiones médicas.
             </p>
             <div className="flex items-center gap-2">
               <div className="h-px w-8 bg-lad-red" />
@@ -56,10 +58,17 @@ export default function Footer() {
           <div>
             <h4 className="mb-6 font-display text-sm font-bold uppercase tracking-widest text-gray-400">Contacto</h4>
             <ul className="space-y-4 text-sm text-gray-300">
-              <li>Dirección del laboratorio, Ciudad</li>
-              <li>+52 (000) 000-0000</li>
-              <li>contacto@lad.com.mx</li>
-              <li>Lun–Vie: 7:00 am – 6:00 pm<br />Sáb: 7:00 am – 2:00 pm</li>
+              <li>
+                <a href={LAD_TEL_LINK} className="transition hover:text-lad-red">
+                  {LAD_PHONE_DISPLAY}
+                </a>
+              </li>
+              <li>
+                <a href={LAD_WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="transition hover:text-lad-red">
+                  WhatsApp para citas y dudas
+                </a>
+              </li>
+              <li>Lun a vie: 7:00 am a 6:00 pm<br />Sáb: 7:00 am a 2:00 pm</li>
             </ul>
           </div>
         </div>

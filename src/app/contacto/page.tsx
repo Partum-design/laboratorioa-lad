@@ -3,6 +3,7 @@
 import PageTransition from "@/components/PageTransition";
 import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
+import { buildWhatsAppLink, LAD_PHONE_DISPLAY, LAD_TEL_LINK, LAD_WHATSAPP_LINK } from "@/lib/contact";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
@@ -18,13 +19,6 @@ function IconPhone() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 shrink-0 text-lad-red">
       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.55 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-    </svg>
-  );
-}
-function IconMail() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 shrink-0 text-lad-red">
-      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" /><polyline points="22,6 12,13 2,6" />
     </svg>
   );
 }
@@ -51,8 +45,8 @@ function IconCheckCircle() {
 }
 
 const horarios = [
-  { dia: "Lunes - Viernes", hora: "7:00 AM - 6:00 PM" },
-  { dia: "Sábado", hora: "7:00 AM - 2:00 PM" },
+  { dia: "Lunes a viernes", hora: "7:00 am a 6:00 pm" },
+  { dia: "Sábado", hora: "7:00 am a 2:00 pm" },
   { dia: "Domingo", hora: "Cerrado" },
 ];
 
@@ -75,7 +69,18 @@ export default function ContactoPage() {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setEnviando(true);
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    const message = [
+      "Hola, quiero agendar una cita en LAD.",
+      formData.nombre && `Nombre: ${formData.nombre}`,
+      formData.telefono && `Telefono: ${formData.telefono}`,
+      formData.email && `Correo: ${formData.email}`,
+      formData.servicio && `Servicio: ${formData.servicio}`,
+      formData.fecha && `Fecha tentativa: ${formData.fecha}`,
+      formData.mensaje && `Mensaje: ${formData.mensaje}`,
+    ].filter(Boolean).join("\n");
+
+    window.open(buildWhatsAppLink(message), "_blank", "noopener,noreferrer");
+    await new Promise((resolve) => setTimeout(resolve, 400));
     setEnviando(false);
     setEnviado(true);
   };
@@ -97,13 +102,13 @@ export default function ContactoPage() {
           <p className="mb-6 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Contáctanos</p>
           <h1 className="heading-xl mb-4 text-white">Agenda tu <span className="text-lad-red">cita</span></h1>
           <p className="body-lg max-w-xl text-justify text-gray-400">
-            Envíanos tus datos y nos pondremos en contacto contigo a la brevedad para confirmar tu cita.
+            Escríbenos por WhatsApp o déjanos tus datos. Te orientamos con horarios, muestras y preparación antes de tu visita.
           </p>
         </div>
       </section>
 
       {/* Contenido */}
-      <section className="section-padding bg-white">
+      <section id="agenda" className="section-padding scroll-mt-24 bg-white">
         <div className="container-lad grid grid-cols-1 gap-12 lg:grid-cols-5">
           {/* Información de contacto */}
           <div className="space-y-8 lg:col-span-2">
@@ -113,22 +118,24 @@ export default function ContactoPage() {
                 <div className="flex items-start gap-3">
                   <IconMapPin />
                   <div>
-                    <p className="font-bold text-lad-black">Dirección</p>
-                    <p className="text-gray-600">Calle Principal #123, Col. Centro, Ciudad</p>
+                    <p className="font-bold text-lad-black">Ubicación</p>
+                    <p className="text-gray-600">Te compartimos la ubicación exacta por WhatsApp al confirmar tu cita.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <IconPhone />
                   <div>
                     <p className="font-bold text-lad-black">Teléfono</p>
-                    <p className="text-gray-600">+52 (000) 000-0000</p>
+                    <a href={LAD_TEL_LINK} className="text-gray-600 transition hover:text-lad-red">{LAD_PHONE_DISPLAY}</a>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <IconMail />
+                  <IconPhone />
                   <div>
-                    <p className="font-bold text-lad-black">Correo electrónico</p>
-                    <p className="text-gray-600">contacto@lad.com.mx</p>
+                    <p className="font-bold text-lad-black">WhatsApp</p>
+                    <a href={LAD_WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-gray-600 transition hover:text-lad-red">
+                      Resolver dudas o agendar
+                    </a>
                   </div>
                 </div>
               </div>
@@ -149,7 +156,7 @@ export default function ContactoPage() {
               <div className="mt-8 flex h-48 items-center justify-center bg-lad-gray-light text-sm font-bold text-gray-400">
                 <div className="flex flex-col items-center gap-2">
                   <IconMapPin />
-                  <span>Mapa próximamente</span>
+                  <span>Ubicación disponible al agendar</span>
                 </div>
               </div>
             </ScrollReveal>
@@ -162,14 +169,14 @@ export default function ContactoPage() {
                 {enviado ? (
                   <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className="py-16 text-center">
                     <IconCheckCircle />
-                    <h2 className="heading-md mb-4 text-lad-black">¡Solicitud enviada!</h2>
-                    <p className="text-justify text-gray-600">Gracias por contactarnos. Nuestro equipo te contactará pronto para confirmar tu cita.</p>
+                    <h2 className="heading-md mb-4 text-lad-black">WhatsApp abierto</h2>
+                    <p className="text-justify text-gray-600">Tu mensaje quedó listo para enviarse. Si no se abrió la ventana, usa el botón flotante de WhatsApp.</p>
                   </motion.div>
                 ) : (
                   <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                     <input className="form-field border border-gray-200 p-3" name="nombre" placeholder="Nombre completo" value={formData.nombre} onChange={handleChange} required />
-                    <input className="form-field border border-gray-200 p-3" name="email" type="email" placeholder="Correo electrónico" value={formData.email} onChange={handleChange} required />
-                    <input className="form-field border border-gray-200 p-3" name="telefono" placeholder="Teléfono" value={formData.telefono} onChange={handleChange} />
+                    <input className="form-field border border-gray-200 p-3" name="email" type="email" placeholder="Correo electrónico (opcional)" value={formData.email} onChange={handleChange} />
+                    <input className="form-field border border-gray-200 p-3" name="telefono" placeholder="Teléfono" value={formData.telefono} onChange={handleChange} required />
                     <input className="form-field border border-gray-200 p-3" name="fecha" type="date" value={formData.fecha} onChange={handleChange} />
                     <select className="form-field border border-gray-200 p-3 md:col-span-2" name="servicio" value={formData.servicio} onChange={handleChange}>
                       <option value="">Servicio de interés</option>
@@ -179,10 +186,10 @@ export default function ContactoPage() {
                     </select>
                     <textarea className="form-field min-h-36 border border-gray-200 p-3 md:col-span-2" name="mensaje" placeholder="Mensaje o comentarios adicionales" value={formData.mensaje} onChange={handleChange} />
                     <button className="btn-primary flex items-center justify-center gap-2 md:col-span-2" disabled={enviando}>
-                      {enviando ? "Enviando..." : (
+                      {enviando ? "Abriendo WhatsApp..." : (
                         <>
                           <IconSend />
-                          Enviar solicitud
+                          Enviar por WhatsApp
                         </>
                       )}
                     </button>

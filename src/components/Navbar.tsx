@@ -66,7 +66,7 @@ export default function Navbar() {
             />
             <div className={`transition-colors ${textColor}`}>
               <p className="font-display text-sm font-black uppercase leading-none tracking-wider">Laboratorio</p>
-              <p className="mt-0.5 text-xs font-light leading-none opacity-70">Apoyo y Diagnostico</p>
+              <p className="mt-0.5 text-xs font-light leading-none opacity-70">Apoyo y Diagnóstico</p>
             </div>
           </Link>
         </div>

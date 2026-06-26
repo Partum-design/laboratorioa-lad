@@ -1,10 +1,12 @@
 "use client";
 
+import { LAD_PHONE_DISPLAY, LAD_TEL_LINK, LAD_WHATSAPP_LINK } from "@/lib/contact";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const videos = ["/vids/vid1.mp4", "/vids/vid2.mp4", "/vids/vid3.mp4", "/vids/vid4.mp4"];
+const STORAGE_KEY = "lad:construction-preview";
 
 // ── Partículas ──────────────────────────────────────────────────────────────
 const COLORS = ["#E30613", "#ff2233", "#c0000f", "#ff4455", "#8b0000", "#ff6677"];
@@ -178,6 +180,7 @@ function VideoMosaic() {
 
 // ── Componente principal ─────────────────────────────────────────────────────
 export default function ConstruccionOverlay() {
+  const [hidden, setHidden] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useParticles(canvasRef);
 
@@ -186,22 +189,52 @@ export default function ConstruccionOverlay() {
     if (el) el.remove();
   }, []);
 
+  useEffect(() => {
+    const unlockPreview = () => {
+      window.localStorage.setItem(STORAGE_KEY, "true");
+      setHidden(true);
+    };
+
+    if (window.localStorage.getItem(STORAGE_KEY) === "true") {
+      setHidden(true);
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === "l") {
+        unlockPreview();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
+  const unlockPreview = () => {
+    window.localStorage.setItem(STORAGE_KEY, "true");
+    setHidden(true);
+  };
+
   return (
     <AnimatePresence>
-      <div
+      {!hidden && (
+      <motion.div
         className="fixed inset-0 z-[200] flex flex-col overflow-hidden bg-lad-black"
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.35 }}
       >
         {/* Videos de fondo */}
         <VideoMosaic />
 
         {/* Overlay oscuro */}
-        <div className="absolute inset-0 bg-lad-black/70" />
+        <div className="absolute inset-0 bg-lad-black/75" />
+        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-lad-black to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-lad-black to-transparent" />
 
         {/* Canvas de partículas */}
         <canvas ref={canvasRef} className="absolute inset-0 z-[1]" />
 
         {/* Contenido */}
-        <div className="relative z-[2] flex flex-1 flex-col items-center justify-center gap-8 px-6 text-center">
+        <div className="relative z-[2] flex flex-1 flex-col items-center justify-center gap-8 px-6 py-20 text-center">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, y: -24 }}
@@ -223,29 +256,38 @@ export default function ConstruccionOverlay() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.6 }}
-            className="space-y-4"
+            className="max-w-3xl space-y-6"
           >
             <div className="flex items-center justify-center gap-3">
-              <div className="h-px w-12 bg-lad-red" />
+              <div className="h-px w-10 bg-lad-red" />
               <span className="text-xs font-bold uppercase tracking-[0.45em] text-lad-red">
                 Sitio en construcción
               </span>
-              <div className="h-px w-12 bg-lad-red" />
+              <div className="h-px w-10 bg-lad-red" />
             </div>
 
-            <h1 className="font-display text-4xl font-black uppercase tracking-wider text-white md:text-6xl lg:text-7xl">
-              Laboratorio<br />
-              <span className="text-lad-red">de Apoyo y</span><br />
-              Diagnóstico
+            <h1 className="font-display text-4xl font-black uppercase leading-tight tracking-wider text-white md:text-6xl lg:text-7xl">
+              Estamos afinando<br />
+              <span className="text-lad-red">los últimos</span><br />
+              detalles
             </h1>
 
-            <p className="mx-auto max-w-lg text-justify text-base leading-relaxed text-gray-300">
-              Estamos construyendo algo increíble para ti. Pronto tendremos lista nuestra nueva
-              plataforma con todos nuestros servicios de diagnóstico clínico.
+            <p className="mx-auto max-w-2xl text-balance text-base leading-relaxed text-gray-200 md:text-lg">
+              Si necesitas atención inmediata, llámanos o envíanos un WhatsApp al teléfono{" "}
+              <span className="font-bold text-white">{LAD_PHONE_DISPLAY}</span>.
             </p>
 
+            <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row">
+              <a href={LAD_WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary min-w-44">
+                WhatsApp
+              </a>
+              <a href={LAD_TEL_LINK} className="btn-white min-w-44">
+                Llamar ahora
+              </a>
+            </div>
+
             {/* Badge ISO */}
-            <div className="flex items-center justify-center gap-2 pt-2">
+            <div className="flex items-center justify-center gap-2 pt-4">
               <div className="h-px w-6 bg-lad-red" />
               <span className="text-[11px] font-bold uppercase tracking-[0.35em] text-lad-red">
                 ISO 9001:2015 Certificado
@@ -271,7 +313,16 @@ export default function ConstruccionOverlay() {
             Partum Design · Desarrollo en proceso
           </a>
         </motion.div>
-      </div>
+        <button
+          type="button"
+          aria-label="Ver sitio principal"
+          onClick={unlockPreview}
+          className="absolute bottom-3 left-3 z-[3] h-9 w-9 rounded-full border border-white/20 bg-white/10 text-[0px] opacity-0 outline-none transition hover:w-auto hover:px-3 hover:text-[10px] hover:font-bold hover:uppercase hover:tracking-[0.25em] hover:text-white hover:opacity-100 focus:w-auto focus:px-3 focus:text-[10px] focus:font-bold focus:uppercase focus:tracking-[0.25em] focus:text-white focus:opacity-100"
+        >
+          Ver sitio
+        </button>
+      </motion.div>
+      )}
     </AnimatePresence>
   );
 }

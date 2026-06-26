@@ -1,5 +1,6 @@
 "use client";
 
+import { LAD_WHATSAPP_LINK } from "@/lib/contact";
 import Link from "next/link";
 
 function WhatsAppIcon() {
@@ -28,7 +29,7 @@ export default function FloatingButtons() {
     <>
       {/* Botón WhatsApp — derecha */}
       <a
-        href="https://wa.me/521234567890"
+        href={LAD_WHATSAPP_LINK}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contactar por WhatsApp"
@@ -42,7 +43,7 @@ export default function FloatingButtons() {
 
       {/* Botón Ver Estudios — izquierda */}
       <Link
-        href="/estudios"
+        href="/estudios#catalogo"
         aria-label="Ver catálogo de estudios"
         className="group fixed bottom-8 left-6 z-[100] flex items-center gap-3 rounded-full bg-lad-red px-4 py-3 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
       >

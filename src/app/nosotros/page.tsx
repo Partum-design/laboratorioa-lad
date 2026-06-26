@@ -91,7 +91,7 @@ function IconAward() {
 const areas = [
   {
     nombre: "Hematología",
-    desc: "Analizadores automáticos de última generación para biometría hemática, coagulación y morfología celular con alta precisión.",
+    desc: "Biometría hemática, coagulación y morfología celular con equipos automatizados y revisión del equipo clínico.",
     video: ["/vids/nosotros/hematologia1.mp4", "/vids/nosotros/hematologia2.mp4"],
     img: null,
     icono: <IconFlask />,
@@ -99,7 +99,7 @@ const areas = [
   },
   {
     nombre: "Resonancia Magnética",
-    desc: "Equipo de resonancia de alto campo para obtención de imágenes detalladas de tejidos blandos, articulaciones y órganos internos.",
+    desc: "Estudios de imagen para tejidos blandos, articulaciones y órganos internos, con atención al detalle desde la toma hasta el reporte.",
     video: ["/vids/nosotros/resonancia.mp4"],
     img: null,
     icono: <IconMagnetic />,
@@ -107,7 +107,7 @@ const areas = [
   },
   {
     nombre: "Rayos X / Radiología",
-    desc: "Sistemas digitales de radiología con procesamiento inmediato de imágenes y almacenamiento seguro en la nube para consulta remota.",
+    desc: "Radiología digital con procesamiento de imagen y entrega práctica para pacientes y médicos.",
     video: ["/vids/nosotros/xray1.mp4", "/vids/nosotros/xray2.mp4"],
     img: null,
     icono: <IconRayos />,
@@ -115,7 +115,7 @@ const areas = [
   },
   {
     nombre: "Química Clínica",
-    desc: "Plataforma automatizada de química sanguínea, perfiles metabólicos, hepáticos, renales y lipídicos con resultados en tiempo récord.",
+    desc: "Química sanguínea, perfiles metabólicos, hepáticos, renales y lipídicos con procesos controlados.",
     video: null,
     img: "/img/ai-generated-6a1dc1076908f.png",
     icono: <IconFlask />,
@@ -123,7 +123,7 @@ const areas = [
   },
   {
     nombre: "Microbiología",
-    desc: "Laboratorio de cultivos, antibiogramas e identificación bacteriana con incubadoras de control automatizado y lectura espectrométrica.",
+    desc: "Cultivos, antibiogramas e identificación bacteriana con tiempos claros de seguimiento.",
     video: null,
     img: "/img/ChatGPT-Image-2-jun-2026-12_10_37-p.m-1.png",
     icono: <IconMicro />,
@@ -131,7 +131,7 @@ const areas = [
   },
   {
     nombre: "Inmunología y Hormonas",
-    desc: "Analizadores de quimioluminiscencia para marcadores tumorales, hormonas tiroideas, pruebas infecciosas y autoinmunidad.",
+    desc: "Pruebas hormonales, infecciosas y autoinmunes para apoyar decisiones médicas específicas.",
     video: null,
     img: "/img/image-1.png",
     icono: <IconShield />,
@@ -140,11 +140,11 @@ const areas = [
 ];
 
 const hitos = [
-  { año: "2009", titulo: "Fundación", desc: "Abrimos nuestras puertas con la misión de ofrecer diagnósticos confiables y accesibles." },
-  { año: "2013", titulo: "Certificación ISO", desc: "Validamos nuestros estándares de calidad bajo norma internacional." },
-  { año: "2017", titulo: "Expansión tecnológica", desc: "Implementamos equipos de última generación para análisis de alta complejidad." },
-  { año: "2021", titulo: "Resultados digitales", desc: "Lanzamos plataforma de entrega de resultados en línea, segura y rápida." },
-  { año: "2024", titulo: "ISO 9001:2015", desc: "Renovación y actualización de procesos bajo los más altos estándares." },
+  { año: "2009", titulo: "Fundación", desc: "Abrimos con una idea simple: entregar diagnósticos confiables y tratables en consulta." },
+  { año: "2013", titulo: "Certificación ISO", desc: "Ordenamos procesos, controles y documentación bajo norma internacional." },
+  { año: "2017", titulo: "Nueva tecnología", desc: "Sumamos equipos para pruebas de mayor complejidad y mejor seguimiento interno." },
+  { año: "2021", titulo: "Resultados digitales", desc: "Facilitamos la entrega de resultados en línea para pacientes y médicos." },
+  { año: "2024", titulo: "ISO 9001:2015", desc: "Actualizamos procesos para mantener la certificación vigente." },
 ];
 
 const valores = [
@@ -212,7 +212,7 @@ export default function NosotrosPage() {
             Más de 15 años al <span className="text-lad-red">servicio</span> de tu salud
           </motion.h1>
           <p className="body-lg mx-auto max-w-2xl text-justify text-gray-300">
-            Somos un laboratorio comprometido con la precisión, la calidad y el bienestar de cada paciente que nos elige.
+            Somos un laboratorio que cuida el proceso completo: toma de muestra, análisis, entrega y explicación cuando el paciente la necesita.
           </p>
         </div>
       </section>
@@ -229,7 +229,7 @@ export default function NosotrosPage() {
                 </div>
                 <h3 className="mb-3 font-display text-2xl font-bold">Qué nos mueve</h3>
                 <p className="text-justify leading-relaxed text-gray-600">
-                  Proporcionar diagnóstico clínico de alta calidad con resultados confiables, oportunos y precisos que apoyen las decisiones médicas.
+                  Entregar resultados confiables y oportunos para apoyar decisiones médicas.
                 </p>
               </div>
               <div className="border-lad">
@@ -239,7 +239,7 @@ export default function NosotrosPage() {
                 </div>
                 <h3 className="mb-3 font-display text-2xl font-bold">Hacia dónde vamos</h3>
                 <p className="text-justify leading-relaxed text-gray-600">
-                  Ser referente regional en diagnóstico clínico por tecnología, servicio humano de excelencia y mejora continua certificada.
+                  Crecer como laboratorio regional con procesos claros, buen trato y mejora continua certificada.
                 </p>
               </div>
             </div>
@@ -279,7 +279,7 @@ export default function NosotrosPage() {
               <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Infraestructura</p>
               <h2 className="heading-lg">Nuestras áreas y <span className="text-lad-red">equipamiento</span></h2>
               <p className="mx-auto mt-4 max-w-2xl text-justify text-gray-500">
-                Contamos con tecnología de vanguardia en cada área del laboratorio, garantizando resultados precisos, rápidos y confiables para cada paciente.
+                Cada área tiene controles propios, personal capacitado y una ruta clara para entregar resultados útiles.
               </p>
             </div>
           </ScrollReveal>

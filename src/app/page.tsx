@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import VideoAuto from "@/components/VideoAuto";
+import { LAD_WHATSAPP_LINK } from "@/lib/contact";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -72,22 +73,29 @@ function IconCheck() {
 
 const stats = [
   { value: "15+", label: "Años de experiencia", icon: <IconClock /> },
-  { value: "200+", label: "Estudios clínicos", icon: <IconFlask /> },
-  { value: "24h", label: "Resultados rápidos", icon: <IconShield /> },
-  { value: "99%", label: "Precisión operativa", icon: <IconStar /> },
+  { value: "200+", label: "Estudios disponibles", icon: <IconFlask /> },
+  { value: "ISO", label: "Sistema de calidad", icon: <IconShield /> },
+  { value: "Digital", label: "Resultados disponibles", icon: <IconStar /> },
 ];
 
 const servicios = [
-  { icon: <IconFlask />, title: "Análisis clínicos", desc: "Estudios de rutina y alta especialidad con tecnología confiable y procesos certificados." },
-  { icon: <IconPackage />, title: "Paquetes preventivos", desc: "Perfiles pensados para chequeos generales, empresariales y familiares con cobertura completa." },
-  { icon: <IconPhone />, title: "Resultados digitales", desc: "Entrega ágil, clara y segura para pacientes y médicos desde cualquier dispositivo." },
+  { icon: <IconFlask />, title: "Análisis clínicos", desc: "Estudios de rutina y pruebas especializadas con procesos certificados.", href: "/estudios#catalogo", cta: "Ver catálogo" },
+  { icon: <IconPackage />, title: "Paquetes preventivos", desc: "Perfiles para chequeos generales, empresas y seguimiento familiar.", href: "/estudios#paquetes", cta: "Ver paquetes" },
+  { icon: <IconPhone />, title: "Atención directa", desc: "Agenda, resuelve dudas y da seguimiento a tus resultados por WhatsApp.", href: "/contacto#agenda", cta: "Agendar cita" },
 ];
 
 const valores = [
-  { icon: <IconStar />, title: "Tecnología", desc: "Equipos de última generación para resultados precisos y confiables en cada análisis." },
-  { icon: <IconUsers />, title: "Profesionales", desc: "Equipo certificado con amplia experiencia en diagnóstico clínico de alto nivel." },
-  { icon: <IconShield />, title: "Confidencialidad", desc: "Tus datos y resultados siempre seguros, protegidos y disponibles solo para ti." },
-  { icon: <IconCheck />, title: "Calidad", desc: "Certificación ISO 9001:2015 que garantiza excelencia en cada proceso del laboratorio." },
+  { icon: <IconStar />, title: "Criterio clínico", desc: "Revisamos cada estudio con cuidado antes de entregar resultados." },
+  { icon: <IconUsers />, title: "Trato humano", desc: "Te explicamos los pasos, los tiempos y lo que necesitas llevar." },
+  { icon: <IconShield />, title: "Privacidad", desc: "Tus datos y resultados se manejan con acceso controlado." },
+  { icon: <IconCheck />, title: "Calidad ISO", desc: "Trabajamos bajo un sistema de gestión ISO 9001:2015." },
+];
+
+const rutasRapidas = [
+  { title: "Quiero hacerme un estudio", desc: "Consulta pruebas, tiempos de entrega y tipo de muestra.", href: "/estudios#catalogo" },
+  { title: "Busco un chequeo preventivo", desc: "Elige un paquete y agenda por WhatsApp.", href: "/estudios#paquetes" },
+  { title: "Necesito una cita", desc: "Déjanos tus datos o escríbenos directo.", href: "/contacto#agenda" },
+  { title: "Quiero trabajar en LAD", desc: "Revisa vacantes y envía tu postulación.", href: "/unete#vacantes" },
 ];
 
 const heroVideos = ["/vids/inicio/hero1.mp4", "/vids/inicio/hero2.mp4", "/vids/inicio/hero3.mp4"];
@@ -123,6 +131,10 @@ export default function HomePage() {
               const target = el.dataset.target || "0";
               const suffix = target.replace(/[0-9]/g, "");
               const num = Number.parseInt(target, 10);
+              if (Number.isNaN(num)) {
+                el.textContent = target;
+                return;
+              }
               gsap.fromTo(
                 el,
                 { textContent: "0" },
@@ -169,14 +181,14 @@ export default function HomePage() {
               <span className="text-xs font-bold uppercase tracking-[0.3em] text-lad-red">ISO 9001:2015 Certificado</span>
             </motion.div>
             <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }} className="heading-xl mb-6 text-white">
-              Precisión que <span className="text-lad-red">genera</span> confianza
+              Diagnósticos claros para decidir <span className="text-lad-red">a tiempo</span>
             </motion.h1>
             <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.25 }} className="mb-10 max-w-xl text-justify text-lg leading-relaxed text-gray-300">
-              Laboratorio de Apoyo y Diagnóstico: resultados confiables con tecnología de vanguardia y profesionales certificados para cuidar tu salud.
+              En LAD hacemos análisis clínicos, paquetes preventivos y seguimiento de resultados con procesos certificados y atención cercana.
             </motion.p>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="flex flex-wrap gap-4">
-              <Link href="/estudios" className="btn-primary">Ver estudios</Link>
-              <Link href="/contacto" className="btn-white">Solicitar cita</Link>
+              <Link href="/estudios#catalogo" className="btn-primary">Ver estudios</Link>
+              <a href={LAD_WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-white">Agendar por WhatsApp</a>
             </motion.div>
           </div>
         </div>
@@ -215,8 +227,8 @@ export default function HomePage() {
                   </div>
                   <h3 className="heading-md mb-3 text-lad-black">{servicio.title}</h3>
                   <p className="text-justify text-sm leading-relaxed text-gray-500">{servicio.desc}</p>
-                  <Link href="/estudios" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-lad-red">
-                    Conocer más
+                  <Link href={servicio.href} className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-lad-red">
+                    {servicio.cta}
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5">
                       <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
                     </svg>
@@ -239,15 +251,15 @@ export default function HomePage() {
               />
               <div className="absolute bottom-6 right-6 bg-lad-red p-6 text-center text-white">
                 <p className="font-display text-3xl font-black">15+</p>
-                <p className="text-xs">años de excelencia</p>
+                <p className="text-xs">años de servicio</p>
               </div>
             </div>
           </ScrollReveal>
           <ScrollReveal direction="right">
             <div className="space-y-6">
               <p className="text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Quiénes somos</p>
-              <h2 className="heading-lg">Diagnósticos confiables, <span className="text-lad-red">resultados</span> que importan</h2>
-              <p className="text-justify body-lg">Acompañamos a pacientes, médicos y empresas con procesos claros, trato humano y estándares de calidad medibles y verificables.</p>
+              <h2 className="heading-lg">Resultados que llegan claros, <span className="text-lad-red">sin vueltas</span></h2>
+              <p className="text-justify body-lg">Acompañamos a pacientes, médicos y empresas con procesos claros, trato humano y estándares de calidad medibles.</p>
               <Link href="/nosotros" className="btn-outline inline-flex items-center gap-2">
                 Conoce LAD
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-3.5 w-3.5">
@@ -256,6 +268,31 @@ export default function HomePage() {
               </Link>
             </div>
           </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Rutas rápidas */}
+      <section className="section-padding bg-lad-black text-white">
+        <div className="container-lad">
+          <ScrollReveal>
+            <div className="mb-12 max-w-2xl">
+              <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Accesos rápidos</p>
+              <h2 className="heading-lg">Ve directo a lo que necesitas</h2>
+            </div>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {rutasRapidas.map((ruta, index) => (
+              <ScrollReveal key={ruta.title} delay={index * 0.08}>
+                <Link href={ruta.href} className="group flex h-full flex-col justify-between border border-white/10 bg-white/[0.03] p-6 transition hover:border-lad-red hover:bg-white/[0.06]">
+                  <span className="mb-8 block h-1 w-10 bg-lad-red transition group-hover:w-16" />
+                  <span>
+                    <span className="block font-display text-lg font-bold">{ruta.title}</span>
+                    <span className="mt-3 block text-sm leading-relaxed text-gray-400">{ruta.desc}</span>
+                  </span>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 

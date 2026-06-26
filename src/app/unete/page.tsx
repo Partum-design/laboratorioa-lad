@@ -3,6 +3,7 @@
 import PageTransition from "@/components/PageTransition";
 import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
+import { buildWhatsAppLink } from "@/lib/contact";
 import { AnimatePresence, motion } from "framer-motion";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
@@ -135,7 +136,19 @@ export default function UnetePage() {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setEnviando(true);
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    const message = [
+      "Hola, quiero postularme a LAD.",
+      formData.nombre && `Nombre: ${formData.nombre}`,
+      formData.telefono && `Telefono: ${formData.telefono}`,
+      formData.email && `Correo: ${formData.email}`,
+      formData.posicion && `Posicion: ${formData.posicion}`,
+      formData.experiencia && `Experiencia: ${formData.experiencia}`,
+      formData.mensaje && `Mensaje: ${formData.mensaje}`,
+      cvFile && `CV: ${cvFile.name}. Lo adjunto en este chat.`,
+    ].filter(Boolean).join("\n");
+
+    window.open(buildWhatsAppLink(message), "_blank", "noopener,noreferrer");
+    await new Promise((resolve) => setTimeout(resolve, 400));
     setEnviando(false);
     setEnviado(true);
   };
@@ -159,7 +172,7 @@ export default function UnetePage() {
             Únete a nuestro <span className="text-lad-red">equipo</span>
           </h1>
           <p className="hero-el body-lg mb-10 max-w-xl text-justify text-gray-300">
-            Buscamos profesionales apasionados por la salud y el diagnóstico clínico de precisión. Tu talento hace la diferencia.
+            Buscamos personas cuidadosas, puntuales y con buen trato al paciente. Si quieres crecer en diagnóstico clínico, revisa las vacantes.
           </p>
           <a href="#vacantes" className="hero-el btn-primary inline-flex items-center gap-2">
             <IconChevron />
@@ -243,8 +256,8 @@ export default function UnetePage() {
             <form onSubmit={handleSubmit} className="bg-white p-6 shadow-sm md:p-8">
               {enviado ? (
                 <div className="py-16 text-center">
-                  <h2 className="heading-md mb-4">¡Postulación enviada!</h2>
-                  <p className="text-justify text-gray-600">Gracias por tu interés en LAD. Revisaremos tu información y nos pondremos en contacto contigo.</p>
+                  <h2 className="heading-md mb-4">WhatsApp abierto</h2>
+                  <p className="text-justify text-gray-600">Tu mensaje quedó listo. Si agregaste CV, adjúntalo en el chat antes de enviarlo.</p>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 gap-5">
@@ -264,10 +277,10 @@ export default function UnetePage() {
                   </label>
                   <textarea className="min-h-32 border border-gray-200 p-3" name="mensaje" placeholder="Mensaje o comentarios adicionales" value={formData.mensaje} onChange={handleChange} />
                   <button className="btn-primary flex items-center justify-center gap-2" disabled={enviando}>
-                    {enviando ? "Enviando..." : (
+                    {enviando ? "Abriendo WhatsApp..." : (
                       <>
                         <IconSend />
-                        Enviar postulación
+                        Enviar por WhatsApp
                       </>
                     )}
                   </button>

@@ -82,12 +82,12 @@ export default function EstudiosPage() {
         <div className="container-lad relative z-10">
           <p className="mb-6 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Catálogo</p>
           <h1 className="heading-xl mb-4 text-white">Nuestros <span className="text-lad-red">Estudios</span></h1>
-          <p className="body-lg max-w-2xl text-justify text-gray-400">Más de 200 tipos de análisis clínicos con tecnología de punta, resultados precisos y tiempos de entrega óptimos.</p>
+          <p className="body-lg max-w-2xl text-justify text-gray-400">Consulta estudios, tipo de muestra y tiempos de entrega. Si tienes dudas, agenda por WhatsApp y te orientamos antes de venir.</p>
         </div>
       </section>
 
       {/* Paquetes */}
-      <section className="section-padding bg-lad-gray-light">
+      <section id="paquetes" className="section-padding scroll-mt-24 bg-lad-gray-light">
         <div className="container-lad">
           <ScrollReveal>
             <div className="mb-14 text-center">
@@ -113,7 +113,7 @@ export default function EstudiosPage() {
                       </li>
                     ))}
                   </ul>
-                  <Link href="/contacto" className={index === 1 ? "btn-primary w-full text-center block" : "btn-outline w-full text-center block"}>
+                  <Link href="/contacto#agenda" className={index === 1 ? "btn-primary w-full text-center block" : "btn-outline w-full text-center block"}>
                     Solicitar paquete
                   </Link>
                 </div>
@@ -124,7 +124,7 @@ export default function EstudiosPage() {
       </section>
 
       {/* Catálogo de estudios */}
-      <section className="section-padding bg-white">
+      <section id="catalogo" className="section-padding scroll-mt-24 bg-white">
         <div className="container-lad">
           <div className="mb-8 flex items-center gap-3">
             <IconFilter />
