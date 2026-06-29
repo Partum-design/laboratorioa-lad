@@ -203,12 +203,15 @@ export default function HomePage() {
               className="mb-8 font-display text-6xl font-black leading-none tracking-tight text-white md:text-7xl lg:text-8xl"
             >
               Resultados
-              <span className="relative flex w-full justify-center overflow-hidden py-1 text-lad-red md:py-2">
+              <span
+                className="relative flex w-full justify-center py-1 text-lad-red md:py-2"
+                style={{ clipPath: "inset(0 -500px)" }}
+              >
                 &nbsp;
                 {heroTitles.map((title, index) => (
                   <motion.span
                     key={index}
-                    className="absolute font-black"
+                    className="absolute font-black whitespace-nowrap"
                     initial={{ opacity: 0, y: -100 }}
                     transition={{ type: "spring", stiffness: 50 }}
                     animate={

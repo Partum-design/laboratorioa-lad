@@ -24,27 +24,31 @@ export const TestimonialsColumn = (props: {
           ease: "linear",
           repeatType: "loop",
         }}
-        className="flex flex-col gap-6 pb-6"
+        className="flex flex-col gap-5 pb-5"
       >
         {[...new Array(2).fill(0).map((_, index) => (
           <React.Fragment key={index}>
             {props.testimonials.map(({ text, image, name, role }, i) => (
               <div
                 key={i}
-                className="p-8 rounded-2xl border border-gray-100 shadow-lg shadow-lad-red/5 max-w-xs w-full bg-white"
+                className="relative p-6 rounded-2xl border border-gray-100 shadow-md shadow-black/5 max-w-xs w-full bg-white overflow-hidden"
               >
-                <p className="text-sm leading-relaxed text-gray-700">&ldquo;{text}&rdquo;</p>
-                <div className="flex items-center gap-3 mt-5">
+                {/* Red accent bar */}
+                <div className="absolute top-0 left-0 w-full h-0.5 bg-lad-red/30" />
+                {/* Quote mark */}
+                <span className="block font-display text-5xl font-black text-lad-red/15 leading-none mb-1 select-none">&ldquo;</span>
+                <p className="text-sm leading-relaxed text-gray-800">{text}</p>
+                <div className="flex items-center gap-3 mt-5 pt-4 border-t border-gray-50">
                   <img
                     width={40}
                     height={40}
                     src={image}
                     alt={name}
-                    className="h-10 w-10 rounded-full object-cover"
+                    className="h-10 w-10 rounded-full object-cover ring-2 ring-lad-red/10"
                   />
                   <div className="flex flex-col">
                     <span className="font-bold text-sm tracking-tight text-lad-black leading-5">{name}</span>
-                    <span className="text-xs leading-5 text-gray-400 tracking-tight">{role}</span>
+                    <span className="text-xs leading-5 text-lad-red tracking-tight">{role}</span>
                   </div>
                 </div>
               </div>
@@ -130,10 +134,13 @@ export function TestimonialsSection() {
         >
           <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Testimonios</p>
           <h2 className="heading-lg">Lo que dicen <span className="text-lad-red">nuestros pacientes</span></h2>
-          <p className="mt-4 text-gray-500 max-w-md">Pacientes, médicos y empresas que confían en LAD cada día.</p>
+          <p className="mt-4 text-gray-500">Pacientes, médicos y empresas que confían en LAD cada día.</p>
         </motion.div>
 
-        <div className="flex justify-center gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)] max-h-[680px] overflow-hidden">
+        <div
+          className="flex justify-center gap-5 overflow-hidden max-h-[700px]"
+          style={{ maskImage: "linear-gradient(to bottom, transparent, black 12%, black 88%, transparent)" }}
+        >
           <TestimonialsColumn testimonials={firstColumn} duration={18} />
           <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={22} />
           <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={16} />
