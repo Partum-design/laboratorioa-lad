@@ -2,6 +2,7 @@
 
 import PageTransition from "@/components/PageTransition";
 import ScrollReveal from "@/components/ScrollReveal";
+import { TestimonialsSection } from "@/components/ui/TestimonialsColumns";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -99,12 +100,21 @@ const rutasRapidas = [
 ];
 
 const heroVideos = ["/vids/inicio/hero1.mp4", "/vids/inicio/hero2.mp4", "/vids/inicio/hero3.mp4"];
+const heroTitles = ["precisos", "confiables", "certificados", "inmediatos", "claros"];
 
 export default function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const counterRefs = useRef<HTMLSpanElement[]>([]);
   const [heroIdx, setHeroIdx] = useState(0);
+  const [titleNumber, setTitleNumber] = useState(0);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setTitleNumber((prev) => (prev === heroTitles.length - 1 ? 0 : prev + 1));
+    }, 2400);
+    return () => clearTimeout(timeoutId);
+  }, [titleNumber]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -156,11 +166,10 @@ export default function HomePage() {
     return () => ctx.revert();
   }, []);
 
-
   return (
     <PageTransition>
       {/* Hero */}
-      <section ref={heroRef} className="relative flex h-screen min-h-[620px] items-center overflow-hidden">
+      <section ref={heroRef} className="relative flex h-screen min-h-[680px] items-center justify-center overflow-hidden text-center">
         <div className="hero-bg absolute inset-0 -top-10">
           <VideoAuto
             key={heroIdx}
@@ -169,29 +178,92 @@ export default function HomePage() {
             onEnded={() => setHeroIdx((i) => (i + 1) % heroVideos.length)}
             className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-lad-black/90 via-lad-black/70 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-lad-black/60 to-transparent" />
+          <div className="absolute inset-0 bg-lad-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-lad-black/95 via-transparent to-lad-black/20" />
         </div>
-        <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />
 
         <div className="container-lad relative z-10">
-          <div className="max-w-2xl">
-            <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-md">
-              <div className="h-px w-8 bg-lad-red" />
+          <div className="mx-auto max-w-3xl">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.05] px-5 py-2.5 backdrop-blur-md"
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-lad-red animate-pulse" />
               <span className="text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Certificado ISO 9001:2015</span>
             </motion.div>
-            <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }} className="heading-xl mb-6 text-white">
-              Análisis que entiendes, <span className="text-lad-red">cuando los necesitas</span>
+
+            {/* Animated heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="mb-8 font-display text-6xl font-black leading-none tracking-tight text-white md:text-7xl lg:text-8xl"
+            >
+              Resultados
+              <span className="relative flex w-full justify-center overflow-hidden py-1 text-lad-red md:py-2">
+                &nbsp;
+                {heroTitles.map((title, index) => (
+                  <motion.span
+                    key={index}
+                    className="absolute font-black"
+                    initial={{ opacity: 0, y: -100 }}
+                    transition={{ type: "spring", stiffness: 50 }}
+                    animate={
+                      titleNumber === index
+                        ? { y: 0, opacity: 1 }
+                        : { y: titleNumber > index ? -150 : 150, opacity: 0 }
+                    }
+                  >
+                    {title}
+                  </motion.span>
+                ))}
+              </span>
             </motion.h1>
-            <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.25 }} className="mb-10 max-w-xl text-lg leading-relaxed text-gray-300">
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.25 }}
+              className="mx-auto mb-10 max-w-xl text-lg leading-relaxed text-gray-300"
+            >
               Análisis clínicos, paquetes preventivos y el seguimiento de tus resultados. Procesos certificados y gente que sí se toma el tiempo de explicarte.
             </motion.p>
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="flex flex-wrap gap-4">
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap justify-center gap-4"
+            >
               <Link href="/estudios#catalogo" className="btn-primary">Ver estudios</Link>
-              <a href={LAD_WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-white">Agendar por WhatsApp</a>
+              <a href={LAD_WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="btn-white">
+                Agendar por WhatsApp
+              </a>
             </motion.div>
           </div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            className="flex flex-col items-center gap-1.5 text-white/30"
+          >
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Stats */}
@@ -296,6 +368,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Testimonios */}
+      <TestimonialsSection />
 
       {/* Valores */}
       <section className="section-padding bg-white">

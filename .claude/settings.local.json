@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(echo \"Server starting with PID $!\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(npx playwright *)",
+      "Bash(mkdir -p /tmp/claude-1000/-home-bryanpartum-Documentos-GitHub-laboratorioa-lad/afc11504-ccb7-4497-a940-66f0291d4ee3/scratchpad)",
+      "Bash(node *)",
+      "Bash(npm root *)"
+    ]
+  }
+}
