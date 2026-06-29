@@ -111,6 +111,15 @@ body {
   background-size: 18px 18px;
 }
 
+@keyframes testimonial-scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.testimonial-scroll {
+  animation: testimonial-scroll linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

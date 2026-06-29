@@ -16,15 +16,9 @@ export const TestimonialsColumn = (props: {
 }) => {
   return (
     <div className={props.className}>
-      <motion.div
-        animate={{ translateY: "-50%" }}
-        transition={{
-          duration: props.duration || 10,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "loop",
-        }}
-        className="flex flex-col gap-5 pb-5"
+      <div
+        className="testimonial-scroll flex flex-col gap-5 pb-5"
+        style={{ animationDuration: `${props.duration || 10}s` }}
       >
         {[...new Array(2).fill(0).map((_, index) => (
           <React.Fragment key={index}>
@@ -55,7 +49,7 @@ export const TestimonialsColumn = (props: {
             ))}
           </React.Fragment>
         ))]}
-      </motion.div>
+      </div>
     </div>
   );
 };
