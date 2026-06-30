@@ -10,11 +10,9 @@ const SESSION_KEY = "lad:loaded";
 export default function LoadingScreen() {
   const [visible, setVisible] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [mounted, setMounted] = useState(false);
   const rafRef = useRef<number>(0);
 
   useEffect(() => {
-    setMounted(true);
     document.getElementById("construccion-flash-block")?.remove();
 
     if (sessionStorage.getItem(SESSION_KEY)) {
@@ -42,8 +40,6 @@ export default function LoadingScreen() {
   }, []);
 
   const pct = Math.round(progress * 100);
-
-  if (!mounted) return null;
 
   return (
     <AnimatePresence>

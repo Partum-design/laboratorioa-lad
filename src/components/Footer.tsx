@@ -77,7 +77,14 @@ export default function Footer() {
           <p className="text-xs text-gray-500">
             © {new Date().getFullYear()} LAD Laboratorio de Apoyo y Diagnóstico. Todos los derechos reservados.
           </p>
-          <p className="text-[10px] uppercase tracking-[0.35em] text-gray-600">Partum Design · Desarrollo en proceso</p>
+          <a
+            href="https://partumdesign.com.mx"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[10px] font-bold uppercase tracking-[0.35em] text-gray-600 transition hover:text-lad-red"
+          >
+            Partum Design
+          </a>
         </div>
       </div>
     </footer>
