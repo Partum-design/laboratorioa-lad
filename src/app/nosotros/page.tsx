@@ -4,6 +4,18 @@ import PageTransition from "@/components/PageTransition";
 import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
 import { IconBadge, IconChip } from "@/components/IconBadge";
+import {
+  IconAward,
+  IconCertificate,
+  IconCulture,
+  IconEye,
+  IconFocus,
+  IconLock,
+  IconScan,
+  IconShieldCheck,
+  IconTestTubes,
+  IconXRay,
+} from "@/components/LadIcons";
 import { iconColorAt } from "@/lib/icon-palette";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
@@ -16,94 +28,13 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-function IconTarget() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" fillRule="evenodd" className="h-6 w-6 text-lad-red">
-      <path d="M12,12 m-10,0 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0" />
-      <path d="M12,12 m-6.5,0 a6.5,6.5 0 1,0 13,0 a6.5,6.5 0 1,0 -13,0" />
-      <path d="M12,12 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0" />
-    </svg>
-  );
-}
-function IconEye() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 text-lad-red">
-      <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-      <path fillRule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconShield() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-      <path fillRule="evenodd" d="M12.516 2.17a.75.75 0 0 0-1.032 0 11.209 11.209 0 0 1-7.877 3.08.75.75 0 0 0-.722.515A12.74 12.74 0 0 0 2.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 0 0 .374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 0 0-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08Zm3.094 8.016a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconFlask() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-      <path fillRule="evenodd" d="M9.75 2.25a.75.75 0 0 0 0 1.5h.75v3.378a3 3 0 0 1-.405 1.51L5.967 16.5a2.625 2.625 0 0 0 2.273 3.937h7.52a2.625 2.625 0 0 0 2.273-3.937l-4.128-7.862a3 3 0 0 1-.405-1.51V3.75h.75a.75.75 0 0 0 0-1.5h-4.5Zm.75 6.378V3.75h3v4.878a4.5 4.5 0 0 0 .607 2.265l1.282 2.442a23.025 23.025 0 0 0-8.336.49l1.84-3.5a4.5 4.5 0 0 0 .607-2.264Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconScan() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-      <path d="M3 3h6v2H5v4H3V3Zm12 0h6v6h-2V5h-4V3ZM3 15h2v4h4v2H3v-6Zm16 0h2v6h-6v-2h4v-4Z" />
-    </svg>
-  );
-}
-function IconRayos() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
-      <rect x="6" y="10.5" width="12" height="3" rx="1.5" transform="rotate(45 12 12)" />
-      <circle cx="7.76" cy="7.76" r="3" />
-      <circle cx="16.24" cy="16.24" r="3" />
-    </svg>
-  );
-}
-function IconCulture() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" fillRule="evenodd" className="h-6 w-6">
-      <path d="M12,12 m-10,0 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0" />
-      <path d="M12,12 m-8,0 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0" />
-      <path d="M9,10 m-1.3,0 a1.3,1.3 0 1,0 2.6,0 a1.3,1.3 0 1,0 -2.6,0" />
-      <path d="M15,9 m-1.3,0 a1.3,1.3 0 1,0 2.6,0 a1.3,1.3 0 1,0 -2.6,0" />
-      <path d="M13,15 m-1.1,0 a1.1,1.1 0 1,0 2.2,0 a1.1,1.1 0 1,0 -2.2,0" />
-      <path d="M8,15 m-1,0 a1,1 0 1,0 2,0 a1,1 0 1,0 -2,0" />
-    </svg>
-  );
-}
-function IconCertificate() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-      <path fillRule="evenodd" d="M16.403 12.652a3 3 0 0 0 0-5.304 3 3 0 0 0-3.75-3.751 3 3 0 0 0-5.305 0 3 3 0 0 0-3.751 3.75 3 3 0 0 0 0 5.305 3 3 0 0 0 3.75 3.751 3 3 0 0 0 5.305 0 3 3 0 0 0 3.751-3.75Zm-2.546-4.46a.75.75 0 0 0-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconLock() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-      <path fillRule="evenodd" d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconAward() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-      <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-
 const areas = [
   {
     nombre: "Hematología",
     desc: "Biometría hemática, coagulación y morfología celular con equipos automatizados y revisión del equipo clínico.",
     video: ["/vids/nosotros/hematologia1.mp4", "/vids/nosotros/hematologia2.mp4"],
     img: null,
-    icono: <IconFlask />,
+    icono: <IconTestTubes />,
     badge: "Área principal",
   },
   {
@@ -119,7 +50,7 @@ const areas = [
     desc: "Radiología digital con procesamiento de imagen y entrega práctica para pacientes y médicos.",
     video: ["/vids/nosotros/xray1.mp4", "/vids/nosotros/xray2.mp4"],
     img: null,
-    icono: <IconRayos />,
+    icono: <IconXRay />,
     badge: "",
   },
   {
@@ -127,7 +58,7 @@ const areas = [
     desc: "Química sanguínea, perfiles metabólicos, hepáticos, renales y lipídicos con procesos controlados.",
     video: null,
     img: "/img/ai-generated-6a1dc1076908f.png",
-    icono: <IconFlask />,
+    icono: <IconTestTubes />,
     badge: "",
   },
   {
@@ -143,7 +74,7 @@ const areas = [
     desc: "Pruebas hormonales, infecciosas y autoinmunes para apoyar decisiones médicas específicas.",
     video: null,
     img: "/img/image-1.png",
-    icono: <IconShield />,
+    icono: <IconShieldCheck />,
     badge: "",
   },
 ];
@@ -159,7 +90,7 @@ const hitos = [
 const valores = [
   { icon: <IconCertificate />, label: "Calidad certificada" },
   { icon: <IconLock />, label: "Confidencialidad" },
-  { icon: <IconShield />, label: "Tecnología avanzada" },
+  { icon: <IconShieldCheck />, label: "Tecnología avanzada" },
   { icon: <IconAward />, label: "Equipo experto" },
 ];
 
@@ -218,7 +149,7 @@ export default function NosotrosPage() {
             Nosotros
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="heading-xl mb-6 text-white">
-            Más de 40 años al <span className="text-lad-red">servicio</span> de tu salud
+            40+ años de <span className="text-lad-red">experiencia</span> al servicio de tu salud
           </motion.h1>
           <p className="body-lg mx-auto max-w-2xl text-justify text-gray-300">
             Somos un laboratorio que cuida el proceso completo: toma de muestra, análisis, entrega y explicación cuando el paciente la necesita.
@@ -233,7 +164,7 @@ export default function NosotrosPage() {
             <div className="space-y-8">
               <div className="border-lad">
                 <div className="mb-4 flex items-center gap-3">
-                  <IconChip color={iconColorAt(0)}><IconTarget /></IconChip>
+                  <IconChip color={iconColorAt(0)}><IconFocus /></IconChip>
                   <p className="text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Misión</p>
                 </div>
                 <h3 className="mb-3 font-display text-2xl font-bold">Qué nos mueve</h3>

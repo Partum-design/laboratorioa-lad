@@ -12,16 +12,16 @@ interface IconBadgeProps {
   idle?: boolean;
 }
 
-// Caja sólida tipo "sticker": fondo a color + ícono (blanco por defecto, o iconColor si se pasa).
+// Contenedor técnico de esquinas suaves para la familia de iconos LAD.
 export function IconBadge({ color, iconColor = "#ffffff", children, className = "h-10 w-10", rotate = 8, idle = false }: IconBadgeProps) {
   return (
     <motion.div
-      className={`flex shrink-0 items-center justify-center ${className}`}
+      className={`relative flex shrink-0 items-center justify-center overflow-hidden rounded-[1.1rem] border border-white/20 shadow-[0_16px_30px_-18px_rgba(227,6,19,0.9)] after:absolute after:right-1.5 after:top-1.5 after:h-1 after:w-1 after:rounded-full after:bg-current after:opacity-30 [&>svg]:h-1/2 [&>svg]:w-1/2 ${className}`}
       style={{ backgroundColor: color, color: iconColor }}
-      initial={{ scale: 0.6, opacity: 0, rotate: -8 }}
-      whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
+      initial={{ scale: 0.82, opacity: 0, y: 8 }}
+      whileInView={{ scale: 1, opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      whileHover={{ scale: 1.12, rotate }}
+      whileHover={{ scale: 1.05, y: -3, rotate: rotate / 4 }}
       animate={idle ? { y: [0, -3, 0] } : undefined}
       transition={
         idle
@@ -40,16 +40,16 @@ interface IconChipProps {
   size?: string;
 }
 
-// Versión sin caja: ícono inline a color, con leve pop al hover. Para íconos junto a texto (no en tarjeta).
+// Versión inline para iconos junto a texto.
 export function IconChip({ color, children, size = "h-5 w-5" }: IconChipProps) {
   return (
     <motion.span
-      className={`inline-flex shrink-0 items-center justify-center ${size}`}
+      className={`inline-flex shrink-0 items-center justify-center [&>svg]:h-full [&>svg]:w-full ${size}`}
       style={{ color }}
-      initial={{ scale: 0.7, opacity: 0 }}
+      initial={{ scale: 0.85, opacity: 0 }}
       whileInView={{ scale: 1, opacity: 1 }}
       viewport={{ once: true, margin: "-40px" }}
-      whileHover={{ scale: 1.2, rotate: -6 }}
+      whileHover={{ scale: 1.08, y: -1 }}
       transition={{ type: "spring", stiffness: 320, damping: 14 }}
     >
       {children}

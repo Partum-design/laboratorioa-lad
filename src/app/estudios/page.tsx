@@ -4,46 +4,11 @@ import PageTransition from "@/components/PageTransition";
 import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
 import { IconChip } from "@/components/IconBadge";
+import { IconCheck, IconClock, IconDroplet, IconFilter, IconTag } from "@/components/LadIcons";
 import { ICON_COLORS, iconColorAt } from "@/lib/icon-palette";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
-
-function IconCheck() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4 shrink-0 text-lad-red">
-      <path fillRule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 0 1 1.04-.208Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconClock() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-      <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm.75 4.5a.75.75 0 0 0-1.5 0V12c0 .284.152.547.398.69l4.5 2.625a.75.75 0 1 0 .755-1.297l-4.153-2.424V6.75Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconDroplet() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-      <path d="M12 2.69c-2.92 3.39-7 8.3-7 11.81a7 7 0 0 0 14 0c0-3.51-4.08-8.42-7-11.81Z" />
-    </svg>
-  );
-}
-function IconTag() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-      <path fillRule="evenodd" d="M5.25 2.25a3 3 0 0 0-3 3v4.318a3 3 0 0 0 .879 2.121l9.58 9.581c.92.92 2.39.92 3.31 0l5.022-5.022c.92-.92.92-2.39 0-3.31l-9.58-9.581a3 3 0 0 0-2.122-.879H5.25ZM6.375 7.5a1.125 1.125 0 1 0 0-2.25 1.125 1.125 0 0 0 0 2.25Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconFilter() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-      <path fillRule="evenodd" d="M3.792 2.938A49.069 49.069 0 0 1 12 2.25c2.797 0 5.54.236 8.209.688a1.857 1.857 0 0 1 1.541 1.836v1.044a3 3 0 0 1-.879 2.121l-6.182 6.182a1.5 1.5 0 0 0-.439 1.061v2.927a3 3 0 0 1-1.658 2.684l-1.757.878A.75.75 0 0 1 9.75 21v-6.815a1.5 1.5 0 0 0-.44-1.06L3.13 6.94a3 3 0 0 1-.879-2.121v-1.044a1.857 1.857 0 0 1 1.542-1.836Z" clipRule="evenodd" />
-    </svg>
-  );
-}
 
 const categorias = ["Todos", "Hematología", "Química Sanguínea", "Inmunología", "Microbiología", "Uroanálisis", "Hormonas"];
 

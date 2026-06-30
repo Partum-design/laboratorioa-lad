@@ -4,47 +4,12 @@ import PageTransition from "@/components/PageTransition";
 import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
 import { IconBadge, IconChip } from "@/components/IconBadge";
+import { IconCheckCircle, IconClock, IconMapPin, IconPhone, IconSend } from "@/components/LadIcons";
 import { ICON_COLORS, iconColorAt } from "@/lib/icon-palette";
 import { buildWhatsAppLink, LAD_PHONE_DISPLAY, LAD_TEL_LINK, LAD_WHATSAPP_LINK } from "@/lib/contact";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { useEffect, useRef, useState } from "react";
-
-function IconMapPin() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-      <path fillRule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconPhone() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-      <path fillRule="evenodd" d="M1.5 4.5c0-1.036.84-1.875 1.875-1.875h3.375c.621 0 1.125.504 1.125 1.125v3.375c0 .621-.504 1.125-1.125 1.125h-1.5a.375.375 0 0 0-.375.375c0 7.04 5.71 12.75 12.75 12.75a.375.375 0 0 0 .375-.375v-1.5c0-.621.504-1.125 1.125-1.125h3.375c.621 0 1.125.504 1.125 1.125v3.375c0 1.036-.84 1.875-1.875 1.875h-1.5C9.708 22.5 1.5 14.292 1.5 4.5v-1.5Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconClock() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-      <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm.75 4.5a.75.75 0 0 0-1.5 0V12c0 .284.152.547.398.69l4.5 2.625a.75.75 0 1 0 .755-1.297l-4.153-2.424V6.75Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconSend() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-      <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
-    </svg>
-  );
-}
-function IconCheckCircle() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-9 w-9">
-      <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
-    </svg>
-  );
-}
 
 const horarios = [
   { dia: "Lunes a viernes", hora: "7:00 am a 6:00 pm" },

@@ -4,6 +4,17 @@ import PageTransition from "@/components/PageTransition";
 import ScrollReveal from "@/components/ScrollReveal";
 import { TestimonialsSection } from "@/components/ui/TestimonialsColumns";
 import { IconBadge } from "@/components/IconBadge";
+import {
+  IconCheck,
+  IconClock,
+  IconFocus,
+  IconPackage,
+  IconPhone,
+  IconResults,
+  IconShieldCheck,
+  IconTestTubes,
+  IconUsers,
+} from "@/components/LadIcons";
 import { iconColorAt } from "@/lib/icon-palette";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
@@ -17,89 +28,23 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-function IconClock() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-      <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm.75 4.5a.75.75 0 0 0-1.5 0V12c0 .284.152.547.398.69l4.5 2.625a.75.75 0 1 0 .755-1.297l-4.153-2.424V6.75Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconShield() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-      <path fillRule="evenodd" d="M12.516 2.17a.75.75 0 0 0-1.032 0 11.209 11.209 0 0 1-7.877 3.08.75.75 0 0 0-.722.515A12.74 12.74 0 0 0 2.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 0 0 .374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 0 0-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08Zm3.094 8.016a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconMonitor() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-      <path d="M2.25 5.25a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3V15a3 3 0 0 1-3 3h-3v.257c0 .597.237 1.17.659 1.591l.621.622a.75.75 0 0 1-.53 1.28h-9a.75.75 0 0 1-.53-1.28l.621-.622a2.25 2.25 0 0 0 .659-1.59V18h-3a3 3 0 0 1-3-3V5.25Zm1.5 0v9.75c0 .414.336.75.75.75h13.5a.75.75 0 0 0 .75-.75V5.25a.75.75 0 0 0-.75-.75H4.5a.75.75 0 0 0-.75.75Z" />
-    </svg>
-  );
-}
-function IconTarget() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" fillRule="evenodd" className="h-5 w-5">
-      <path d="M12,12 m-10,0 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0" />
-      <path d="M12,12 m-6.5,0 a6.5,6.5 0 1,0 13,0 a6.5,6.5 0 1,0 -13,0" />
-      <path d="M12,12 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0" />
-    </svg>
-  );
-}
-function IconUsers() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-      <path d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a2.25 2.25 0 0 1-.233.96 10.088 10.088 0 0 0 5.06-1.01.75.75 0 0 0 .42-.643 4.875 4.875 0 0 0-6.957-4.611 8.586 8.586 0 0 1 1.71 5.157v.003Z" />
-    </svg>
-  );
-}
-function IconFlask() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-8 w-8">
-      <path fillRule="evenodd" d="M9.75 2.25a.75.75 0 0 0 0 1.5h.75v3.378a3 3 0 0 1-.405 1.51L5.967 16.5a2.625 2.625 0 0 0 2.273 3.937h7.52a2.625 2.625 0 0 0 2.273-3.937l-4.128-7.862a3 3 0 0 1-.405-1.51V3.75h.75a.75.75 0 0 0 0-1.5h-4.5Zm.75 6.378V3.75h3v4.878a4.5 4.5 0 0 0 .607 2.265l1.282 2.442a23.025 23.025 0 0 0-8.336.49l1.84-3.5a4.5 4.5 0 0 0 .607-2.264Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconPackage() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-8 w-8">
-      <path fillRule="evenodd" d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V9a1.5 1.5 0 0 0 1.5 1.5h18A1.5 1.5 0 0 0 22.5 9V6.375c0-1.036-.84-1.875-1.875-1.875h-17.25ZM3 18.75A1.5 1.5 0 0 1 1.5 17.25V10.5h21v6.75a1.5 1.5 0 0 1-1.5 1.5H3ZM9 12.75a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5H9Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconPhone() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-8 w-8">
-      <path fillRule="evenodd" d="M1.5 4.5c0-1.036.84-1.875 1.875-1.875h3.375c.621 0 1.125.504 1.125 1.125v3.375c0 .621-.504 1.125-1.125 1.125h-1.5a.375.375 0 0 0-.375.375c0 7.04 5.71 12.75 12.75 12.75a.375.375 0 0 0 .375-.375v-1.5c0-.621.504-1.125 1.125-1.125h3.375c.621 0 1.125.504 1.125 1.125v3.375c0 1.036-.84 1.875-1.875 1.875h-1.5C9.708 22.5 1.5 14.292 1.5 4.5v-1.5Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-function IconCheck() {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-      <path fillRule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 0 1 1.04-.208Z" clipRule="evenodd" />
-    </svg>
-  );
-}
-
 const stats = [
   { value: "40+", label: "Años de experiencia", icon: <IconClock /> },
-  { value: "200+", label: "Estudios disponibles", icon: <IconFlask /> },
-  { value: "ISO", label: "Sistema de calidad", icon: <IconShield /> },
-  { value: "Digital", label: "Resultados disponibles", icon: <IconMonitor /> },
+  { value: "200+", label: "Estudios disponibles", icon: <IconTestTubes /> },
+  { value: "ISO", label: "Sistema de calidad", icon: <IconShieldCheck /> },
+  { value: "Digital", label: "Resultados disponibles", icon: <IconResults /> },
 ];
 
 const servicios = [
-  { icon: <IconFlask />, title: "Análisis clínicos", desc: "Desde un estudio de rutina hasta pruebas especializadas, siempre bajo procesos certificados.", href: "/estudios#catalogo", cta: "Ver catálogo" },
+  { icon: <IconTestTubes />, title: "Análisis clínicos", desc: "Desde un estudio de rutina hasta pruebas especializadas, siempre bajo procesos certificados.", href: "/estudios#catalogo", cta: "Ver catálogo" },
   { icon: <IconPackage />, title: "Paquetes preventivos", desc: "Perfiles ya armados para chequeos generales, empresas y el seguimiento de tu familia.", href: "/estudios#paquetes", cta: "Ver paquetes" },
   { icon: <IconPhone />, title: "Atención directa", desc: "Agenda, pregunta lo que necesites y sigue tus resultados, directo por WhatsApp.", href: "/contacto#agenda", cta: "Agendar cita" },
 ];
 
 const valores = [
-  { icon: <IconTarget />, title: "Criterio clínico", desc: "Ningún resultado sale sin que alguien lo revise con calma primero." },
+  { icon: <IconFocus />, title: "Criterio clínico", desc: "Ningún resultado sale sin que alguien lo revise con calma primero." },
   { icon: <IconUsers />, title: "Trato humano", desc: "Te decimos los pasos, los tiempos y qué llevar, sin tecnicismos de más." },
-  { icon: <IconShield />, title: "Privacidad", desc: "Tus datos y resultados quedan bajo acceso controlado. Punto." },
+  { icon: <IconShieldCheck />, title: "Privacidad", desc: "Tus datos y resultados quedan bajo acceso controlado. Punto." },
   { icon: <IconCheck />, title: "Calidad ISO", desc: "Operamos bajo un sistema de gestión ISO 9001:2015." },
 ];
 
@@ -340,7 +285,7 @@ export default function HomePage() {
               <div className="absolute inset-0 bg-gradient-to-t from-lad-black/40 to-transparent" />
               <div className="absolute bottom-6 right-6 rounded-xl bg-lad-red p-6 text-center text-white shadow-lg shadow-lad-red/30">
                 <p className="font-display text-3xl font-black">40+</p>
-                <p className="text-xs">años de servicio</p>
+                <p className="text-xs">años de experiencia</p>
               </div>
             </div>
           </ScrollReveal>

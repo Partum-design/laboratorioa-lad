@@ -28,7 +28,7 @@ export default function Footer() {
                 className="object-contain drop-shadow"
               />
               <div>
-                <p className="font-display text-sm font-black uppercase tracking-wider">Laboratorio</p>
+                <p className="font-display text-sm font-black uppercase tracking-wider">Laboratorio de</p>
                 <p className="mt-0.5 text-xs font-light opacity-60">Apoyo y Diagnóstico</p>
               </div>
             </Link>

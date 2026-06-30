@@ -1,11 +1,11 @@
-// Paleta de acento para íconos: roja de marca + 5 tonos saturados, no neón.
+// Una sola voz visual: todos los iconos usan el rojo institucional de LAD.
 export const ICON_COLORS = {
   red: "#E30613",
-  amber: "#F59E0B",
-  teal: "#0D9488",
-  violet: "#7C3AED",
-  green: "#16A34A",
-  sky: "#0284C7",
+  amber: "#E30613",
+  teal: "#E30613",
+  violet: "#E30613",
+  green: "#E30613",
+  sky: "#E30613",
 } as const;
 
 export type IconColorName = keyof typeof ICON_COLORS;
