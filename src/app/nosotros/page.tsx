@@ -238,7 +238,7 @@ export default function NosotrosPage() {
                       </span>
                     )}
                     {/* Ícono flotante */}
-                    <IconBadge color={iconColorAt(index)} className="absolute bottom-4 right-4 h-10 w-10">
+                    <IconBadge color={iconColorAt(index)} className="!absolute bottom-4 right-4 z-10 h-12 w-12">
                       {area.icono}
                     </IconBadge>
                   </div>
