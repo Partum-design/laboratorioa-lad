@@ -81,10 +81,9 @@ const areas = [
 
 const hitos = [
   { año: "1985", titulo: "Fundación", desc: "Abrimos con una idea simple: entregar diagnósticos confiables y tratables en consulta." },
-  { año: "2013", titulo: "Certificación ISO", desc: "Ordenamos procesos, controles y documentación bajo norma internacional." },
   { año: "2017", titulo: "Nueva tecnología", desc: "Sumamos equipos para pruebas de mayor complejidad y mejor seguimiento interno." },
   { año: "2021", titulo: "Resultados digitales", desc: "Facilitamos la entrega de resultados en línea para pacientes y médicos." },
-  { año: "2024", titulo: "ISO 9001:2015", desc: "Actualizamos procesos para mantener la certificación vigente." },
+  { año: "2026", titulo: "ISO 9001:2015", desc: "Actualizamos procesos para mantener la certificación vigente con ayuda de Indusecc." },
 ];
 
 const valores = [
