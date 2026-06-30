@@ -1,6 +1,7 @@
 "use client";
 
 import { LAD_WHATSAPP_LINK } from "@/lib/contact";
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 function WhatsAppIcon() {
@@ -30,7 +31,12 @@ export default function FloatingButtons() {
         aria-label="Contactar por WhatsApp"
         className="group fixed bottom-8 right-6 z-[100] flex items-center gap-3 rounded-full bg-[#25D366] px-4 py-3 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
       >
-        <WhatsAppIcon />
+        <motion.span
+          animate={{ rotate: [0, -8, 8, -8, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity, repeatDelay: 2.5, ease: "easeInOut" }}
+        >
+          <WhatsAppIcon />
+        </motion.span>
         <span className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-bold text-white transition-all duration-300 group-hover:max-w-xs">
           WhatsApp
         </span>
@@ -42,7 +48,12 @@ export default function FloatingButtons() {
         aria-label="Ver catálogo de estudios"
         className="group fixed bottom-8 left-6 z-[100] flex items-center gap-3 rounded-full bg-lad-red px-4 py-3 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
       >
-        <IconCatalog />
+        <motion.span
+          animate={{ y: [0, -3, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <IconCatalog />
+        </motion.span>
         <span className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-bold text-white transition-all duration-300 group-hover:max-w-xs">
           Ver estudios
         </span>

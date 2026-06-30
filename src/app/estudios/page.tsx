@@ -3,6 +3,8 @@
 import PageTransition from "@/components/PageTransition";
 import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
+import { IconChip } from "@/components/IconBadge";
+import { ICON_COLORS, iconColorAt } from "@/lib/icon-palette";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
@@ -109,7 +111,7 @@ export default function EstudiosPage() {
                   <ul className="mb-8 space-y-2">
                     {paquete.estudios.map((e) => (
                       <li key={e} className="flex items-center gap-2 text-sm text-gray-600">
-                        <IconCheck /> {e}
+                        <IconChip color={ICON_COLORS.green} size="h-4 w-4"><IconCheck /></IconChip> {e}
                       </li>
                     ))}
                   </ul>
@@ -127,7 +129,7 @@ export default function EstudiosPage() {
       <section id="catalogo" className="section-padding scroll-mt-24 bg-white">
         <div className="container-lad">
           <div className="mb-8 flex items-center gap-3">
-            <IconFilter />
+            <IconChip color={iconColorAt(5)} size="h-5 w-5"><IconFilter /></IconChip>
             <span className="text-sm font-bold uppercase tracking-wider text-gray-500">Filtrar por categoría</span>
           </div>
           <div className="mb-10 flex flex-wrap gap-3">
@@ -157,9 +159,9 @@ export default function EstudiosPage() {
                   <h3 className="mb-3 font-display text-xl font-bold">{estudio.nombre}</h3>
                   <p className="mb-5 text-justify text-sm leading-relaxed text-gray-600">{estudio.desc}</p>
                   <div className="grid grid-cols-3 gap-3 border-t border-gray-100 pt-4 text-xs text-gray-500">
-                    <span className="flex items-center gap-1"><IconClock /> {estudio.tiempo}</span>
-                    <span className="flex items-center gap-1"><IconDroplet /> {estudio.muestra}</span>
-                    <span className="flex items-center gap-1 font-bold text-lad-red"><IconTag /> {estudio.precio}</span>
+                    <span className="flex items-center gap-1"><IconChip color={ICON_COLORS.sky} size="h-4 w-4"><IconClock /></IconChip> {estudio.tiempo}</span>
+                    <span className="flex items-center gap-1"><IconChip color={ICON_COLORS.amber} size="h-4 w-4"><IconDroplet /></IconChip> {estudio.muestra}</span>
+                    <span className="flex items-center gap-1 font-bold text-lad-red"><IconChip color={ICON_COLORS.red} size="h-4 w-4"><IconTag /></IconChip> {estudio.precio}</span>
                   </div>
                 </motion.article>
               ))}

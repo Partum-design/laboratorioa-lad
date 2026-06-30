@@ -3,6 +3,8 @@
 import PageTransition from "@/components/PageTransition";
 import ScrollReveal from "@/components/ScrollReveal";
 import { TestimonialsSection } from "@/components/ui/TestimonialsColumns";
+import { IconBadge } from "@/components/IconBadge";
+import { iconColorAt } from "@/lib/icon-palette";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -283,7 +285,9 @@ export default function HomePage() {
         <div className="container-lad grid grid-cols-2 gap-8 md:grid-cols-4">
           {stats.map((stat, index) => (
             <div key={stat.label} className="flex flex-col items-center gap-2 text-center text-white">
-              <div className="opacity-70">{stat.icon}</div>
+              <IconBadge color="#ffffff" iconColor={iconColorAt(index)} className="h-11 w-11 rounded-full">
+                {stat.icon}
+              </IconBadge>
               <span ref={(el) => { if (el) counterRefs.current[index] = el; }} data-target={stat.value} className="block font-display text-4xl font-black md:text-5xl">
                 {stat.value}
               </span>
@@ -306,9 +310,9 @@ export default function HomePage() {
             {servicios.map((servicio, index) => (
               <ScrollReveal key={servicio.title} delay={index * 0.12}>
                 <div className="card-hover group border border-gray-100 bg-white p-8 hover:border-lad-red">
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center bg-lad-gray-light text-lad-red transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:bg-lad-red group-hover:text-white group-hover:scale-105">
+                  <IconBadge color={iconColorAt(index)} className="mb-6 h-14 w-14">
                     {servicio.icon}
-                  </div>
+                  </IconBadge>
                   <h3 className="heading-md mb-3 text-lad-black">{servicio.title}</h3>
                   <p className="text-sm leading-relaxed text-gray-500">{servicio.desc}</p>
                   <Link href={servicio.href} className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-lad-red">
@@ -397,9 +401,9 @@ export default function HomePage() {
             {valores.map((valor, index) => (
               <ScrollReveal key={valor.title} delay={index * 0.1}>
                 <div className="group h-full border-l-4 border-lad-red bg-lad-gray-light p-6 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1.5 hover:bg-white hover:shadow-xl">
-                  <div className="mb-4 flex h-10 w-10 items-center justify-center bg-lad-red text-white transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110">
+                  <IconBadge color={iconColorAt(index)} className="mb-4 h-10 w-10">
                     {valor.icon}
-                  </div>
+                  </IconBadge>
                   <h3 className="mb-2 font-display text-xl font-bold">{valor.title}</h3>
                   <p className="text-sm leading-relaxed text-gray-600">{valor.desc}</p>
                 </div>

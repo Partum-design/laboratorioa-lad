@@ -3,6 +3,8 @@
 import PageTransition from "@/components/PageTransition";
 import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
+import { IconBadge, IconChip } from "@/components/IconBadge";
+import { ICON_COLORS, iconColorAt } from "@/lib/icon-palette";
 import { buildWhatsAppLink, LAD_PHONE_DISPLAY, LAD_TEL_LINK, LAD_WHATSAPP_LINK } from "@/lib/contact";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
@@ -10,21 +12,21 @@ import { useEffect, useRef, useState } from "react";
 
 function IconMapPin() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 shrink-0 text-lad-red">
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
       <path fillRule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clipRule="evenodd" />
     </svg>
   );
 }
 function IconPhone() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 shrink-0 text-lad-red">
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
       <path fillRule="evenodd" d="M1.5 4.5c0-1.036.84-1.875 1.875-1.875h3.375c.621 0 1.125.504 1.125 1.125v3.375c0 .621-.504 1.125-1.125 1.125h-1.5a.375.375 0 0 0-.375.375c0 7.04 5.71 12.75 12.75 12.75a.375.375 0 0 0 .375-.375v-1.5c0-.621.504-1.125 1.125-1.125h3.375c.621 0 1.125.504 1.125 1.125v3.375c0 1.036-.84 1.875-1.875 1.875h-1.5C9.708 22.5 1.5 14.292 1.5 4.5v-1.5Z" clipRule="evenodd" />
     </svg>
   );
 }
 function IconClock() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5 shrink-0 text-lad-red">
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
       <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm.75 4.5a.75.75 0 0 0-1.5 0V12c0 .284.152.547.398.69l4.5 2.625a.75.75 0 1 0 .755-1.297l-4.153-2.424V6.75Z" clipRule="evenodd" />
     </svg>
   );
@@ -38,7 +40,7 @@ function IconSend() {
 }
 function IconCheckCircle() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="mx-auto mb-4 h-16 w-16 text-lad-red">
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-9 w-9">
       <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
     </svg>
   );
@@ -116,21 +118,21 @@ export default function ContactoPage() {
               <h2 className="heading-md mb-6">Información de <span className="text-lad-red">contacto</span></h2>
               <div className="space-y-5 text-sm">
                 <div className="flex items-start gap-3">
-                  <IconMapPin />
+                  <IconChip color={iconColorAt(0)}><IconMapPin /></IconChip>
                   <div>
                     <p className="font-bold text-lad-black">Ubicación</p>
                     <p className="text-gray-600">Te compartimos la ubicación exacta por WhatsApp al confirmar tu cita.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <IconPhone />
+                  <IconChip color={iconColorAt(1)}><IconPhone /></IconChip>
                   <div>
                     <p className="font-bold text-lad-black">Teléfono</p>
                     <a href={LAD_TEL_LINK} className="text-gray-600 transition hover:text-lad-red">{LAD_PHONE_DISPLAY}</a>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <IconPhone />
+                  <IconChip color={iconColorAt(2)}><IconPhone /></IconChip>
                   <div>
                     <p className="font-bold text-lad-black">WhatsApp</p>
                     <a href={LAD_WHATSAPP_LINK} target="_blank" rel="noopener noreferrer" className="text-gray-600 transition hover:text-lad-red">
@@ -142,7 +144,7 @@ export default function ContactoPage() {
 
               <div className="mt-8 border-t border-gray-100 pt-8">
                 <div className="mb-4 flex items-center gap-2">
-                  <IconClock />
+                  <IconChip color={iconColorAt(3)} size="h-5 w-5"><IconClock /></IconChip>
                   <h3 className="font-display text-lg font-bold">Horario de atención</h3>
                 </div>
                 {horarios.map((h) => (
@@ -155,7 +157,7 @@ export default function ContactoPage() {
 
               <div className="mt-8 flex h-48 items-center justify-center bg-lad-gray-light text-sm font-bold text-gray-400">
                 <div className="flex flex-col items-center gap-2">
-                  <IconMapPin />
+                  <IconChip color={iconColorAt(0)} size="h-7 w-7"><IconMapPin /></IconChip>
                   <span>Ubicación disponible al agendar</span>
                 </div>
               </div>
@@ -168,7 +170,9 @@ export default function ContactoPage() {
               <form ref={formRef} onSubmit={handleSubmit} className="border border-gray-100 bg-white p-6 shadow-sm md:p-10">
                 {enviado ? (
                   <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className="py-16 text-center">
-                    <IconCheckCircle />
+                    <IconBadge color={ICON_COLORS.green} className="mx-auto mb-4 h-16 w-16 rounded-full">
+                      <IconCheckCircle />
+                    </IconBadge>
                     <h2 className="heading-md mb-4 text-lad-black">WhatsApp abierto</h2>
                     <p className="text-justify text-gray-600">Tu mensaje quedó listo para enviarse. Si no se abrió la ventana, usa el botón flotante de WhatsApp.</p>
                   </motion.div>
@@ -188,7 +192,7 @@ export default function ContactoPage() {
                     <button className="btn-primary flex items-center justify-center gap-2 md:col-span-2" disabled={enviando}>
                       {enviando ? "Abriendo WhatsApp..." : (
                         <>
-                          <IconSend />
+                          <IconChip color="#ffffff" size="h-4 w-4"><IconSend /></IconChip>
                           Enviar por WhatsApp
                         </>
                       )}

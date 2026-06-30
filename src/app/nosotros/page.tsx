@@ -3,6 +3,8 @@
 import PageTransition from "@/components/PageTransition";
 import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
+import { IconBadge, IconChip } from "@/components/IconBadge";
+import { iconColorAt } from "@/lib/icon-palette";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -231,7 +233,7 @@ export default function NosotrosPage() {
             <div className="space-y-8">
               <div className="border-lad">
                 <div className="mb-4 flex items-center gap-3">
-                  <IconTarget />
+                  <IconChip color={iconColorAt(0)}><IconTarget /></IconChip>
                   <p className="text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Misión</p>
                 </div>
                 <h3 className="mb-3 font-display text-2xl font-bold">Qué nos mueve</h3>
@@ -241,7 +243,7 @@ export default function NosotrosPage() {
               </div>
               <div className="border-lad">
                 <div className="mb-4 flex items-center gap-3">
-                  <IconEye />
+                  <IconChip color={iconColorAt(1)}><IconEye /></IconChip>
                   <p className="text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Visión</p>
                 </div>
                 <h3 className="mb-3 font-display text-2xl font-bold">Hacia dónde vamos</h3>
@@ -306,9 +308,9 @@ export default function NosotrosPage() {
                       </span>
                     )}
                     {/* Ícono flotante */}
-                    <div className="absolute bottom-4 right-4 flex h-10 w-10 items-center justify-center bg-lad-red text-white">
+                    <IconBadge color={iconColorAt(index)} className="absolute bottom-4 right-4 h-10 w-10">
                       {area.icono}
-                    </div>
+                    </IconBadge>
                   </div>
                   {/* Texto */}
                   <div className="p-6">
@@ -322,9 +324,9 @@ export default function NosotrosPage() {
 
           {/* Valores al fondo */}
           <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4">
-            {valores.map((v) => (
+            {valores.map((v, index) => (
               <div key={v.label} className="flex items-center gap-3 bg-lad-gray-light p-5">
-                <div className="text-lad-red">{v.icon}</div>
+                <IconBadge color={iconColorAt(index + 2)} className="h-9 w-9">{v.icon}</IconBadge>
                 <p className="text-sm font-bold">{v.label}</p>
               </div>
             ))}

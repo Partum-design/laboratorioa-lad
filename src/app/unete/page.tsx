@@ -3,6 +3,8 @@
 import PageTransition from "@/components/PageTransition";
 import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
+import { IconBadge, IconChip } from "@/components/IconBadge";
+import { iconColorAt } from "@/lib/icon-palette";
 import { buildWhatsAppLink } from "@/lib/contact";
 import { AnimatePresence, motion } from "framer-motion";
 import { gsap } from "gsap";
@@ -176,7 +178,7 @@ export default function UnetePage() {
             Buscamos personas cuidadosas, puntuales y con buen trato al paciente. Si quieres crecer en diagnóstico clínico, revisa las vacantes.
           </p>
           <a href="#vacantes" className="hero-el btn-primary inline-flex items-center gap-2">
-            <IconChevron />
+            <IconChip color="#ffffff" size="h-5 w-5"><IconChevron /></IconChip>
             Ver vacantes disponibles
           </a>
         </div>
@@ -195,9 +197,9 @@ export default function UnetePage() {
             {beneficios.map((b, index) => (
               <ScrollReveal key={b.label} delay={index * 0.08}>
                 <div className="card-hover border border-gray-100 p-8 text-center hover:border-lad-red">
-                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center bg-lad-red">
+                  <IconBadge color={iconColorAt(index)} className="mx-auto mb-4 h-12 w-12">
                     {b.icon}
-                  </div>
+                  </IconBadge>
                   <p className="font-display text-sm font-bold">{b.label}</p>
                 </div>
               </ScrollReveal>
@@ -226,7 +228,7 @@ export default function UnetePage() {
                       <span className="text-sm text-gray-500">{posicion.area} · {posicion.tipo}</span>
                     </span>
                     <span className={`text-lad-red transition-transform ${activePos === index ? "rotate-180" : ""}`}>
-                      <IconChevron />
+                      <IconChip color={iconColorAt(index)} size="h-5 w-5"><IconChevron /></IconChip>
                     </span>
                   </button>
                   <AnimatePresence>
@@ -240,7 +242,7 @@ export default function UnetePage() {
                         <ul className="space-y-2 border-t border-gray-100 p-5 pt-4">
                           {posicion.req.map((r) => (
                             <li key={r} className="flex items-center gap-2 text-sm text-gray-600">
-                              <IconCheck /> {r}
+                              <IconChip color={iconColorAt(2)} size="h-4 w-4"><IconCheck /></IconChip> {r}
                             </li>
                           ))}
                         </ul>
@@ -272,7 +274,7 @@ export default function UnetePage() {
                   </select>
                   <input className="border border-gray-200 p-3" name="experiencia" placeholder="Años de experiencia" value={formData.experiencia} onChange={handleChange} />
                   <label className="flex cursor-pointer items-center gap-3 border border-gray-200 p-3 text-sm text-gray-500 hover:border-lad-red transition-colors">
-                    <IconPaperclip />
+                    <IconChip color={iconColorAt(4)} size="h-4 w-4"><IconPaperclip /></IconChip>
                     {cvFile ? cvFile.name : "Adjuntar CV (.pdf, .doc, .docx)"}
                     <input className="hidden" type="file" accept=".pdf,.doc,.docx" onChange={(e) => setCvFile(e.target.files?.[0] || null)} />
                   </label>
@@ -280,7 +282,7 @@ export default function UnetePage() {
                   <button className="btn-primary flex items-center justify-center gap-2" disabled={enviando}>
                     {enviando ? "Abriendo WhatsApp..." : (
                       <>
-                        <IconSend />
+                        <IconChip color="#ffffff" size="h-4 w-4"><IconSend /></IconChip>
                         Enviar por WhatsApp
                       </>
                     )}
