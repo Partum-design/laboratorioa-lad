@@ -32,21 +32,27 @@ function IconShield() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <polyline points="9 12 11 14 15 10" />
     </svg>
   );
 }
 function IconFlask() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-      <path d="M9 3h6m-5 0v6l-5 9a1 1 0 0 0 .9 1.5h12.2a1 1 0 0 0 .9-1.5L14 9V3" />
+      <path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 17.9A2 2 0 0 0 6.496 21h11.008a2 2 0 0 0 1.776-2.1l-5.069-8.477A2 2 0 0 1 14 9.527V2" />
+      <path d="M8.5 2h7" />
+      <path d="M7 16h10" />
     </svg>
   );
 }
-function IconMagnetic() {
+function IconScan() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-      <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
-      <line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" />
+      <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+      <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+      <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+      <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+      <line x1="7" y1="12" x2="17" y2="12" />
     </svg>
   );
 }
@@ -57,19 +63,26 @@ function IconRayos() {
     </svg>
   );
 }
-function IconMicro() {
+function IconDNA() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-      <path d="M6 18h8" /><path d="M3 22h18" /><path d="M14 22a7 7 0 1 0 0-14h-1" />
-      <path d="M9 14h2" /><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z" />
-      <path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3" />
+      <path d="M2 15c6.667-6 13.333 0 20-6" />
+      <path d="M2 9c6.667 6 13.333 0 20 6" />
+      <path d="M7 11.5v1" />
+      <path d="M17 11.5v1" />
+      <path d="M4.5 8.5v1" />
+      <path d="M19.5 8.5v1" />
+      <path d="M4.5 14.5v1" />
+      <path d="M19.5 14.5v1" />
     </svg>
   );
 }
-function IconStar() {
+function IconCertificate() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+      <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+      <polyline points="14 2 14 8 20 8" />
+      <polyline points="9 13 11 15 15 11" />
     </svg>
   );
 }
@@ -102,7 +115,7 @@ const areas = [
     desc: "Estudios de imagen para tejidos blandos, articulaciones y órganos internos, con atención al detalle desde la toma hasta el reporte.",
     video: ["/vids/nosotros/resonancia.mp4"],
     img: null,
-    icono: <IconMagnetic />,
+    icono: <IconScan />,
     badge: "",
   },
   {
@@ -126,7 +139,7 @@ const areas = [
     desc: "Cultivos, antibiogramas e identificación bacteriana con tiempos claros de seguimiento.",
     video: null,
     img: "/img/ChatGPT-Image-2-jun-2026-12_10_37-p.m-1.png",
-    icono: <IconMicro />,
+    icono: <IconDNA />,
     badge: "",
   },
   {
@@ -140,7 +153,7 @@ const areas = [
 ];
 
 const hitos = [
-  { año: "2009", titulo: "Fundación", desc: "Abrimos con una idea simple: entregar diagnósticos confiables y tratables en consulta." },
+  { año: "1985", titulo: "Fundación", desc: "Abrimos con una idea simple: entregar diagnósticos confiables y tratables en consulta." },
   { año: "2013", titulo: "Certificación ISO", desc: "Ordenamos procesos, controles y documentación bajo norma internacional." },
   { año: "2017", titulo: "Nueva tecnología", desc: "Sumamos equipos para pruebas de mayor complejidad y mejor seguimiento interno." },
   { año: "2021", titulo: "Resultados digitales", desc: "Facilitamos la entrega de resultados en línea para pacientes y médicos." },
@@ -148,7 +161,7 @@ const hitos = [
 ];
 
 const valores = [
-  { icon: <IconStar />, label: "Calidad certificada" },
+  { icon: <IconCertificate />, label: "Calidad certificada" },
   { icon: <IconLock />, label: "Confidencialidad" },
   { icon: <IconShield />, label: "Tecnología avanzada" },
   { icon: <IconAward />, label: "Equipo experto" },
@@ -209,7 +222,7 @@ export default function NosotrosPage() {
             Nosotros
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="heading-xl mb-6 text-white">
-            Más de 15 años al <span className="text-lad-red">servicio</span> de tu salud
+            Más de 40 años al <span className="text-lad-red">servicio</span> de tu salud
           </motion.h1>
           <p className="body-lg mx-auto max-w-2xl text-justify text-gray-300">
             Somos un laboratorio que cuida el proceso completo: toma de muestra, análisis, entrega y explicación cuando el paciente la necesita.
