@@ -16,87 +16,81 @@ if (typeof window !== "undefined") {
 
 function IconTarget() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-lad-red">
-      <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" />
+    <svg viewBox="0 0 24 24" fill="currentColor" fillRule="evenodd" className="h-6 w-6 text-lad-red">
+      <path d="M12,12 m-10,0 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0" />
+      <path d="M12,12 m-6.5,0 a6.5,6.5 0 1,0 13,0 a6.5,6.5 0 1,0 -13,0" />
+      <path d="M12,12 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0" />
     </svg>
   );
 }
 function IconEye() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-lad-red">
-      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" />
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6 text-lad-red">
+      <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+      <path fillRule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z" clipRule="evenodd" />
     </svg>
   );
 }
 function IconShield() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      <polyline points="9 12 11 14 15 10" />
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+      <path fillRule="evenodd" d="M12.516 2.17a.75.75 0 0 0-1.032 0 11.209 11.209 0 0 1-7.877 3.08.75.75 0 0 0-.722.515A12.74 12.74 0 0 0 2.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 0 0 .374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 0 0-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08Zm3.094 8.016a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
     </svg>
   );
 }
 function IconFlask() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-      <path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 17.9A2 2 0 0 0 6.496 21h11.008a2 2 0 0 0 1.776-2.1l-5.069-8.477A2 2 0 0 1 14 9.527V2" />
-      <path d="M8.5 2h7" />
-      <path d="M7 16h10" />
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+      <path fillRule="evenodd" d="M9.75 2.25a.75.75 0 0 0 0 1.5h.75v3.378a3 3 0 0 1-.405 1.51L5.967 16.5a2.625 2.625 0 0 0 2.273 3.937h7.52a2.625 2.625 0 0 0 2.273-3.937l-4.128-7.862a3 3 0 0 1-.405-1.51V3.75h.75a.75.75 0 0 0 0-1.5h-4.5Zm.75 6.378V3.75h3v4.878a4.5 4.5 0 0 0 .607 2.265l1.282 2.442a23.025 23.025 0 0 0-8.336.49l1.84-3.5a4.5 4.5 0 0 0 .607-2.264Z" clipRule="evenodd" />
     </svg>
   );
 }
 function IconScan() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-      <path d="M3 7V5a2 2 0 0 1 2-2h2" />
-      <path d="M17 3h2a2 2 0 0 1 2 2v2" />
-      <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
-      <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
-      <line x1="7" y1="12" x2="17" y2="12" />
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+      <path d="M3 3h6v2H5v4H3V3Zm12 0h6v6h-2V5h-4V3ZM3 15h2v4h4v2H3v-6Zm16 0h2v6h-6v-2h4v-4Z" />
     </svg>
   );
 }
 function IconRayos() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+      <rect x="6" y="10.5" width="12" height="3" rx="1.5" transform="rotate(45 12 12)" />
+      <circle cx="7.76" cy="7.76" r="3" />
+      <circle cx="16.24" cy="16.24" r="3" />
     </svg>
   );
 }
-function IconDNA() {
+function IconCulture() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-      <path d="M2 15c6.667-6 13.333 0 20-6" />
-      <path d="M2 9c6.667 6 13.333 0 20 6" />
-      <path d="M7 11.5v1" />
-      <path d="M17 11.5v1" />
-      <path d="M4.5 8.5v1" />
-      <path d="M19.5 8.5v1" />
-      <path d="M4.5 14.5v1" />
-      <path d="M19.5 14.5v1" />
+    <svg viewBox="0 0 24 24" fill="currentColor" fillRule="evenodd" className="h-6 w-6">
+      <path d="M12,12 m-10,0 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0" />
+      <path d="M12,12 m-8,0 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0" />
+      <path d="M9,10 m-1.3,0 a1.3,1.3 0 1,0 2.6,0 a1.3,1.3 0 1,0 -2.6,0" />
+      <path d="M15,9 m-1.3,0 a1.3,1.3 0 1,0 2.6,0 a1.3,1.3 0 1,0 -2.6,0" />
+      <path d="M13,15 m-1.1,0 a1.1,1.1 0 1,0 2.2,0 a1.1,1.1 0 1,0 -2.2,0" />
+      <path d="M8,15 m-1,0 a1,1 0 1,0 2,0 a1,1 0 1,0 -2,0" />
     </svg>
   );
 }
 function IconCertificate() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-      <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
-      <polyline points="14 2 14 8 20 8" />
-      <polyline points="9 13 11 15 15 11" />
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
+      <path fillRule="evenodd" d="M16.403 12.652a3 3 0 0 0 0-5.304 3 3 0 0 0-3.75-3.751 3 3 0 0 0-5.305 0 3 3 0 0 0-3.751 3.75 3 3 0 0 0 0 5.305 3 3 0 0 0 3.75 3.751 3 3 0 0 0 5.305 0 3 3 0 0 0 3.751-3.75Zm-2.546-4.46a.75.75 0 0 0-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clipRule="evenodd" />
     </svg>
   );
 }
 function IconLock() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" />
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
+      <path fillRule="evenodd" d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z" clipRule="evenodd" />
     </svg>
   );
 }
 function IconAward() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-      <circle cx="12" cy="8" r="6" /><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
+      <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006Z" clipRule="evenodd" />
     </svg>
   );
 }
@@ -139,7 +133,7 @@ const areas = [
     desc: "Cultivos, antibiogramas e identificación bacteriana con tiempos claros de seguimiento.",
     video: null,
     img: "/img/ChatGPT-Image-2-jun-2026-12_10_37-p.m-1.png",
-    icono: <IconDNA />,
+    icono: <IconCulture />,
     badge: "",
   },
   {

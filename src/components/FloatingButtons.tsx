@@ -11,15 +11,10 @@ function WhatsAppIcon() {
   );
 }
 
-function MicroscopeIcon() {
+function IconCatalog() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
-      <path d="M6 18h8" />
-      <path d="M3 22h18" />
-      <path d="M14 22a7 7 0 1 0 0-14h-1" />
-      <path d="M9 14h2" />
-      <path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z" />
-      <path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3" />
+    <svg viewBox="0 0 24 24" fill="currentColor" className="h-6 w-6">
+      <path fillRule="evenodd" d="M6.75 2.25A2.25 2.25 0 0 0 4.5 4.5v15a2.25 2.25 0 0 0 2.25 2.25h10.5A2.25 2.25 0 0 0 19.5 19.5V4.5a2.25 2.25 0 0 0-2.25-2.25H15a.75.75 0 0 0-.75.75v.75a1.5 1.5 0 0 1-1.5 1.5h-1.5a1.5 1.5 0 0 1-1.5-1.5V3a.75.75 0 0 0-.75-.75H6.75ZM8.25 12a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5H9Zm-.75-4.5a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75Z" clipRule="evenodd" />
     </svg>
   );
 }
@@ -47,7 +42,7 @@ export default function FloatingButtons() {
         aria-label="Ver catálogo de estudios"
         className="group fixed bottom-8 left-6 z-[100] flex items-center gap-3 rounded-full bg-lad-red px-4 py-3 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
       >
-        <MicroscopeIcon />
+        <IconCatalog />
         <span className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-bold text-white transition-all duration-300 group-hover:max-w-xs">
           Ver estudios
         </span>
