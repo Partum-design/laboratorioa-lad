@@ -16,7 +16,7 @@ interface IconBadgeProps {
 export function IconBadge({ color, iconColor = "#ffffff", children, className = "h-10 w-10", rotate = 8, idle = false }: IconBadgeProps) {
   return (
     <motion.div
-      className={`relative flex shrink-0 items-center justify-center overflow-hidden rounded-[1.1rem] border border-white/20 shadow-[0_16px_30px_-18px_rgba(227,6,19,0.9)] after:absolute after:right-1.5 after:top-1.5 after:h-1 after:w-1 after:rounded-full after:bg-current after:opacity-30 [&>svg]:h-1/2 [&>svg]:w-1/2 ${className}`}
+      className={`relative flex shrink-0 items-center justify-center overflow-hidden rounded-[1.1rem] border border-white/20 shadow-[0_16px_30px_-18px_rgba(227,6,19,0.9)] after:absolute after:right-1.5 after:top-1.5 after:h-1 after:w-1 after:rounded-full after:bg-current after:opacity-30 [&>svg]:h-[60%] [&>svg]:w-[60%] ${className}`}
       style={{ backgroundColor: color, color: iconColor }}
       initial={{ scale: 0.82, opacity: 0, y: 8 }}
       whileInView={{ scale: 1, opacity: 1, y: 0 }}
