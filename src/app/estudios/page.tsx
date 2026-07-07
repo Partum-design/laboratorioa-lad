@@ -4,8 +4,9 @@ import PageTransition from "@/components/PageTransition";
 import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
 import { IconChip } from "@/components/IconBadge";
-import { IconCheck, IconClock, IconDroplet, IconFilter, IconSearch, IconTag } from "@/components/LadIcons";
+import { IconClipboard, IconClock, IconFilter, IconSearch, IconTag, IconWhatsApp } from "@/components/LadIcons";
 import { ICON_COLORS, iconColorAt } from "@/lib/icon-palette";
+import { buildWhatsAppLink } from "@/lib/contact";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useMemo, useState } from "react";
@@ -21,13 +22,13 @@ const INDICACION_LABEL: Record<string, string> = {
   "VEJIGA LLENA": "Vejiga llena",
 };
 
-const paquetes = [
-  { nombre: "Paquete Básico", precio: "$450", estudios: ["Biometría Hemática", "Glucosa", "Química Sanguínea 6", "EGO"], badge: "" },
-  { nombre: "Paquete Completo", precio: "$1,200", estudios: ["Biometría Hemática", "Perfil Lipídico", "Perfil Hepático", "Función Renal", "Glucosa", "EGO", "TSH"], badge: "Más popular" },
-  { nombre: "Paquete Premium", precio: "$2,800", estudios: ["Todo el Paquete Completo", "Hormonas Completo", "Marcadores Tumorales", "Perfil Cardíaco", "Cultivos"], badge: "Completo" },
-];
-
 const PAGE_SIZE = 30;
+
+function whatsappLinkFor(nombre: string, precio: string) {
+  return buildWhatsAppLink(
+    `Hola, quiero preguntar sobre el estudio "${nombre}" (${precio}). ¿Me pueden dar más información?`
+  );
+}
 
 export default function EstudiosPage() {
   const [activeCat, setActiveCat] = useState("Todos");
@@ -57,44 +58,19 @@ export default function EstudiosPage() {
         <div className="container-lad relative z-10">
           <p className="mb-6 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Catálogo</p>
           <h1 className="heading-xl mb-4 text-white">Nuestros <span className="text-lad-red">Estudios</span></h1>
-          <p className="body-lg max-w-2xl text-justify text-gray-400">Consulta nuestro catálogo completo de {estudios.length} estudios con precios e indicaciones de preparación. Si tienes dudas, agenda por WhatsApp y te orientamos antes de venir.</p>
-        </div>
-      </section>
-
-      {/* Paquetes */}
-      <section id="paquetes" className="section-padding scroll-mt-24 bg-lad-gray-light">
-        <div className="container-lad">
-          <ScrollReveal>
-            <div className="mb-14 text-center">
-              <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Paquetes</p>
-              <h2 className="heading-lg">Paquetes <span className="text-lad-red">preventivos</span></h2>
-            </div>
-          </ScrollReveal>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            {paquetes.map((paquete, index) => (
-              <ScrollReveal key={paquete.nombre} delay={index * 0.12}>
-                <div className={`card-hover relative border-2 bg-white p-8 ${index === 1 ? "border-lad-red" : "border-gray-200"}`}>
-                  {paquete.badge && (
-                    <span className="absolute -top-3 left-6 bg-lad-red px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
-                      {paquete.badge}
-                    </span>
-                  )}
-                  <h3 className="mb-2 font-display text-xl font-bold">{paquete.nombre}</h3>
-                  <p className="mb-6 font-display text-4xl font-black text-lad-red">{paquete.precio}</p>
-                  <ul className="mb-8 space-y-2">
-                    {paquete.estudios.map((e) => (
-                      <li key={e} className="flex items-center gap-2 text-sm text-gray-600">
-                        <IconChip color={ICON_COLORS.green} size="h-4 w-4"><IconCheck /></IconChip> {e}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href="/contacto#agenda" className={index === 1 ? "btn-primary w-full text-center block" : "btn-outline w-full text-center block"}>
-                    Solicitar paquete
-                  </Link>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+          <p className="body-lg max-w-2xl text-justify text-gray-400">
+            Consulta nuestro catálogo de más de 500 estudios con precios e indicaciones de preparación. ¿No
+            encuentras el tuyo o tienes dudas? Pregúntanos directo por WhatsApp.
+          </p>
+          <a
+            href={buildWhatsAppLink("Hola, tengo una duda sobre un estudio de laboratorio. ¿Me pueden ayudar?")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary mt-8 inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5a]"
+          >
+            <IconWhatsApp className="h-5 w-5" />
+            Preguntar por WhatsApp
+          </a>
         </div>
       </section>
 
@@ -142,16 +118,31 @@ export default function EstudiosPage() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.96 }}
-                  className="border border-gray-100 p-6 hover:border-lad-red transition-colors"
+                  className="flex flex-col border border-gray-100 p-6 hover:border-lad-red transition-colors"
                 >
                   <p className="mb-3 text-xs font-bold uppercase tracking-wider text-lad-red">{estudio.cat}</p>
                   <h3 className="mb-3 font-display text-xl font-bold">{estudio.nombre}</h3>
                   <p className="mb-5 text-justify text-sm leading-relaxed text-gray-600">{estudio.desc}</p>
-                  <div className="grid grid-cols-3 gap-3 border-t border-gray-100 pt-4 text-xs text-gray-500">
+                  <div className="mt-auto grid grid-cols-3 gap-3 border-t border-gray-100 pt-4 text-xs text-gray-500">
                     <span className="flex items-center gap-1"><IconChip color={ICON_COLORS.sky} size="h-4 w-4"><IconClock /></IconChip> {estudio.tipo}</span>
-                    <span className="flex items-center gap-1"><IconChip color={ICON_COLORS.amber} size="h-4 w-4"><IconDroplet /></IconChip> {INDICACION_LABEL[estudio.indicacion] ?? estudio.indicacion}</span>
+                    <span className="flex items-center gap-1"><IconChip color={ICON_COLORS.amber} size="h-4 w-4"><IconClipboard /></IconChip> {INDICACION_LABEL[estudio.indicacion] ?? estudio.indicacion}</span>
                     <span className="flex items-center gap-1 font-bold text-lad-red"><IconChip color={ICON_COLORS.red} size="h-4 w-4"><IconTag /></IconChip> {estudio.precio}</span>
                   </div>
+                  <a
+                    href={whatsappLinkFor(estudio.nombre, estudio.precio)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 flex items-center justify-center gap-2 border border-[#25D366] py-2.5 text-xs font-bold uppercase tracking-wider text-[#128C4A] transition hover:bg-[#25D366] hover:text-white"
+                  >
+                    <IconWhatsApp className="h-4 w-4" />
+                    Preguntar por WhatsApp
+                  </a>
+                  <Link
+                    href={`/contacto?estudio=${encodeURIComponent(estudio.nombre)}#agenda`}
+                    className="mt-2 text-center text-[11px] font-semibold text-gray-400 underline-offset-2 hover:text-lad-red hover:underline"
+                  >
+                    o pregunta con el formulario de contacto
+                  </Link>
                 </motion.article>
               ))}
             </AnimatePresence>
