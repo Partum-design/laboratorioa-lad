@@ -1,5 +1,7 @@
 "use client";
 
+import { IconChip } from "@/components/IconBadge";
+import { IconLogin } from "@/components/LadIcons";
 import { AnimatePresence, motion } from "framer-motion";
 import { gsap } from "gsap";
 import Image from "next/image";
@@ -90,6 +92,22 @@ export default function Navbar() {
           })}
         </ul>
 
+        <div className="hidden items-center md:flex">
+          <Link
+            href="/acceder"
+            className={`flex items-center gap-2 border px-4 py-2 text-xs font-bold uppercase tracking-wider transition ${
+              pathname === "/acceder"
+                ? "border-lad-red bg-lad-red text-white"
+                : scrolled
+                  ? "border-lad-black/20 text-lad-black hover:border-lad-red hover:text-lad-red"
+                  : "border-white/40 text-white hover:border-lad-red hover:text-lad-red"
+            }`}
+          >
+            <IconChip color="currentColor" size="h-4 w-4"><IconLogin /></IconChip>
+            Acceder
+          </Link>
+        </div>
+
         <button
           type="button"
           aria-label="Abrir menu"
@@ -120,6 +138,15 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
+              <Link
+                href="/acceder"
+                className={`mt-2 flex items-center justify-center gap-2 border py-3 text-sm font-bold uppercase tracking-wider ${
+                  pathname === "/acceder" ? "border-lad-red bg-lad-red text-white" : "border-lad-black/20 text-lad-black"
+                }`}
+              >
+                <IconChip color="currentColor" size="h-4 w-4"><IconLogin /></IconChip>
+                Acceder — Personal
+              </Link>
             </div>
           </motion.div>
         )}

@@ -1,6 +1,8 @@
 "use client";
 
 import { LAD_PHONE_DISPLAY, LAD_TEL_LINK, LAD_WHATSAPP_LINK } from "@/lib/contact";
+import { edenPortals } from "@/lib/eden-portals";
+import { EdenMark } from "@/components/EdenBrand";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,6 +13,7 @@ const links = [
   { href: "/nosotros", label: "Nosotros" },
   { href: "/contacto#agenda", label: "Contacto" },
   { href: "/unete#vacantes", label: "Únete al equipo" },
+  { href: "/acceder", label: "Acceder (personal)" },
 ];
 
 export default function Footer() {
@@ -73,7 +76,31 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-gray-800 pt-8 sm:flex-row">
+        <div className="mt-12 border-t border-gray-800 pt-8">
+          <div className="mb-5 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+            <h4 className="font-display text-sm font-bold uppercase tracking-widest text-gray-400">
+              Portal del personal — Ecosistema Eden
+            </h4>
+            <Link href="/acceder" className="text-xs font-bold uppercase tracking-widest text-lad-red transition hover:text-white">
+              Ver todos los accesos →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {edenPortals.map((portal) => (
+              <a
+                key={portal.slug}
+                href={portal.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group border border-gray-800 px-3 py-3 transition hover:border-lad-red"
+              >
+                <EdenMark suffix={portal.suffix} size="h-3.5 w-3.5" textClassName="text-xs text-gray-300 group-hover:text-white" />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-gray-800 pt-8 sm:flex-row">
           <p className="text-xs text-gray-500">
             © {new Date().getFullYear()} LAD Laboratorio de Apoyo y Diagnóstico. Todos los derechos reservados.
           </p>

@@ -108,6 +108,26 @@ export function IconTag(props: IconProps) {
   return <IconBase {...props}><path d="M20.5 13.5 13 21l-10-10V3h8l9.5 9.5a.7.7 0 0 1 0 1Z" /><circle cx="7.5" cy="7.5" r="1.2" /></IconBase>;
 }
 
+export function IconGrid(props: IconProps) {
+  return (
+    <IconBase {...props} strokeWidth="0">
+      <circle cx="5.5" cy="5.5" r="1.9" fill="currentColor" />
+      <circle cx="12" cy="5.5" r="1.9" fill="currentColor" />
+      <circle cx="18.5" cy="5.5" r="1.9" fill="currentColor" />
+      <circle cx="5.5" cy="12" r="1.9" fill="currentColor" />
+      <circle cx="12" cy="12" r="1.9" fill="currentColor" />
+      <circle cx="18.5" cy="12" r="1.9" fill="currentColor" />
+      <circle cx="5.5" cy="18.5" r="1.9" fill="currentColor" />
+      <circle cx="12" cy="18.5" r="1.9" fill="currentColor" />
+      <circle cx="18.5" cy="18.5" r="1.9" fill="currentColor" />
+    </IconBase>
+  );
+}
+
+export function IconLogin(props: IconProps) {
+  return <IconBase {...props}><path d="M10.5 3.5h-4A2.5 2.5 0 0 0 4 6v12a2.5 2.5 0 0 0 2.5 2.5h4" /><path d="M15 8.2 19.8 12 15 15.8" /><path d="M19.5 12H9" /></IconBase>;
+}
+
 export function IconSearch(props: IconProps) {
   return <IconBase {...props}><circle cx="10.5" cy="10.5" r="6.5" /><path d="m20 20-4.3-4.3" /></IconBase>;
 }
