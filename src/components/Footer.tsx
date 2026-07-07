@@ -3,18 +3,20 @@
 import { LAD_PHONE_DISPLAY, LAD_TEL_LINK, LAD_WHATSAPP_LINK } from "@/lib/contact";
 import { edenPortals } from "@/lib/eden-portals";
 import { EdenMark } from "@/components/EdenBrand";
+import { IconFacebook } from "@/components/LadIcons";
 import Image from "next/image";
 import Link from "next/link";
 
 const links = [
   { href: "/", label: "Inicio" },
   { href: "/estudios#catalogo", label: "Estudios" },
-  { href: "/estudios#paquetes", label: "Paquetes" },
   { href: "/nosotros", label: "Nosotros" },
   { href: "/contacto#agenda", label: "Contacto" },
   { href: "/unete#vacantes", label: "Únete al equipo" },
   { href: "/acceder", label: "Acceder (personal)" },
 ];
+
+const LAD_FACEBOOK_LINK = "https://www.facebook.com/LADTenancingo";
 
 export default function Footer() {
   return (
@@ -42,6 +44,15 @@ export default function Footer() {
               <div className="h-px w-8 bg-lad-red" />
               <span className="text-xs font-semibold uppercase tracking-widest text-lad-red">ISO 9001:2015</span>
             </div>
+            <a
+              href={LAD_FACEBOOK_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook de LAD Tenancingo"
+              className="group inline-flex h-10 w-10 items-center justify-center border border-gray-800 text-gray-300 transition hover:border-lad-red hover:text-lad-red"
+            >
+              <IconFacebook className="h-4 w-4" />
+            </a>
           </div>
 
           <div>
