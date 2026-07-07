@@ -108,6 +108,10 @@ export function IconTag(props: IconProps) {
   return <IconBase {...props}><path d="M20.5 13.5 13 21l-10-10V3h8l9.5 9.5a.7.7 0 0 1 0 1Z" /><circle cx="7.5" cy="7.5" r="1.2" /></IconBase>;
 }
 
+export function IconSearch(props: IconProps) {
+  return <IconBase {...props}><circle cx="10.5" cy="10.5" r="6.5" /><path d="m20 20-4.3-4.3" /></IconBase>;
+}
+
 export function IconFilter(props: IconProps) {
   return <IconBase {...props}><path d="M4 6h16M7 12h10M10 18h4" /><circle cx="8" cy="6" r="1.5" fill="currentColor" stroke="none" /><circle cx="15" cy="12" r="1.5" fill="currentColor" stroke="none" /><circle cx="12" cy="18" r="1.5" fill="currentColor" stroke="none" /></IconBase>;
 }

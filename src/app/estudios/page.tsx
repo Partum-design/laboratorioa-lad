@@ -4,28 +4,22 @@ import PageTransition from "@/components/PageTransition";
 import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
 import { IconChip } from "@/components/IconBadge";
-import { IconCheck, IconClock, IconDroplet, IconFilter, IconTag } from "@/components/LadIcons";
+import { IconCheck, IconClock, IconDroplet, IconFilter, IconSearch, IconTag } from "@/components/LadIcons";
 import { ICON_COLORS, iconColorAt } from "@/lib/icon-palette";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { categoriasOrden, estudios } from "./estudios-data";
 
-const categorias = ["Todos", "Hematología", "Química Sanguínea", "Inmunología", "Microbiología", "Uroanálisis", "Hormonas"];
+const categorias = ["Todos", ...categoriasOrden];
 
-const estudios = [
-  { cat: "Hematología", nombre: "Biometría Hemática Completa", tiempo: "2-4 hrs", muestra: "Sangre venosa", precio: "$150", desc: "Evaluación completa de células sanguíneas: eritrocitos, leucocitos y plaquetas." },
-  { cat: "Química Sanguínea", nombre: "Glucosa en Ayuno", tiempo: "1-2 hrs", muestra: "Sangre venosa", precio: "$80", desc: "Medición de niveles de glucosa en sangre para diagnóstico de diabetes." },
-  { cat: "Química Sanguínea", nombre: "Perfil Lipídico Completo", tiempo: "2-4 hrs", muestra: "Sangre venosa", precio: "$220", desc: "Colesterol total, HDL, LDL y triglicéridos para evaluar riesgo cardiovascular." },
-  { cat: "Inmunología", nombre: "ELISA para VIH 1 y 2", tiempo: "4-6 hrs", muestra: "Sangre venosa", precio: "$350", desc: "Detección de anticuerpos específicos con alta sensibilidad y especificidad." },
-  { cat: "Hormonas", nombre: "Tiroides T3, T4, TSH", tiempo: "4-6 hrs", muestra: "Sangre venosa", precio: "$480", desc: "Panel completo de función tiroidea para evaluación integral de la glándula." },
-  { cat: "Uroanálisis", nombre: "Examen General de Orina", tiempo: "1-2 hrs", muestra: "Orina", precio: "$90", desc: "Análisis físico, químico y microscópico con reporte detallado de resultados." },
-  { cat: "Microbiología", nombre: "Urocultivo y Antibiograma", tiempo: "24-48 hrs", muestra: "Orina", precio: "$320", desc: "Identificación bacteriana y sensibilidad antibiótica para orientar el tratamiento." },
-  { cat: "Hematología", nombre: "Velocidad de Sedimentación", tiempo: "2 hrs", muestra: "Sangre venosa", precio: "$120", desc: "Indicador de inflamación sistémica utilizado como apoyo diagnóstico." },
-  { cat: "Química Sanguínea", nombre: "Perfil Hepático", tiempo: "4-6 hrs", muestra: "Sangre venosa", precio: "$380", desc: "Evaluación de función hepática: transaminasas, bilirrubinas y proteínas." },
-  { cat: "Hormonas", nombre: "Cortisol Sérico", tiempo: "4-6 hrs", muestra: "Sangre venosa", precio: "$280", desc: "Evaluación del eje adrenal y diagnóstico de trastornos del estrés crónico." },
-  { cat: "Inmunología", nombre: "Factor Reumatoide", tiempo: "2-4 hrs", muestra: "Sangre venosa", precio: "$190", desc: "Apoyo en diagnóstico de enfermedades autoinmunes como artritis reumatoide." },
-  { cat: "Uroanálisis", nombre: "Depuración de Creatinina", tiempo: "24 hrs", muestra: "Orina 24h + Sangre", precio: "$240", desc: "Cálculo de filtración glomerular para evaluar función renal en detalle." },
-];
+const INDICACION_LABEL: Record<string, string> = {
+  AYUNO: "Ayuno",
+  NINGUNA: "Sin preparación",
+  ESPECIALES: "Indicaciones especiales",
+  "NO CALCIO": "Sin calcio previo",
+  "VEJIGA LLENA": "Vejiga llena",
+};
 
 const paquetes = [
   { nombre: "Paquete Básico", precio: "$450", estudios: ["Biometría Hemática", "Glucosa", "Química Sanguínea 6", "EGO"], badge: "" },
@@ -33,9 +27,23 @@ const paquetes = [
   { nombre: "Paquete Premium", precio: "$2,800", estudios: ["Todo el Paquete Completo", "Hormonas Completo", "Marcadores Tumorales", "Perfil Cardíaco", "Cultivos"], badge: "Completo" },
 ];
 
+const PAGE_SIZE = 30;
+
 export default function EstudiosPage() {
   const [activeCat, setActiveCat] = useState("Todos");
-  const filtrados = activeCat === "Todos" ? estudios : estudios.filter((e) => e.cat === activeCat);
+  const [query, setQuery] = useState("");
+  const [visible, setVisible] = useState(PAGE_SIZE);
+
+  const filtrados = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return estudios.filter((e) => {
+      const matchesCat = activeCat === "Todos" || e.cat === activeCat;
+      const matchesQuery = q === "" || e.nombre.toLowerCase().includes(q);
+      return matchesCat && matchesQuery;
+    });
+  }, [activeCat, query]);
+
+  const mostrados = filtrados.slice(0, visible);
 
   return (
     <PageTransition>
@@ -49,7 +57,7 @@ export default function EstudiosPage() {
         <div className="container-lad relative z-10">
           <p className="mb-6 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Catálogo</p>
           <h1 className="heading-xl mb-4 text-white">Nuestros <span className="text-lad-red">Estudios</span></h1>
-          <p className="body-lg max-w-2xl text-justify text-gray-400">Consulta estudios, tipo de muestra y tiempos de entrega. Si tienes dudas, agenda por WhatsApp y te orientamos antes de venir.</p>
+          <p className="body-lg max-w-2xl text-justify text-gray-400">Consulta nuestro catálogo completo de {estudios.length} estudios con precios e indicaciones de preparación. Si tienes dudas, agenda por WhatsApp y te orientamos antes de venir.</p>
         </div>
       </section>
 
@@ -97,21 +105,37 @@ export default function EstudiosPage() {
             <IconChip color={iconColorAt(5)} size="h-5 w-5"><IconFilter /></IconChip>
             <span className="text-sm font-bold uppercase tracking-wider text-gray-500">Filtrar por categoría</span>
           </div>
-          <div className="mb-10 flex flex-wrap gap-3">
+          <div className="mb-6 flex flex-wrap gap-3">
             {categorias.map((cat) => (
               <button
                 key={cat}
                 type="button"
-                onClick={() => setActiveCat(cat)}
+                onClick={() => { setActiveCat(cat); setVisible(PAGE_SIZE); }}
                 className={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition ${activeCat === cat ? "bg-lad-red text-white" : "bg-lad-gray-light text-lad-black hover:bg-gray-200"}`}
               >
                 {cat}
               </button>
             ))}
           </div>
+
+          <div className="relative mb-10 max-w-md">
+            <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+              <IconChip color={ICON_COLORS.sky} size="h-4 w-4"><IconSearch /></IconChip>
+            </span>
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => { setQuery(e.target.value); setVisible(PAGE_SIZE); }}
+              placeholder="Buscar estudio por nombre..."
+              className="w-full border border-gray-200 py-3 pl-12 pr-4 text-sm focus:border-lad-red focus:outline-none"
+            />
+          </div>
+
+          <p className="mb-6 text-sm text-gray-500">{filtrados.length} estudio{filtrados.length === 1 ? "" : "s"} encontrado{filtrados.length === 1 ? "" : "s"}</p>
+
           <motion.div layout className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             <AnimatePresence>
-              {filtrados.map((estudio) => (
+              {mostrados.map((estudio) => (
                 <motion.article
                   key={estudio.nombre}
                   layout
@@ -124,14 +148,22 @@ export default function EstudiosPage() {
                   <h3 className="mb-3 font-display text-xl font-bold">{estudio.nombre}</h3>
                   <p className="mb-5 text-justify text-sm leading-relaxed text-gray-600">{estudio.desc}</p>
                   <div className="grid grid-cols-3 gap-3 border-t border-gray-100 pt-4 text-xs text-gray-500">
-                    <span className="flex items-center gap-1"><IconChip color={ICON_COLORS.sky} size="h-4 w-4"><IconClock /></IconChip> {estudio.tiempo}</span>
-                    <span className="flex items-center gap-1"><IconChip color={ICON_COLORS.amber} size="h-4 w-4"><IconDroplet /></IconChip> {estudio.muestra}</span>
+                    <span className="flex items-center gap-1"><IconChip color={ICON_COLORS.sky} size="h-4 w-4"><IconClock /></IconChip> {estudio.tipo}</span>
+                    <span className="flex items-center gap-1"><IconChip color={ICON_COLORS.amber} size="h-4 w-4"><IconDroplet /></IconChip> {INDICACION_LABEL[estudio.indicacion] ?? estudio.indicacion}</span>
                     <span className="flex items-center gap-1 font-bold text-lad-red"><IconChip color={ICON_COLORS.red} size="h-4 w-4"><IconTag /></IconChip> {estudio.precio}</span>
                   </div>
                 </motion.article>
               ))}
             </AnimatePresence>
           </motion.div>
+
+          {visible < filtrados.length && (
+            <div className="mt-10 text-center">
+              <button type="button" onClick={() => setVisible((v) => v + PAGE_SIZE)} className="btn-outline">
+                Ver más estudios
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </PageTransition>
