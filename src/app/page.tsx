@@ -55,13 +55,14 @@ const rutasRapidas = [
   { title: "Quiero trabajar en LAD", desc: "Revisa vacantes y envía tu postulación.", href: "/unete#vacantes" },
 ];
 
-const heroVideos = ["/vids/inicio/hero1.mp4"];
+const heroVideos = ["/vids/inicio/hero1.mp4", "/vids/inicio/hero3.mp4"];
 const heroTitles = ["precisos", "confiables", "certificados", "inmediatos", "claros"];
 
 export default function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const counterRefs = useRef<HTMLSpanElement[]>([]);
+  const [heroIdx, setHeroIdx] = useState(0);
   const [titleNumber, setTitleNumber] = useState(0);
 
   useEffect(() => {
@@ -127,9 +128,11 @@ export default function HomePage() {
       <section ref={heroRef} className="relative flex h-screen min-h-[680px] items-center justify-center overflow-hidden text-center">
         <div className="hero-bg absolute inset-0 -top-10">
           <VideoAuto
-            src={heroVideos[0]}
-            loop
-            stopAt={8}
+            key={heroIdx}
+            src={heroVideos[heroIdx]}
+            loop={false}
+            stopAt={heroIdx === 0 ? 8 : undefined}
+            onEnded={() => setHeroIdx((i) => (i + 1) % heroVideos.length)}
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-lad-black/60" />
