@@ -21,6 +21,10 @@ export default function VideoAuto({ src, className = "", loop = true, onEnded, s
   const stopAtRef = useRef(stopAt);
   const loopRef = useRef(loop);
   const activeRef = useRef(active);
+  // Evita que "timeupdate" dispare onEnded más de una vez por pasada (puede
+  // llegar a cumplir la condición >= stopAt en dos eventos seguidos antes de
+  // que pause() surta efecto, duplicando el avance y "cancelándolo").
+  const firedRef = useRef(false);
   onEndedRef.current = onEnded;
   stopAtRef.current = stopAt;
   loopRef.current = loop;
@@ -42,17 +46,19 @@ export default function VideoAuto({ src, className = "", loop = true, onEnded, s
 
     v.addEventListener("canplay", tryPlay);
     const handleEnded = () => {
-      if (!activeRef.current) return;
+      if (!activeRef.current || firedRef.current) return;
+      firedRef.current = true;
       onEndedRef.current?.();
     };
     v.addEventListener("ended", handleEnded);
     const stopAtTime = () => {
-      if (!activeRef.current) return;
+      if (!activeRef.current || firedRef.current) return;
       const limit = stopAtRef.current;
       if (limit !== undefined && v.currentTime >= limit) {
         if (loopRef.current) {
           v.currentTime = 0;
         } else {
+          firedRef.current = true;
           v.pause();
           onEndedRef.current?.();
         }
@@ -73,6 +79,7 @@ export default function VideoAuto({ src, className = "", loop = true, onEnded, s
     if (!v) return;
 
     if (active) {
+      firedRef.current = false;
       v.currentTime = 0;
       v.muted = true;
       v.play().catch(() => {});
