@@ -15,49 +15,71 @@ interface VideoAutoProps {
 
 export default function VideoAuto({ src, className = "", loop = true, onEnded, stopAt, active = true }: VideoAutoProps) {
   const ref = useRef<HTMLVideoElement>(null);
+  // Refs para que callbacks/valores "inestables" (recreados en cada render del
+  // padre) no obliguen a re-montar los listeners ni a reiniciar el video.
+  const onEndedRef = useRef(onEnded);
+  const stopAtRef = useRef(stopAt);
+  const loopRef = useRef(loop);
+  const activeRef = useRef(active);
+  onEndedRef.current = onEnded;
+  stopAtRef.current = stopAt;
+  loopRef.current = loop;
+  activeRef.current = active;
 
+  // Montaje de listeners: solo depende de la fuente, no de callbacks inline.
   useEffect(() => {
     const v = ref.current;
     if (!v) return;
 
-    // Forzar muted imperativo — React no siempre lo sincroniza al atributo real
     v.muted = true;
     v.volume = 0;
 
     const tryPlay = () => {
-      if (!active) return;
+      if (!activeRef.current) return;
       v.muted = true;
       v.play().catch(() => {});
     };
 
-    if (active) {
-      v.currentTime = 0;
-      tryPlay();
-    } else {
-      v.pause();
-    }
-
-    // También en canplay por si aún no cargó
     v.addEventListener("canplay", tryPlay);
-    if (onEnded) v.addEventListener("ended", onEnded);
+    const handleEnded = () => {
+      if (!activeRef.current) return;
+      onEndedRef.current?.();
+    };
+    v.addEventListener("ended", handleEnded);
     const stopAtTime = () => {
-      if (stopAt !== undefined && v.currentTime >= stopAt) {
-        if (loop) {
+      if (!activeRef.current) return;
+      const limit = stopAtRef.current;
+      if (limit !== undefined && v.currentTime >= limit) {
+        if (loopRef.current) {
           v.currentTime = 0;
         } else {
           v.pause();
-          onEnded?.();
+          onEndedRef.current?.();
         }
       }
     };
-    if (stopAt !== undefined) v.addEventListener("timeupdate", stopAtTime);
+    v.addEventListener("timeupdate", stopAtTime);
 
     return () => {
       v.removeEventListener("canplay", tryPlay);
-      if (onEnded) v.removeEventListener("ended", onEnded);
-      if (stopAt !== undefined) v.removeEventListener("timeupdate", stopAtTime);
+      v.removeEventListener("ended", handleEnded);
+      v.removeEventListener("timeupdate", stopAtTime);
     };
-  }, [src, onEnded, stopAt, loop, active]);
+  }, [src]);
+
+  // Play/pause: solo reacciona a cambios reales de "active".
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+
+    if (active) {
+      v.currentTime = 0;
+      v.muted = true;
+      v.play().catch(() => {});
+    } else {
+      v.pause();
+    }
+  }, [active]);
 
   return (
     <video

@@ -22,7 +22,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import VideoAuto from "@/components/VideoAuto";
 import { LAD_WHATSAPP_LINK } from "@/lib/contact";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -64,6 +64,9 @@ export default function HomePage() {
   const counterRefs = useRef<HTMLSpanElement[]>([]);
   const [heroIdx, setHeroIdx] = useState(0);
   const [titleNumber, setTitleNumber] = useState(0);
+  const advanceHero = useCallback(() => {
+    setHeroIdx((i) => (i + 1) % heroVideos.length);
+  }, []);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -134,7 +137,7 @@ export default function HomePage() {
               loop={false}
               active={heroIdx === idx}
               stopAt={idx === 0 ? 8 : undefined}
-              onEnded={() => setHeroIdx((i) => (i + 1) % heroVideos.length)}
+              onEnded={advanceHero}
               className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out ${
                 heroIdx === idx ? "opacity-100" : "opacity-0"
               }`}
