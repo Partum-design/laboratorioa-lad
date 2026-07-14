@@ -34,8 +34,12 @@ export default function VideoAuto({ src, className = "", loop = true, onEnded, s
     if (onEnded) v.addEventListener("ended", onEnded);
     const stopAtTime = () => {
       if (stopAt !== undefined && v.currentTime >= stopAt) {
-        v.pause();
-        onEnded?.();
+        if (loop) {
+          v.currentTime = 0;
+        } else {
+          v.pause();
+          onEnded?.();
+        }
       }
     };
     if (stopAt !== undefined) v.addEventListener("timeupdate", stopAtTime);
@@ -45,7 +49,7 @@ export default function VideoAuto({ src, className = "", loop = true, onEnded, s
       if (onEnded) v.removeEventListener("ended", onEnded);
       if (stopAt !== undefined) v.removeEventListener("timeupdate", stopAtTime);
     };
-  }, [src, onEnded, stopAt]);
+  }, [src, onEnded, stopAt, loop]);
 
   return (
     <video
