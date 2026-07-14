@@ -127,14 +127,19 @@ export default function HomePage() {
       {/* Hero */}
       <section ref={heroRef} className="relative flex h-screen min-h-[680px] items-center justify-center overflow-hidden text-center">
         <div className="hero-bg absolute inset-0 -top-10">
-          <VideoAuto
-            key={heroIdx}
-            src={heroVideos[heroIdx]}
-            loop={false}
-            stopAt={heroIdx === 0 ? 8 : undefined}
-            onEnded={() => setHeroIdx((i) => (i + 1) % heroVideos.length)}
-            className="h-full w-full object-cover"
-          />
+          {heroVideos.map((video, idx) => (
+            <VideoAuto
+              key={video}
+              src={video}
+              loop={false}
+              active={heroIdx === idx}
+              stopAt={idx === 0 ? 8 : undefined}
+              onEnded={() => setHeroIdx((i) => (i + 1) % heroVideos.length)}
+              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out ${
+                heroIdx === idx ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          ))}
           <div className="absolute inset-0 bg-lad-black/60" />
           <div className="absolute inset-0 bg-gradient-to-t from-lad-black/95 via-transparent to-lad-black/20" />
         </div>

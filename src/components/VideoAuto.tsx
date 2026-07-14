@@ -8,9 +8,12 @@ interface VideoAutoProps {
   loop?: boolean;
   onEnded?: () => void;
   stopAt?: number;
+  /** Si se pasa, el video queda montado siempre (sin recarga de red) y solo
+   * reproduce cuando active=true, evitando el "trabón" al cambiar de fuente. */
+  active?: boolean;
 }
 
-export default function VideoAuto({ src, className = "", loop = true, onEnded, stopAt }: VideoAutoProps) {
+export default function VideoAuto({ src, className = "", loop = true, onEnded, stopAt, active = true }: VideoAutoProps) {
   const ref = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -22,12 +25,17 @@ export default function VideoAuto({ src, className = "", loop = true, onEnded, s
     v.volume = 0;
 
     const tryPlay = () => {
+      if (!active) return;
       v.muted = true;
       v.play().catch(() => {});
     };
 
-    // Intentar reproducir apenas el componente monta
-    tryPlay();
+    if (active) {
+      v.currentTime = 0;
+      tryPlay();
+    } else {
+      v.pause();
+    }
 
     // También en canplay por si aún no cargó
     v.addEventListener("canplay", tryPlay);
@@ -49,7 +57,7 @@ export default function VideoAuto({ src, className = "", loop = true, onEnded, s
       if (onEnded) v.removeEventListener("ended", onEnded);
       if (stopAt !== undefined) v.removeEventListener("timeupdate", stopAtTime);
     };
-  }, [src, onEnded, stopAt, loop]);
+  }, [src, onEnded, stopAt, loop, active]);
 
   return (
     <video
