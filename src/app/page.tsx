@@ -55,7 +55,7 @@ const rutasRapidas = [
   { title: "Quiero trabajar en LAD", desc: "Revisa vacantes y envía tu postulación.", href: "/unete#vacantes" },
 ];
 
-const heroVideos = ["/vids/inicio/hero1.mp4", "/vids/inicio/hero2.mp4", "/vids/inicio/hero3.mp4"];
+const heroVideos = ["/vids/inicio/hero1.mp4", "/vids/inicio/hero3.mp4"];
 const heroTitles = ["precisos", "confiables", "certificados", "inmediatos", "claros"];
 
 export default function HomePage() {
@@ -131,6 +131,7 @@ export default function HomePage() {
             key={heroIdx}
             src={heroVideos[heroIdx]}
             loop={false}
+            stopAt={heroIdx === 0 ? 8 : undefined}
             onEnded={() => setHeroIdx((i) => (i + 1) % heroVideos.length)}
             className="h-full w-full object-cover"
           />

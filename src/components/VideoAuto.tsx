@@ -7,9 +7,10 @@ interface VideoAutoProps {
   className?: string;
   loop?: boolean;
   onEnded?: () => void;
+  stopAt?: number;
 }
 
-export default function VideoAuto({ src, className = "", loop = true, onEnded }: VideoAutoProps) {
+export default function VideoAuto({ src, className = "", loop = true, onEnded, stopAt }: VideoAutoProps) {
   const ref = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -31,12 +32,20 @@ export default function VideoAuto({ src, className = "", loop = true, onEnded }:
     // También en canplay por si aún no cargó
     v.addEventListener("canplay", tryPlay);
     if (onEnded) v.addEventListener("ended", onEnded);
+    const stopAtTime = () => {
+      if (stopAt !== undefined && v.currentTime >= stopAt) {
+        v.pause();
+        onEnded?.();
+      }
+    };
+    if (stopAt !== undefined) v.addEventListener("timeupdate", stopAtTime);
 
     return () => {
       v.removeEventListener("canplay", tryPlay);
       if (onEnded) v.removeEventListener("ended", onEnded);
+      if (stopAt !== undefined) v.removeEventListener("timeupdate", stopAtTime);
     };
-  }, [src, onEnded]);
+  }, [src, onEnded, stopAt]);
 
   return (
     <video
