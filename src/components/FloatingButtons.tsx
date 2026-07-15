@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const FIXED_PHONE = "7 14 14 2 46 21";
+const FIXED_PHONE = "714 142 4621";
 
 export default function FloatingButtons() {
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -84,7 +84,7 @@ export default function FloatingButtons() {
                   <div className="flex items-center justify-between gap-3 border-t border-black/5 pt-2.5">
                     <dt className="font-bold text-lad-black">Recepción</dt>
                     <dd>
-                      <a href="tel:+527222913027" className="text-[#128C7E] underline decoration-[#25D366] underline-offset-2 hover:text-[#0b6f62]">
+                      <a href="tel:+527222913027" className="font-semibold tracking-wide text-[#128C7E] hover:text-[#0b6f62]">
                         722 291 3027
                       </a>
                     </dd>
@@ -92,7 +92,7 @@ export default function FloatingButtons() {
                   <div className="flex items-center justify-between gap-3 border-t border-black/5 pt-2.5">
                     <dt className="font-bold text-lad-black">Tel. fijos</dt>
                     <dd>
-                      <a href="tel:+527141424621" className="text-[#128C7E] underline decoration-[#25D366] underline-offset-2 hover:text-[#0b6f62]">
+                      <a href="tel:+527141424621" className="font-semibold tracking-wide text-[#128C7E] hover:text-[#0b6f62]">
                         {FIXED_PHONE}
                       </a>
                     </dd>
@@ -108,7 +108,7 @@ export default function FloatingButtons() {
                   className="flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#1fbd5b] focus:outline-none focus:ring-2 focus:ring-[#128C7E] focus:ring-offset-2"
                 >
                   <IconWhatsApp className="h-5 w-5" />
-                  <span className="underline underline-offset-2">Iniciar chat</span>
+                  Iniciar chat
                 </a>
               </div>
             </div>
