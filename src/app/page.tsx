@@ -22,7 +22,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import VideoAuto from "@/components/VideoAuto";
 import { LAD_WHATSAPP_LINK } from "@/lib/contact";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -55,7 +55,7 @@ const rutasRapidas = [
   { title: "Quiero trabajar en LAD", desc: "Revisa vacantes y envía tu postulación.", href: "/unete#vacantes" },
 ];
 
-const heroVideos = ["/vids/inicio/hero1.mp4", "/vids/inicio/hero2.mp4", "/vids/inicio/hero3.mp4"];
+const heroVideos = ["/vids/inicio/hero1.mp4", "/vids/inicio/hero3.mp4"];
 const heroTitles = ["precisos", "confiables", "certificados", "inmediatos", "claros"];
 
 export default function HomePage() {
@@ -64,6 +64,9 @@ export default function HomePage() {
   const counterRefs = useRef<HTMLSpanElement[]>([]);
   const [heroIdx, setHeroIdx] = useState(0);
   const [titleNumber, setTitleNumber] = useState(0);
+  const advanceHero = useCallback(() => {
+    setHeroIdx((i) => (i + 1) % heroVideos.length);
+  }, []);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -127,24 +130,47 @@ export default function HomePage() {
       {/* Hero */}
       <section ref={heroRef} className="relative flex h-screen min-h-[680px] items-center justify-center overflow-hidden text-center">
         <div className="hero-bg absolute inset-0 -top-10">
-          <VideoAuto
-            key={heroIdx}
-            src={heroVideos[heroIdx]}
-            loop={false}
-            onEnded={() => setHeroIdx((i) => (i + 1) % heroVideos.length)}
-            className="h-full w-full object-cover"
-          />
+          {heroVideos.map((video, idx) => (
+            <VideoAuto
+              key={video}
+              src={video}
+              loop={false}
+              active={heroIdx === idx}
+              stopAt={idx === 0 ? 8 : undefined}
+              onEnded={advanceHero}
+              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out ${
+                heroIdx === idx ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          ))}
           <div className="absolute inset-0 bg-lad-black/60" />
           <div className="absolute inset-0 bg-gradient-to-t from-lad-black/95 via-transparent to-lad-black/20" />
         </div>
 
         <div className="container-lad relative z-10">
           <div className="mx-auto max-w-3xl">
+            {/* Nueva sucursal Metepec */}
+            <motion.div
+              initial={{ opacity: 0, y: -28, scale: 0.92 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="relative mb-6 inline-flex flex-col items-center"
+            >
+              <span className="absolute inset-0 -z-10 rounded-full bg-lad-red/50 blur-2xl animate-pulse" />
+              <div className="flex flex-col items-center gap-1 rounded-full border-2 border-lad-red bg-lad-red px-9 py-3.5 shadow-[0_0_50px_rgba(191,29,32,0.6)] sm:flex-row sm:gap-3 sm:px-10">
+                <span className="text-[11px] font-black uppercase tracking-[0.35em] text-white/90">Nueva sucursal</span>
+                <span className="hidden h-4 w-px bg-white/30 sm:block" />
+                <span className="font-display text-2xl font-black uppercase leading-none tracking-tight text-white sm:text-3xl">
+                  LAD<span className="align-super text-xs sm:text-sm">®</span> Metepec
+                </span>
+              </div>
+            </motion.div>
+
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: -16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
               className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.05] px-5 py-2.5 backdrop-blur-md"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-lad-red animate-pulse" />

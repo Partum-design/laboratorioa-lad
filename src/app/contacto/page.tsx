@@ -32,7 +32,7 @@ export default function ContactoPage() {
           <p className="mb-6 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Contáctanos</p>
           <h1 className="heading-xl mb-4 text-white">Agenda tu <span className="text-lad-red">cita</span></h1>
           <p className="body-lg max-w-xl text-justify text-gray-400">
-            Escríbenos por WhatsApp o déjanos tus datos. Te orientamos con horarios, muestras y preparación antes de tu visita.
+            Escríbenos por WhatsApp o déjanos tus datos. Te orientamos con horarios y preparación antes de tu visita.
           </p>
         </div>
       </section>

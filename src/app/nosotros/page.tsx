@@ -21,7 +21,7 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 
 if (typeof window !== "undefined") {
@@ -95,16 +95,35 @@ const valores = [
 
 function AreaMedia({ area }: { area: typeof areas[0] }) {
   const [idx, setIdx] = useState(0);
+  const advance = useCallback(() => {
+    setIdx((i) => (i + 1) % (area.video?.length ?? 1));
+  }, [area.video?.length]);
 
   if (area.video) {
+    if (area.video.length === 1) {
+      return (
+        <VideoAuto
+          src={area.video[0]}
+          loop
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      );
+    }
     return (
-      <VideoAuto
-        key={idx}
-        src={area.video[idx]}
-        loop={area.video.length === 1}
-        onEnded={area.video.length > 1 ? () => setIdx((i) => (i + 1) % area.video!.length) : undefined}
-        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-      />
+      <div className="relative h-full w-full">
+        {area.video.map((video, videoIdx) => (
+          <VideoAuto
+            key={video}
+            src={video}
+            loop={false}
+            active={idx === videoIdx}
+            onEnded={advance}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out group-hover:scale-105 ${
+              idx === videoIdx ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        ))}
+      </div>
     );
   }
   return (

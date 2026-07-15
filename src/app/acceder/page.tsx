@@ -25,7 +25,7 @@ export default function AccederPage() {
         <div className="container-lad relative z-10">
           <p className="mb-6 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Portal del personal</p>
           <h1 className="heading-xl mb-4 text-white">
-            Acceder al <span className="text-lad-red">ecosistema Eden</span>
+            Acceder al <span className="text-lad-red">ecosistema eden</span>
           </h1>
           <p className="body-lg max-w-2xl text-justify text-gray-400">
             Estos accesos son exclusivos para el personal de LAD Laboratorio de Apoyo y Diagnóstico. Cada botón te

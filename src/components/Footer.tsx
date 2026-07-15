@@ -1,9 +1,15 @@
 "use client";
 
-import { LAD_PHONE_DISPLAY, LAD_TEL_LINK, LAD_WHATSAPP_LINK } from "@/lib/contact";
+import {
+  LAD_ADDRESS_DISPLAY,
+  LAD_MAPS_LINK,
+  LAD_PHONE_DISPLAY,
+  LAD_TEL_LINK,
+  LAD_WHATSAPP_LINK,
+} from "@/lib/contact";
 import { edenPortals } from "@/lib/eden-portals";
 import { EdenMark } from "@/components/EdenBrand";
-import { IconFacebook } from "@/components/LadIcons";
+import { IconFacebook, IconMapPin } from "@/components/LadIcons";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -83,6 +89,21 @@ export default function Footer() {
                 </a>
               </li>
               <li>Lun a vie: 7:00 am a 6:00 pm<br />Sáb: 7:00 am a 2:00 pm</li>
+              <li className="flex items-start gap-2 text-gray-400">
+                <IconMapPin className="mt-0.5 h-4 w-4 flex-none text-lad-red" />
+                <span>{LAD_ADDRESS_DISPLAY}</span>
+              </li>
+              <li>
+                <a
+                  href={LAD_MAPS_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 border border-lad-red/60 bg-lad-red/10 px-4 py-2 text-xs font-bold uppercase tracking-widest text-white transition hover:bg-lad-red"
+                >
+                  <IconMapPin className="h-4 w-4" />
+                  Ver sucursal en Maps
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -90,7 +111,7 @@ export default function Footer() {
         <div className="mt-12 border-t border-gray-800 pt-8">
           <div className="mb-5 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
             <h4 className="font-display text-sm font-bold uppercase tracking-widest text-gray-400">
-              Portal del personal — Ecosistema Eden
+              Portal del personal — Ecosistema eden
             </h4>
             <Link href="/acceder" className="text-xs font-bold uppercase tracking-widest text-lad-red transition hover:text-white">
               Ver todos los accesos →
