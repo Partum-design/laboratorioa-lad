@@ -39,7 +39,7 @@ export const edenPortals: EdenPortal[] = [
     suffix: "admin",
     titulo: "eden admin",
     resumen: "Administración de usuarios",
-    detalle: "Administración de usuarios, roles y accesos del personal dentro del ecosistema Eden.",
+    detalle: "Administración de usuarios, roles y accesos del personal dentro del ecosistema eden.",
     href: "https://pacs.evacenter.com/admin/",
   },
 ];
