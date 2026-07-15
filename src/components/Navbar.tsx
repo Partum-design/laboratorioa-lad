@@ -104,7 +104,7 @@ export default function Navbar() {
             }`}
           >
             <IconChip color="currentColor" size="h-4 w-4"><IconLogin /></IconChip>
-            Acceder
+            eden
           </Link>
         </div>
 
@@ -145,7 +145,7 @@ export default function Navbar() {
                 }`}
               >
                 <IconChip color="currentColor" size="h-4 w-4"><IconLogin /></IconChip>
-                Acceder — Personal
+                eden — Personal
               </Link>
             </div>
           </motion.div>

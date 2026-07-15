@@ -10,6 +10,8 @@ const FIXED_PHONE = "7 14 14 2 46 21";
 
 export default function FloatingButtons() {
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isTeaserVisible, setIsTeaserVisible] = useState(false);
+  const [teaserDismissed, setTeaserDismissed] = useState(false);
 
   useEffect(() => {
     const closeOnEscape = (event: KeyboardEvent) => {
@@ -18,6 +20,16 @@ export default function FloatingButtons() {
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, []);
+
+  useEffect(() => {
+    const showTimer = setTimeout(() => setIsTeaserVisible(true), 1600);
+    return () => clearTimeout(showTimer);
+  }, []);
+
+  const openContact = () => {
+    setIsContactOpen(true);
+    setIsTeaserVisible(false);
+  };
 
   return (
     <>
@@ -36,14 +48,15 @@ export default function FloatingButtons() {
             <div className="relative overflow-hidden rounded-2xl bg-white shadow-2xl shadow-black/25 ring-1 ring-black/5">
               {/* Header */}
               <div className="flex items-start gap-3 bg-gradient-to-br from-[#25D366] to-[#128C7E] px-5 py-4">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/20 text-white ring-2 ring-white/40">
-                  <IconWhatsApp className="h-5 w-5" />
+                <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/15 text-base font-black text-white ring-2 ring-white/40">
+                  E
+                  <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-[#128C7E] bg-[#7CFC9C]" />
                 </span>
                 <div className="min-w-0 flex-1 pt-0.5">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/80">Atención LAD</p>
                   <h2 id="whatsapp-contact-title" className="font-display text-base font-black leading-snug text-white">
-                    ¿En qué puedo servirte?
+                    Elena
                   </h2>
+                  <p className="text-xs text-white/80">Suele contestar en minutos</p>
                 </div>
                 <button
                   type="button"
@@ -56,12 +69,14 @@ export default function FloatingButtons() {
               </div>
 
               {/* Body */}
-              <div className="px-5 py-4">
-                <p className="text-sm leading-relaxed text-gray-600">
-                  Te atiende <strong className="text-lad-black">Elena</strong>, tu asesora personal.
-                </p>
+              <div className="bg-[#e8ded1] bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_0)] bg-[size:16px_16px] px-4 pb-4 pt-4">
+                <div className="rounded-xl rounded-tl-sm bg-white px-3.5 py-3 shadow-sm">
+                  <p className="text-xs font-bold text-[#128C7E]">Elena</p>
+                  <p className="mt-1 text-sm leading-relaxed text-lad-black">¡Hola! 👋</p>
+                  <p className="text-sm leading-relaxed text-lad-black">¿En qué podemos ayudarte?</p>
+                </div>
 
-                <dl className="mt-4 space-y-2.5 rounded-xl bg-lad-gray-light/70 px-4 py-3 text-sm">
+                <dl className="mt-3 space-y-2.5 rounded-xl bg-white/70 px-4 py-3 text-sm">
                   <div className="flex items-center justify-between gap-3">
                     <dt className="font-bold text-lad-black">Nuestro número</dt>
                     <dd className="text-gray-600">129</dd>
@@ -83,15 +98,17 @@ export default function FloatingButtons() {
                     </dd>
                   </div>
                 </dl>
+              </div>
 
+              <div className="border-t border-black/5 bg-white px-4 pb-4 pt-3.5">
                 <a
                   href={LAD_WHATSAPP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#1fbd5b] focus:outline-none focus:ring-2 focus:ring-[#128C7E] focus:ring-offset-2"
+                  className="flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#1fbd5b] focus:outline-none focus:ring-2 focus:ring-[#128C7E] focus:ring-offset-2"
                 >
                   <IconWhatsApp className="h-5 w-5" />
-                  Escribir por WhatsApp
+                  <span className="underline underline-offset-2">Iniciar chat</span>
                 </a>
               </div>
             </div>
@@ -99,10 +116,44 @@ export default function FloatingButtons() {
         )}
       </AnimatePresence>
 
+      {/* Bocadillo — invita a iniciar el chat */}
+      <AnimatePresence>
+        {isTeaserVisible && !teaserDismissed && !isContactOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, x: 12 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            exit={{ opacity: 0, scale: 0.9, x: 12 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed right-24 top-[calc(50%-3.25rem)] z-[100] w-[210px] origin-bottom-right"
+          >
+            <button
+              type="button"
+              onClick={openContact}
+              className="relative block w-full rounded-2xl bg-white px-4 py-3 text-left text-sm font-bold text-lad-black shadow-xl shadow-black/15 ring-1 ring-black/5 transition hover:-translate-y-0.5"
+            >
+              ¿En qué podemos ayudarte?
+              <span className="absolute -right-1.5 top-1/2 h-3 w-3 -translate-y-1/2 rotate-45 bg-white" />
+            </button>
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                setTeaserDismissed(true);
+                setIsTeaserVisible(false);
+              }}
+              aria-label="Cerrar mensaje"
+              className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-lad-black text-[10px] text-white shadow-md"
+            >
+              ×
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Botón WhatsApp — centro derecha */}
       <button
         type="button"
-        onClick={() => setIsContactOpen((open) => !open)}
+        onClick={() => (isContactOpen ? setIsContactOpen(false) : openContact())}
         aria-label="Contactar por WhatsApp"
         aria-expanded={isContactOpen}
         className="group fixed right-5 top-1/2 z-[100] flex -translate-y-1/2 items-center gap-3 rounded-full bg-[#25D366] px-4 py-3 shadow-lg shadow-[#128C7E]/25 transition-all hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#128C7E] focus:ring-offset-2"
