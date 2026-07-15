@@ -90,7 +90,7 @@ export default function Footer() {
         <div className="mt-12 border-t border-gray-800 pt-8">
           <div className="mb-5 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
             <h4 className="font-display text-sm font-bold uppercase tracking-widest text-gray-400">
-              Portal del personal — Ecosistema Eden
+              Portal del personal — Ecosistema eden
             </h4>
             <Link href="/acceder" className="text-xs font-bold uppercase tracking-widest text-lad-red transition hover:text-white">
               Ver todos los accesos →
