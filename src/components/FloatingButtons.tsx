@@ -39,10 +39,10 @@ export default function FloatingButtons() {
             role="dialog"
             aria-modal="false"
             aria-labelledby="whatsapp-contact-title"
-            initial={{ opacity: 0, scale: 0.92, x: 16 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            exit={{ opacity: 0, scale: 0.92, x: 16 }}
-            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, scale: 0.4, y: 40 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.4, y: 40, transition: { duration: 0.15, ease: "easeIn" } }}
+            transition={{ type: "spring", stiffness: 380, damping: 22, mass: 0.7 }}
             className="fixed bottom-24 right-4 left-4 z-[110] origin-bottom-right sm:bottom-auto sm:left-auto sm:right-24 sm:top-1/2 sm:w-[320px] sm:-translate-y-1/2"
           >
             <div className="relative overflow-hidden rounded-2xl bg-white shadow-2xl shadow-black/25 ring-1 ring-black/5">
@@ -120,10 +120,10 @@ export default function FloatingButtons() {
       <AnimatePresence>
         {isTeaserVisible && !teaserDismissed && !isContactOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, x: 12 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            exit={{ opacity: 0, scale: 0.9, x: 12 }}
-            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0, transition: { duration: 0.12 } }}
+            transition={{ type: "spring", stiffness: 500, damping: 18, mass: 0.6 }}
             className="fixed right-24 top-[calc(50%-3.25rem)] z-[100] w-[210px] origin-bottom-right"
           >
             <button
