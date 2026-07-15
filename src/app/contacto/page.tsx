@@ -6,7 +6,14 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { IconBadge, IconChip } from "@/components/IconBadge";
 import { IconCheckCircle, IconClipboard, IconClock, IconMapPin, IconPhone, IconSend } from "@/components/LadIcons";
 import { ICON_COLORS, iconColorAt } from "@/lib/icon-palette";
-import { buildWhatsAppLink, LAD_PHONE_DISPLAY, LAD_TEL_LINK, LAD_WHATSAPP_LINK } from "@/lib/contact";
+import {
+  buildWhatsAppLink,
+  LAD_ADDRESS_DISPLAY,
+  LAD_MAPS_LINK,
+  LAD_PHONE_DISPLAY,
+  LAD_TEL_LINK,
+  LAD_WHATSAPP_LINK,
+} from "@/lib/contact";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { useSearchParams } from "next/navigation";
@@ -108,7 +115,15 @@ function ContactoBody() {
                 <IconChip color={iconColorAt(0)}><IconMapPin /></IconChip>
                 <div>
                   <p className="font-bold text-lad-black">Ubicación</p>
-                  <p className="text-gray-600">Te compartimos la ubicación exacta por WhatsApp al confirmar tu cita.</p>
+                  <p className="text-gray-600">{LAD_ADDRESS_DISPLAY}</p>
+                  <a
+                    href={LAD_MAPS_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 inline-block text-sm font-semibold text-lad-red transition hover:text-lad-black"
+                  >
+                    Ver en Google Maps →
+                  </a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -142,11 +157,14 @@ function ContactoBody() {
               ))}
             </div>
 
-            <div className="mt-8 flex h-48 items-center justify-center bg-lad-gray-light text-sm font-bold text-gray-400">
-              <div className="flex flex-col items-center gap-2">
-                <IconChip color={iconColorAt(0)} size="h-7 w-7"><IconMapPin /></IconChip>
-                <span>Ubicación disponible al agendar</span>
-              </div>
+            <div className="mt-8 h-64 overflow-hidden border border-gray-100">
+              <iframe
+                title="Ubicación de LAD en Google Maps"
+                src={`https://www.google.com/maps?q=${encodeURIComponent(LAD_ADDRESS_DISPLAY)}&output=embed`}
+                className="h-full w-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </ScrollReveal>
         </div>
