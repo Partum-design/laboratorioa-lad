@@ -9,7 +9,7 @@ const videos = [
   "/vids/inicio/hero1.mp4",
   "/vids/estudios/hero.mp4",
   "/vids/nosotros/resonancia.mp4",
-  "/vids/contacto/hero.mp4",
+  "/vids/nosotros/xray1.mp4",
 ];
 const STORAGE_KEY = "lad:construction-preview";
 

@@ -36,16 +36,22 @@ export default function FloatingButtons() {
       <AnimatePresence>
         {isContactOpen && (
           <motion.div
-            role="dialog"
-            aria-modal="false"
-            aria-labelledby="whatsapp-contact-title"
-            initial={{ opacity: 0, scale: 0.4, y: 40 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.4, y: 40, transition: { duration: 0.15, ease: "easeIn" } }}
-            transition={{ type: "spring", stiffness: 380, damping: 22, mass: 0.7 }}
-            className="fixed bottom-24 right-4 left-4 z-[110] origin-bottom-right sm:bottom-auto sm:left-auto sm:right-24 sm:top-1/2 sm:w-[320px] sm:-translate-y-1/2"
+            initial="closed"
+            animate="open"
+            exit="closed"
+            className="pointer-events-none fixed inset-x-4 bottom-24 z-[110] sm:inset-y-4 sm:left-auto sm:right-24 sm:flex sm:w-[320px] sm:items-center"
           >
-            <div className="relative overflow-hidden rounded-2xl bg-white shadow-2xl shadow-black/25 ring-1 ring-black/5">
+            <motion.div
+              role="dialog"
+              aria-modal="false"
+              aria-labelledby="whatsapp-contact-title"
+              variants={{
+                closed: { opacity: 0, scale: 0.4, y: 40 },
+                open: { opacity: 1, scale: 1, y: 0 },
+              }}
+              transition={{ type: "spring", stiffness: 380, damping: 22, mass: 0.7 }}
+              className="pointer-events-auto relative flex w-full origin-bottom-right max-h-[calc(100dvh-7rem)] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl shadow-black/25 ring-1 ring-black/5 sm:max-h-[calc(100dvh-2rem)]"
+            >
               {/* Header */}
               <div className="flex items-start gap-3 bg-gradient-to-br from-[#25D366] to-[#128C7E] px-5 py-4">
                 <span className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/15 text-base font-black text-white ring-2 ring-white/40">
@@ -69,7 +75,7 @@ export default function FloatingButtons() {
               </div>
 
               {/* Body */}
-              <div className="bg-[#e8ded1] bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_0)] bg-[size:16px_16px] px-4 pb-4 pt-4">
+              <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain bg-[#e8ded1] bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.05)_1px,transparent_0)] bg-[size:16px_16px] px-4 pb-4 pt-4">
                 <div className="rounded-xl rounded-tl-sm bg-white px-3.5 py-3 shadow-sm">
                   <p className="text-xs font-bold text-[#128C7E]">Elena</p>
                   <p className="mt-1 text-sm leading-relaxed text-lad-black">¡Hola! 👋</p>
@@ -100,7 +106,7 @@ export default function FloatingButtons() {
                 </dl>
               </div>
 
-              <div className="border-t border-black/5 bg-white px-4 pb-4 pt-3.5">
+              <div className="shrink-0 border-t border-black/5 bg-white px-4 pb-4 pt-3.5">
                 <a
                   href={LAD_WHATSAPP_LINK}
                   target="_blank"
@@ -111,7 +117,7 @@ export default function FloatingButtons() {
                   Iniciar chat
                 </a>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -124,7 +130,7 @@ export default function FloatingButtons() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0, transition: { duration: 0.12 } }}
             transition={{ type: "spring", stiffness: 500, damping: 18, mass: 0.6 }}
-            className="fixed right-24 top-[calc(50%-3.25rem)] z-[100] w-[210px] origin-bottom-right"
+            className="fixed bottom-24 right-24 z-[100] hidden w-[210px] origin-bottom-right sm:block"
           >
             <button
               type="button"
@@ -150,13 +156,13 @@ export default function FloatingButtons() {
         )}
       </AnimatePresence>
 
-      {/* Botón WhatsApp — centro derecha */}
+      {/* Botón WhatsApp — esquina inferior derecha */}
       <button
         type="button"
         onClick={() => (isContactOpen ? setIsContactOpen(false) : openContact())}
         aria-label="Contactar por WhatsApp"
         aria-expanded={isContactOpen}
-        className="group fixed right-5 top-1/2 z-[100] flex -translate-y-1/2 items-center gap-3 rounded-full bg-[#25D366] px-4 py-3 shadow-lg shadow-[#128C7E]/25 transition-all hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#128C7E] focus:ring-offset-2"
+        className="group fixed bottom-6 right-5 z-[100] flex items-center gap-3 rounded-full bg-[#25D366] px-4 py-3 shadow-lg shadow-[#128C7E]/25 transition-all hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#128C7E] focus:ring-offset-2"
       >
         <motion.span
           animate={isContactOpen ? {} : { rotate: [0, -8, 8, -8, 0] }}

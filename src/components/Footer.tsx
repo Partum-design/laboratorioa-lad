@@ -18,7 +18,7 @@ const links = [
   { href: "/estudios#catalogo", label: "Estudios" },
   { href: "/nosotros", label: "Nosotros" },
   { href: "/contacto#agenda", label: "Contacto" },
-  { href: "/unete#vacantes", label: "Únete al equipo" },
+  { href: "/unete#vacantes", label: "Vacantes" },
   { href: "/acceder", label: "Acceder (personal)" },
 ];
 
