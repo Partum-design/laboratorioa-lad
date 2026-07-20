@@ -1,7 +1,6 @@
 "use client";
 
 import PageTransition from "@/components/PageTransition";
-import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
 import { IconBadge, IconChip } from "@/components/IconBadge";
 import { IconCheckCircle, IconClipboard, IconClock, IconMapPin, IconPhone, IconSend } from "@/components/LadIcons";
@@ -30,10 +29,6 @@ export default function ContactoPage() {
     <PageTransition>
       {/* Hero */}
       <section className="relative overflow-hidden bg-lad-black pb-20 pt-32">
-        <div className="absolute inset-0">
-          <VideoAuto src="/vids/nosotros/xray1.mp4" className="h-full w-full object-cover opacity-30" />
-          <div className="absolute inset-0 bg-gradient-to-r from-lad-black/90 via-lad-black/70 to-transparent" />
-        </div>
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />
         <div className="container-lad relative z-10">
           <p className="mb-6 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Contáctanos</p>

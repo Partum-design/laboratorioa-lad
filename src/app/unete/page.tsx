@@ -110,9 +110,9 @@ export default function UnetePage() {
         </div>
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />
         <div className="container-lad relative z-10">
-          <p className="hero-el mb-6 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Carreras</p>
+          <p className="hero-el mb-6 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Oportunidades</p>
           <h1 className="hero-el heading-xl mb-6 max-w-3xl text-white">
-            Únete a nuestro <span className="text-lad-red">equipo</span>
+            Vacantes en <span className="text-lad-red">LAD</span>
           </h1>
           <p className="hero-el body-lg mb-10 max-w-xl text-justify text-gray-300">
             Buscamos personas cuidadosas, puntuales y con buen trato al paciente. Si quieres crecer en diagnóstico clínico, revisa las vacantes.
