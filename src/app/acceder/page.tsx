@@ -1,13 +1,25 @@
-"use client";
+import type { Metadata } from "next";
+import Link from "next/link";
 
-import PageTransition from "@/components/PageTransition";
-import ScrollReveal from "@/components/ScrollReveal";
+import ConsultaEstudio from "@/components/eden/ConsultaEstudio";
 import { EdenMark } from "@/components/EdenBrand";
 import { IconBadge, IconChip } from "@/components/IconBadge";
 import { IconEye, IconLock, IconLogin, IconScan, IconShieldCheck, IconUsers } from "@/components/LadIcons";
-import { ICON_COLORS } from "@/lib/icon-palette";
+import PageTransition from "@/components/PageTransition";
+import ScrollReveal from "@/components/ScrollReveal";
+import { isBirthDateRequired } from "@/lib/eden/config";
 import { edenPortals } from "@/lib/eden-portals";
-import Link from "next/link";
+import { ICON_COLORS } from "@/lib/icon-palette";
+
+export const metadata: Metadata = {
+  title: "Consulta tus estudios | LAD Laboratorio de Apoyo y Diagnóstico",
+  description:
+    "Consulta el avance de tu estudio y descarga tu reporte de resultados con el folio que te dimos en LAD Laboratorio de Apoyo y Diagnóstico.",
+};
+
+// La consulta lee el expediente en vivo desde Eden, así que la página no se
+// puede prerenderizar en el build.
+export const dynamic = "force-dynamic";
 
 const PORTAL_ICONS = {
   pacs: IconScan,
@@ -23,79 +35,99 @@ export default function AccederPage() {
       <section className="relative overflow-hidden bg-lad-black pb-20 pt-32">
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />
         <div className="container-lad relative z-10">
-          <p className="mb-6 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Portal del personal</p>
-          <h1 className="heading-xl mb-4 text-white">
-            Acceder al <span className="text-lad-red">ecosistema eden</span>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Consulta de resultados</p>
+            <EdenMark size="h-4 w-4" textClassName="text-sm text-gray-400" />
+          </div>
+          <h1 className="heading-xl mb-4 mt-6 text-white">
+            Tus estudios, <span className="text-lad-red">al momento</span>
           </h1>
           <p className="body-lg max-w-2xl text-justify text-gray-400">
-            Estos accesos son exclusivos para el personal de LAD Laboratorio de Apoyo y Diagnóstico. Cada botón te
-            lleva directo a la pantalla de inicio de sesión de esa plataforma: ten a la mano tu correo y tu
-            contraseña de trabajo.
+            Escribe el folio de tu estudio y consulta en qué etapa va, en qué sucursal se realizó y descarga tu reporte
+            firmado en cuanto esté listo. La información viene directo de nuestro expediente clínico, sin necesidad de
+            crear una cuenta.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 border border-white/10 bg-white/5 p-5 sm:flex-row sm:items-center sm:gap-4">
             <IconChip color={ICON_COLORS.red} size="h-6 w-6"><IconShieldCheck /></IconChip>
             <p className="text-sm text-gray-300">
-              ¿Eres paciente y buscas tus resultados o quieres agendar una cita?{" "}
+              Tu información es confidencial. LAD nunca te pedirá contraseñas ni datos bancarios por teléfono, WhatsApp
+              o correo. Si tienes dudas sobre tu reporte,{" "}
               <Link href="/contacto" className="font-bold text-white underline decoration-lad-red underline-offset-4 hover:text-lad-red">
-                Ve a Contacto
+                comunícate con nosotros
               </Link>
-              , esta sección no es para pacientes.
+              .
             </p>
           </div>
         </div>
       </section>
 
-      {/* Guía rápida */}
-      <section className="section-padding scroll-mt-24 bg-lad-gray-light">
+      {/* Buscador */}
+      <section id="consulta" className="section-padding scroll-mt-24 bg-lad-gray-light">
         <div className="container-lad">
           <ScrollReveal>
-            <div className="mb-14 text-center">
-              <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Cómo entrar</p>
-              <h2 className="heading-lg">Elige la plataforma que <span className="text-lad-red">necesitas</span></h2>
-              <p className="body-lg mx-auto mt-4 max-w-2xl text-justify text-gray-500">
-                Cada plataforma es para una tarea distinta. Si no sabes cuál usar, guíate por la descripción de cada
-                tarjeta o pregunta a tu jefe de área.
+            <div className="mb-12 max-w-3xl">
+              <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Buscar mi estudio</p>
+              <h2 className="heading-lg">
+                Consulta con tu <span className="text-lad-red">folio</span>
+              </h2>
+              <p className="body-lg mt-4 text-justify text-gray-500">
+                El folio es el identificador que aparece en tu comprobante de estudio. Escríbelo tal cual, incluyendo
+                guiones.
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <ScrollReveal delay={0.1}>
+            <ConsultaEstudio requiereFechaNacimiento={isBirthDateRequired()} />
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Accesos del personal */}
+      <section id="personal" className="section-padding scroll-mt-24 bg-white">
+        <div className="container-lad">
+          <ScrollReveal>
+            <div className="mb-10 max-w-3xl">
+              <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Sólo personal LAD</p>
+              <h2 className="heading-md">Acceso al ecosistema eden</h2>
+              <p className="mt-3 text-justify text-gray-500">
+                Estas plataformas son de uso interno. Si eres paciente, tu consulta se hace arriba con tu folio.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {edenPortals.map((portal, index) => {
               const Icon = PORTAL_ICONS[portal.slug as keyof typeof PORTAL_ICONS];
               return (
-                <ScrollReveal key={portal.slug} delay={index * 0.1}>
-                  <div className="card-hover flex h-full flex-col justify-between border-2 border-gray-200 bg-lad-black p-8 text-white">
+                <ScrollReveal key={portal.slug} delay={index * 0.08}>
+                  <a
+                    href={portal.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="card-hover flex h-full flex-col justify-between border-2 border-gray-200 bg-lad-black p-6 text-white"
+                  >
                     <div>
-                      <div className="mb-6 flex items-center justify-between">
-                        <IconBadge color={ICON_COLORS.red}><Icon /></IconBadge>
-                        <EdenMark suffix={portal.suffix} size="h-4 w-4" textClassName="text-sm text-gray-300" />
-                      </div>
-                      <h3 className="mb-2 font-display text-2xl font-black lowercase">
+                      <IconBadge color={ICON_COLORS.red}><Icon /></IconBadge>
+                      <h3 className="mb-1 mt-5 font-display text-lg font-black lowercase">
                         eden <span className="font-light">{portal.suffix}</span>
                       </h3>
-                      <p className="mb-4 text-xs font-bold uppercase tracking-wider text-lad-red">{portal.resumen}</p>
-                      <p className="mb-8 text-justify text-sm leading-relaxed text-gray-400">{portal.detalle}</p>
+                      <p className="text-[0.65rem] font-bold uppercase tracking-wider text-lad-red">{portal.resumen}</p>
                     </div>
-                    <a
-                      href={portal.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-primary flex items-center justify-center gap-2"
-                    >
-                      <IconChip color="#ffffff" size="h-4 w-4"><IconLogin /></IconChip>
+                    <span className="mt-6 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-400">
+                      <IconChip color="currentColor" size="h-4 w-4"><IconLogin /></IconChip>
                       Iniciar sesión
-                    </a>
-                  </div>
+                    </span>
+                  </a>
                 </ScrollReveal>
               );
             })}
           </div>
 
           <ScrollReveal delay={0.2}>
-            <p className="mx-auto mt-12 max-w-2xl text-center text-xs text-gray-500">
-              Si olvidaste tu contraseña o no tienes acceso todavía, contacta a tu administrador del sistema. LAD no
-              solicita contraseñas por teléfono, WhatsApp ni correo.
+            <p className="mx-auto mt-10 max-w-2xl text-center text-xs text-gray-500">
+              Si olvidaste tu contraseña o aún no tienes acceso, contacta a tu administrador del sistema.
             </p>
           </ScrollReveal>
         </div>

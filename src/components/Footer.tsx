@@ -19,7 +19,7 @@ const links = [
   { href: "/nosotros", label: "Nosotros" },
   { href: "/contacto#agenda", label: "Contacto" },
   { href: "/unete#vacantes", label: "Vacantes" },
-  { href: "/acceder", label: "Acceder (personal)" },
+  { href: "/acceder#consulta", label: "Consultar mis resultados" },
 ];
 
 const LAD_FACEBOOK_LINK = "https://www.facebook.com/LADTenancingo";
@@ -113,7 +113,7 @@ export default function Footer() {
             <h4 className="font-display text-sm font-bold uppercase tracking-widest text-gray-400">
               Portal del personal — Ecosistema eden
             </h4>
-            <Link href="/acceder" className="text-xs font-bold uppercase tracking-widest text-lad-red transition hover:text-white">
+            <Link href="/acceder#personal" className="text-xs font-bold uppercase tracking-widest text-lad-red transition hover:text-white">
               Ver todos los accesos →
             </Link>
           </div>

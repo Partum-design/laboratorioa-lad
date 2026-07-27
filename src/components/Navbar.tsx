@@ -1,7 +1,7 @@
 "use client";
 
 import { IconChip } from "@/components/IconBadge";
-import { IconLogin } from "@/components/LadIcons";
+import { IconSearch } from "@/components/LadIcons";
 import { AnimatePresence, motion } from "framer-motion";
 import { gsap } from "gsap";
 import Image from "next/image";
@@ -103,8 +103,8 @@ export default function Navbar() {
                   : "border-white/40 text-white hover:border-lad-red hover:text-lad-red"
             }`}
           >
-            <IconChip color="currentColor" size="h-4 w-4"><IconLogin /></IconChip>
-            eden
+            <IconChip color="currentColor" size="h-4 w-4"><IconSearch /></IconChip>
+            Mis resultados
           </Link>
         </div>
 
@@ -144,8 +144,8 @@ export default function Navbar() {
                   pathname === "/acceder" ? "border-lad-red bg-lad-red text-white" : "border-lad-black/20 text-lad-black"
                 }`}
               >
-                <IconChip color="currentColor" size="h-4 w-4"><IconLogin /></IconChip>
-                eden — Personal
+                <IconChip color="currentColor" size="h-4 w-4"><IconSearch /></IconChip>
+                Consultar mis resultados
               </Link>
             </div>
           </motion.div>
