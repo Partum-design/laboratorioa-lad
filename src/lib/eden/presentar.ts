@@ -214,6 +214,7 @@ export function presentarEstudio(orden: EdenOrder, visorFirmado: string | null):
 
   return {
     folio: texto(orden.folio) ?? "",
+    origen: "orden",
     etapa: estatus.etapa,
     estatusTexto: estatus.texto,
     estatusDetalle: estatus.detalle,
@@ -235,5 +236,33 @@ export function presentarEstudio(orden: EdenOrder, visorFirmado: string | null):
     fechaCita: texto(orden.appointment?.start_date),
     documentos: listarDocumentos(orden),
     visorUrl: texto(orden.public_study_viewer_link) ?? visorFirmado,
+  };
+}
+
+/**
+ * Caso de un estudio que vive sólo en el PACS: se cargó directo con "Upload
+ * study", sin orden en Eden Management. El API no expone su avance ni los
+ * datos del paciente, así que lo único honesto es confirmar que existe y dar
+ * acceso a las imágenes.
+ */
+export function presentarSoloVisor(identificador: string, visorUrl: string): EstudioPublico {
+  return {
+    folio: identificador,
+    origen: "visor",
+    etapa: null,
+    estatusTexto: "Estudio localizado",
+    estatusDetalle:
+      "Encontramos tu estudio y sus imágenes ya están disponibles. Este estudio no tiene una orden registrada, " +
+      "así que el detalle y el reporte se consultan directamente con nosotros.",
+    resultadosListos: false,
+    paciente: { nombreEnmascarado: null, edad: null },
+    estudio: { nombre: null, modalidad: null, descripcion: null, codigo: null },
+    sucursal: null,
+    medicoTratante: null,
+    fechaRegistro: null,
+    fechaEstudio: null,
+    fechaCita: null,
+    documentos: [],
+    visorUrl,
   };
 }

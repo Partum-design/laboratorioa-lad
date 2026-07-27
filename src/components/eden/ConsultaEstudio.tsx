@@ -136,11 +136,11 @@ function Resultado({ estudio, fechaNacimiento }: { estudio: EstudioPublico; fech
 
       <div className="space-y-8 p-6 sm:p-8">
         <div>
-          <Progreso etapa={estudio.etapa} />
-          <p className="mt-4 text-sm leading-relaxed text-gray-600">{estudio.estatusDetalle}</p>
+          {estudio.etapa && <Progreso etapa={estudio.etapa} />}
+          <p className={`text-sm leading-relaxed text-gray-600 ${estudio.etapa ? "mt-4" : ""}`}>{estudio.estatusDetalle}</p>
         </div>
 
-        <dl className="grid grid-cols-1 gap-x-10 sm:grid-cols-2">
+        <dl className={`grid grid-cols-1 gap-x-10 sm:grid-cols-2 ${estudio.origen === "visor" ? "hidden" : ""}`}>
           <Linea etiqueta="Modalidad" valor={estudio.estudio.modalidad} />
           <Linea etiqueta="Clave del estudio" valor={estudio.estudio.codigo} />
           <Linea etiqueta="Indicación" valor={estudio.estudio.descripcion} />
@@ -190,7 +190,7 @@ function Resultado({ estudio, fechaNacimiento }: { estudio: EstudioPublico; fech
           </div>
         )}
 
-        {!listo && !cancelado && (
+        {!listo && !cancelado && estudio.origen === "orden" && (
           <div className="flex items-start gap-3 border border-gray-200 bg-lad-gray-light p-4">
             <IconChip color={ICON_COLORS.red} size="h-5 w-5"><IconClock /></IconChip>
             <p className="text-sm text-gray-600">
@@ -229,7 +229,7 @@ export default function ConsultaEstudio({ requiereFechaNacimiento }: ConsultaEst
     const folioLimpio = normalizarFolio(folio);
     if (!esFolioValido(folioLimpio)) {
       setEstudio(null);
-      setError("Escribe el folio tal como aparece en tu comprobante (al menos 3 caracteres).");
+      setError("Escribe el folio o ID tal como aparece en tu comprobante (al menos 3 caracteres).");
       return;
     }
 
@@ -271,7 +271,7 @@ export default function ConsultaEstudio({ requiereFechaNacimiento }: ConsultaEst
               name="folio"
               value={folio}
               onChange={(evento) => setFolio(evento.target.value)}
-              placeholder="Ej. LAD-16128"
+              placeholder="Ej. EVA-PTT-0001000"
               autoComplete="off"
               autoCapitalize="characters"
               spellCheck={false}

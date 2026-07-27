@@ -100,7 +100,14 @@ export interface DocumentoDisponible {
 
 export interface EstudioPublico {
   folio: string;
-  etapa: EtapaEstudio;
+  /**
+   * "orden": el estudio tiene orden registrada en Eden y conocemos todo su
+   * detalle. "visor": el estudio sólo existe en el PACS (se cargó directo, sin
+   * orden), así que únicamente podemos ofrecer el acceso a las imágenes.
+   */
+  origen: "orden" | "visor";
+  /** Null cuando no hay orden: sin ella Eden no expone el avance del estudio. */
+  etapa: EtapaEstudio | null;
   estatusTexto: string;
   estatusDetalle: string;
   resultadosListos: boolean;

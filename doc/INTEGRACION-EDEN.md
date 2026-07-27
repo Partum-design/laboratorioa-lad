@@ -73,7 +73,35 @@ cachea una consulta de expediente.
 ## 3. Endpoints de Eden que se consumen
 
 **`GET /orders/{id}/`** — acepta el UUID de Eden **o el folio** del laboratorio
-(alias `accession_number`). Es el único que se necesita para la consulta.
+(alias `accession_number`). Es la vía principal y la que trae todo el detalle.
+
+**`GET /studies/link/`** — respaldo cuando no hay orden. Acepta dos parámetros y
+la integración prueba los dos en orden:
+
+- `folio`: el folio del estudio.
+- `order_id`: **pese al nombre, es el identificador del paciente.** Así lo
+  documenta Eden ("this field is actually the identifier of a patient, it is
+  called order_id for backward compatibility reasons"). Es el valor que el PACS
+  muestra como **"ID"** bajo el nombre del paciente en la lista de estudios.
+
+### Estudios sin orden
+
+Un estudio cargado con **"Upload study"** directo en el PACS **no genera orden**
+en Eden Management: `GET /orders/{ese-id}/` responde `400` y el listado sigue en
+`total_count: 0`. Comprobado con `EVA-PTT-0001000`, que sí aparece en
+`pacs-staging.dev-land.space` pero no existe como orden.
+
+Para ese caso la consulta cae al respaldo y responde con `origen: "visor"`: se
+confirma que el estudio existe y se ofrece el enlace firmado a las imágenes,
+pero sin avance, fechas ni reporte, porque el API no los expone sin orden. La
+interfaz oculta la barra de etapas en vez de inventar un estatus.
+
+Cuando el estudio **sí** tiene orden, la respuesta llega con `origen: "orden"` y
+el detalle completo.
+
+> El respaldo se desactiva si `EDEN_REQUIRE_BIRTH_DATE=true`: sin orden no hay
+> fecha de nacimiento contra la cual verificar, así que en ese modo el estudio
+> no se revela.
 
 Comportamiento observado en staging (no sólo documentado):
 
@@ -123,17 +151,23 @@ folio solo, cualquiera que teclee folios válidos ve el nombre parcial y el tipo
 estudio. Con el segundo factor activo, una fecha equivocada responde exactamente
 igual que un folio inexistente, para no confirmar que el folio existe.
 
-## 5. Pendientes del lado de Eden
+## 5. Estado de las pruebas
 
-- El token de staging apunta a una organización **sin órdenes**: `GET /orders/`
-  regresa `total_count: 0` en todo 2025–2026, y crear una orden de prueba falla
-  porque no conocemos un `facility_identifier` válido (`eva-centro` de la doc es
-  rechazado). Hay que pedirle a Eden un folio de prueba con datos, o el
-  identificador de sucursal, para validar la vista de resultados contra datos
-  reales.
-- Falta el token del ambiente productivo.
+Probado contra el **staging real** (`EVA-PTT-0001000`): la consulta lo encuentra
+por la vía de respaldo y entrega el visor firmado, tanto en mayúsculas como en
+minúsculas o con espacios de sobra. Un identificador inexistente responde `404`.
 
-Mientras tanto, la cadena completa se probó contra un mock que reproduce las
-respuestas documentadas: consulta correcta, folio inexistente, folio en
-minúsculas, segundo factor correcto e incorrecto, descarga de PDF y límite de
+Probado contra un **mock** con la forma del OpenAPI, porque staging todavía no
+tiene una orden completa: consulta con orden y estatus `SIGNED`, folio
+inexistente, segundo factor correcto e incorrecto, descarga de PDF y límite de
 peticiones.
+
+## 6. Pendientes del lado de Eden
+
+- **Falta una orden de prueba con reporte firmado.** `GET /orders/` sigue en
+  `total_count: 0`, así que la tarjeta completa (etapas, fechas, sucursal,
+  descarga del PDF) sólo está validada contra el mock. Para probarla de punta a
+  punta hay que crear la orden desde Eden Management, o pedir el
+  `facility_identifier` de LAD para darla de alta por API — el `eva-centro` de la
+  documentación es rechazado con `Invalid facility provided`.
+- Falta el token del ambiente productivo.

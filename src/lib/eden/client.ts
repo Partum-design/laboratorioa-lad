@@ -100,15 +100,35 @@ async function consultarOrden(config: EdenConfig, folio: string): Promise<EdenRe
 }
 
 /**
- * Pide a Eden la URL firmada del visor. Sirve como respaldo cuando la orden no
- * trae `public_study_viewer_link`. Este endpoint responde `{ url, success }`
+ * Pide a Eden la URL firmada del visor. Este endpoint responde `{ url, success }`
  * sin el sobre habitual.
+ *
+ * Acepta dos parámetros distintos y hay que probar los dos:
+ * - `folio`: el folio del estudio.
+ * - `order_id`: pese al nombre, es el **identificador del paciente** (así lo
+ *   documenta Eden, lo conservan por retrocompatibilidad). Es el valor que el
+ *   PACS muestra como "ID" en la lista de estudios.
  */
-export async function obtenerUrlVisor(folio: string): Promise<string | null> {
+export async function obtenerUrlVisor(valor: string): Promise<{ url: string; identificador: string } | null> {
   const config = getEdenConfig();
   if (!config) return null;
 
-  const resultado = await pedir(config, `/studies/link/?folio=${encodeURIComponent(folio)}`);
+  const candidatos = valor === valor.toUpperCase() ? [valor] : [valor, valor.toUpperCase()];
+
+  for (const candidato of candidatos) {
+    for (const parametro of ["folio", "order_id"] as const) {
+      const url = await consultarVisor(config, parametro, candidato);
+      // Devolvemos el identificador que sí coincidió para mostrarlo tal como
+      // está registrado, no como lo tecleó el paciente.
+      if (url) return { url, identificador: candidato };
+    }
+  }
+
+  return null;
+}
+
+async function consultarVisor(config: EdenConfig, parametro: string, valor: string): Promise<string | null> {
+  const resultado = await pedir(config, `/studies/link/?${parametro}=${encodeURIComponent(valor)}`);
   if (resultado.estado !== "ok") return null;
 
   const cuerpo = resultado.valor as unknown as { url?: unknown; data?: { url?: unknown } | null };

@@ -4,7 +4,7 @@ import { obtenerOrdenPorFolio, obtenerUrlVisor } from "@/lib/eden/client";
 import { getEdenConfig } from "@/lib/eden/config";
 import { esFechaValida, esFolioValido, normalizarFolio } from "@/lib/eden/folio";
 import { consumirIntento, identificarCliente } from "@/lib/eden/limite";
-import { coincideFechaNacimiento, presentarEstudio } from "@/lib/eden/presentar";
+import { coincideFechaNacimiento, presentarEstudio, presentarSoloVisor } from "@/lib/eden/presentar";
 import type { ConsultaRespuesta } from "@/lib/eden/types";
 
 export const runtime = "nodejs";
@@ -102,11 +102,23 @@ export async function POST(request: Request) {
   }
 
   if (resultado.estado === "no_encontrado") {
+    // Un estudio cargado directo en el PACS ("Upload study") no genera orden en
+    // Eden Management, así que `/orders/` no lo conoce. Todavía podemos
+    // localizarlo por el identificador que el PACS muestra como "ID".
+    // El segundo factor no aplica aquí: sin orden no hay fecha de nacimiento
+    // contra la cual comparar, así que en ese modo no revelamos el estudio.
+    if (!config.requireBirthDate) {
+      const visor = await obtenerUrlVisor(folio);
+      if (visor) {
+        return responder({ ok: true, estudio: presentarSoloVisor(visor.identificador, visor.url) }, 200);
+      }
+    }
+
     return responder(
       {
         ok: false,
         codigo: "no_encontrado",
-        mensaje: "No encontramos ningún estudio con ese folio. Verifícalo en tu comprobante o comunícate con nosotros.",
+        mensaje: "No encontramos ningún estudio con ese folio o ID. Verifícalo en tu comprobante o comunícate con nosotros.",
       },
       404,
     );
@@ -130,7 +142,7 @@ export async function POST(request: Request) {
   // El visor firmado sólo se pide si la orden no trae ya el enlace público.
   const visorFirmado = orden.public_study_viewer_link ? null : await obtenerUrlVisor(folio);
 
-  return responder({ ok: true, estudio: presentarEstudio(orden, visorFirmado) }, 200);
+  return responder({ ok: true, estudio: presentarEstudio(orden, visorFirmado?.url ?? null) }, 200);
 }
 
 export function GET() {
