@@ -33,6 +33,9 @@ export interface EdenPacsStudy {
 export interface EdenManagementStudy {
   id?: string;
   name?: string | null;
+  /** Clave del estudio en el catálogo del laboratorio, p. ej. "USG-ABD". */
+  internal_code?: string | null;
+  /** `code.code` es el código fiscal SAT, no la clave del estudio. */
   code?: { code?: string | null; name?: string | null } | null;
   modality?: EdenModality | null;
 }

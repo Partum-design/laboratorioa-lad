@@ -89,6 +89,19 @@ export async function POST(request: Request) {
     );
   }
 
+  // Eden limita las peticiones por token, así que este tope lo comparten todos
+  // los visitantes del sitio, no sólo quien está consultando.
+  if (resultado.estado === "limitado") {
+    return responder(
+      {
+        ok: false,
+        codigo: "limite_excedido",
+        mensaje: "El sistema de resultados está recibiendo muchas consultas. Espera un minuto y vuelve a intentar.",
+      },
+      429,
+    );
+  }
+
   if (resultado.estado === "error") {
     console.error(`[eden] Error consultando el folio: ${resultado.detalle}`);
     return responder(
@@ -109,8 +122,20 @@ export async function POST(request: Request) {
     // contra la cual comparar, así que en ese modo no revelamos el estudio.
     if (!config.requireBirthDate) {
       const visor = await obtenerUrlVisor(folio);
-      if (visor) {
-        return responder({ ok: true, estudio: presentarSoloVisor(visor.identificador, visor.url) }, 200);
+
+      if (visor.estado === "limitado") {
+        return responder(
+          {
+            ok: false,
+            codigo: "limite_excedido",
+            mensaje: "El sistema de resultados está recibiendo muchas consultas. Espera un minuto y vuelve a intentar.",
+          },
+          429,
+        );
+      }
+
+      if (visor.estado === "ok") {
+        return responder({ ok: true, estudio: presentarSoloVisor(visor.valor.identificador, visor.valor.url) }, 200);
       }
     }
 
@@ -139,10 +164,15 @@ export async function POST(request: Request) {
     );
   }
 
-  // El visor firmado sólo se pide si la orden no trae ya el enlace público.
-  const visorFirmado = orden.public_study_viewer_link ? null : await obtenerUrlVisor(folio);
+  // El visor firmado cuesta peticiones extra contra una cuota muy ajustada, así
+  // que sólo se pide cuando hace falta: si la orden ya trae el enlace público no
+  // hay nada que resolver, y si todavía no hay estudio en el PACS no hay
+  // imágenes que mostrar.
+  const faltaVisor = !orden.public_study_viewer_link && Boolean(orden.pacs_study);
+  const visorFirmado = faltaVisor ? await obtenerUrlVisor(folio) : null;
+  const urlVisor = visorFirmado?.estado === "ok" ? visorFirmado.valor.url : null;
 
-  return responder({ ok: true, estudio: presentarEstudio(orden, visorFirmado?.url ?? null) }, 200);
+  return responder({ ok: true, estudio: presentarEstudio(orden, urlVisor) }, 200);
 }
 
 export function GET() {

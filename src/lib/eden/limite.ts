@@ -11,7 +11,9 @@ interface Ventana {
 }
 
 const VENTANA_MS = 60_000;
-const MAX_INTENTOS = 12;
+// Eden concede ~10 peticiones por minuto para todo el token, así que este tope
+// por IP es sobre todo para que una sola persona no agote la cuota compartida.
+const MAX_INTENTOS = 6;
 const MAX_ENTRADAS = 5_000;
 
 const registro = new Map<string, Ventana>();

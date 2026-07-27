@@ -7,6 +7,10 @@ export interface EdenConfig {
   token: string;
   requireBirthDate: boolean;
   timeoutMs: number;
+  /** Ventanas mensuales hacia atrás que recorre la búsqueda de una orden. */
+  mesesDeBusqueda: number;
+  /** Órdenes que se traen por ventana. Tope de lo que se puede encontrar. */
+  limitePorPagina: number;
 }
 
 function readBaseUrl(): string {
@@ -27,6 +31,10 @@ export function getEdenConfig(): EdenConfig | null {
     // Segundo factor opcional: exige la fecha de nacimiento además del folio.
     requireBirthDate: process.env.EDEN_REQUIRE_BIRTH_DATE === "true",
     timeoutMs: Number(process.env.EDEN_API_TIMEOUT_MS ?? 12000),
+    // Cada mes cuesta una petición y Eden limita a ~10 por minuto para todo el
+    // token, así que el valor por omisión es conservador.
+    mesesDeBusqueda: Math.min(12, Math.max(1, Number(process.env.EDEN_SEARCH_MONTHS ?? 3))),
+    limitePorPagina: Math.min(1000, Math.max(10, Number(process.env.EDEN_PAGE_LIMIT ?? 500))),
   };
 }
 

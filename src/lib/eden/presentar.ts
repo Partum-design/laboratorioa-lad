@@ -227,7 +227,7 @@ export function presentarEstudio(orden: EdenOrder, visorFirmado: string | null):
       nombre: texto(orden.management_study?.name),
       modalidad: texto(orden.modality?.identifier ?? orden.management_study?.modality?.identifier),
       descripcion: texto(orden.description),
-      codigo: texto(orden.management_study?.code?.code),
+      codigo: texto(orden.management_study?.internal_code),
     },
     sucursal: texto(orden.facility?.name),
     medicoTratante: texto(medico?.full_name ?? [medico?.name, medico?.first_surname, medico?.last_surname].filter(Boolean).join(" ")),

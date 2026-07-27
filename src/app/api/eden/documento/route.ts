@@ -40,6 +40,10 @@ export async function GET(request: Request) {
   }
 
   const resultado = await obtenerOrdenPorFolio(folio);
+  if (resultado.estado === "limitado") {
+    return error("El sistema está recibiendo muchas consultas. Espera un minuto y vuelve a intentar.", 429);
+  }
+
   if (resultado.estado !== "ok") {
     return error("No encontramos el documento solicitado.", resultado.estado === "error" ? 502 : 404);
   }
