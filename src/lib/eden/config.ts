@@ -11,6 +11,11 @@ export interface EdenConfig {
   mesesDeBusqueda: number;
   /** Órdenes que se traen por ventana. Tope de lo que se puede encontrar. */
   limitePorPagina: number;
+  /**
+   * Sucursal del laboratorio (`facility.external_identifier` de Eden, "matriz").
+   * `null` = no se filtra por sucursal.
+   */
+  sucursal: string | null;
 }
 
 function readBaseUrl(): string {
@@ -35,6 +40,9 @@ export function getEdenConfig(): EdenConfig | null {
     // token, así que el valor por omisión es conservador.
     mesesDeBusqueda: Math.min(12, Math.max(1, Number(process.env.EDEN_SEARCH_MONTHS ?? 3))),
     limitePorPagina: Math.min(1000, Math.max(10, Number(process.env.EDEN_PAGE_LIMIT ?? 500))),
+    // El listado no admite filtrar por sucursal (ver client.ts), así que esto se
+    // aplica sobre los resultados, no en la petición.
+    sucursal: process.env.EDEN_FACILITY_IDENTIFIER?.trim().toLowerCase() || null,
   };
 }
 

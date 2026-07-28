@@ -1,0 +1,387 @@
+{
+  ".claude/settings.local.json": {
+    "mtime": 1783445249.1569622,
+    "ast_hash": "a94590a915fceb70375679afd1797041",
+    "semantic_hash": "a94590a915fceb70375679afd1797041"
+  },
+  "next.config.mjs": {
+    "mtime": 1782165178.5349817,
+    "ast_hash": "73a1b14ca03231c7bbd29dc4fa70425a",
+    "semantic_hash": "73a1b14ca03231c7bbd29dc4fa70425a"
+  },
+  "package.json": {
+    "mtime": 1782164824.2049844,
+    "ast_hash": "7bca0273656a219ee0d1b8672f068bf0",
+    "semantic_hash": "7bca0273656a219ee0d1b8672f068bf0"
+  },
+  "postcss.config.mjs": {
+    "mtime": 1782164824.2059844,
+    "ast_hash": "0703a30867065ade9a53d99c0b27f16e",
+    "semantic_hash": "0703a30867065ade9a53d99c0b27f16e"
+  },
+  "src/app/acceder/page.tsx": {
+    "mtime": 1784141799.3049526,
+    "ast_hash": "5e0424f58c22aca55be48b783095fe38",
+    "semantic_hash": "5e0424f58c22aca55be48b783095fe38"
+  },
+  "src/app/contacto/page.tsx": {
+    "mtime": 1784574690.7264216,
+    "ast_hash": "0062d4106b3be630cba83202a4a57ac9",
+    "semantic_hash": "0062d4106b3be630cba83202a4a57ac9"
+  },
+  "src/app/estudios/estudios-data.ts": {
+    "mtime": 1783445562.2201355,
+    "ast_hash": "f7d7a11c85b79ee451d434b06c19413f",
+    "semantic_hash": "f7d7a11c85b79ee451d434b06c19413f"
+  },
+  "src/app/estudios/page.tsx": {
+    "mtime": 1783454722.0528939,
+    "ast_hash": "9b583e30d04bd89a52192758984547fa",
+    "semantic_hash": "9b583e30d04bd89a52192758984547fa"
+  },
+  "src/app/layout.tsx": {
+    "mtime": 1782502746.5895429,
+    "ast_hash": "363344b0783228e55c8f1ca92875035a",
+    "semantic_hash": "363344b0783228e55c8f1ca92875035a"
+  },
+  "src/app/nosotros/page.tsx": {
+    "mtime": 1784141799.3049526,
+    "ast_hash": "4b3dd5025d5008b02d561f77b7dc665e",
+    "semantic_hash": "4b3dd5025d5008b02d561f77b7dc665e"
+  },
+  "src/app/not-found.tsx": {
+    "mtime": 1782165106.272998,
+    "ast_hash": "8f601e821adf511d3e5ae838de9e1676",
+    "semantic_hash": "8f601e821adf511d3e5ae838de9e1676"
+  },
+  "src/app/page.tsx": {
+    "mtime": 1784141799.3049526,
+    "ast_hash": "35c42bcf13c568d7e12e231670646919",
+    "semantic_hash": "35c42bcf13c568d7e12e231670646919"
+  },
+  "src/app/unete/page.tsx": {
+    "mtime": 1782847571.623232,
+    "ast_hash": "6d7417f19c858aa7190afd3ca32830b1",
+    "semantic_hash": "6d7417f19c858aa7190afd3ca32830b1"
+  },
+  "src/components/ConstruccionOverlay.tsx": {
+    "mtime": 1784574690.7304215,
+    "ast_hash": "246417cea2a2db2b75bc68d317dd337e",
+    "semantic_hash": "246417cea2a2db2b75bc68d317dd337e"
+  },
+  "src/components/EdenBrand.tsx": {
+    "mtime": 1783454182.288598,
+    "ast_hash": "3a7abcfeb63bf1d7888462f9530c1694",
+    "semantic_hash": "3a7abcfeb63bf1d7888462f9530c1694"
+  },
+  "src/components/FloatingButtons.tsx": {
+    "mtime": 1784574849.0452034,
+    "ast_hash": "4c1cf4f98b0ef3b2d279b865b74d0957",
+    "semantic_hash": "4c1cf4f98b0ef3b2d279b865b74d0957"
+  },
+  "src/components/Footer.tsx": {
+    "mtime": 1784574690.7284217,
+    "ast_hash": "6a6fb51a19281c3d6340ad3e04015109",
+    "semantic_hash": "6a6fb51a19281c3d6340ad3e04015109"
+  },
+  "src/components/IconBadge.tsx": {
+    "mtime": 1782848768.1465983,
+    "ast_hash": "120e42be94d1b0ccd2b9919809bb3f60",
+    "semantic_hash": "120e42be94d1b0ccd2b9919809bb3f60"
+  },
+  "src/components/LadIcons.tsx": {
+    "mtime": 1783462244.4652872,
+    "ast_hash": "6c143e79f4ae470ef79bdd23ad534aee",
+    "semantic_hash": "6c143e79f4ae470ef79bdd23ad534aee"
+  },
+  "src/components/LoadingScreen.tsx": {
+    "mtime": 1782841175.8179412,
+    "ast_hash": "e3cdb9767d93a2d461ba4568818c7783",
+    "semantic_hash": "e3cdb9767d93a2d461ba4568818c7783"
+  },
+  "src/components/Navbar.tsx": {
+    "mtime": 1784574690.7274215,
+    "ast_hash": "d41aeaec6e15cf7c937a2c551de5ae89",
+    "semantic_hash": "d41aeaec6e15cf7c937a2c551de5ae89"
+  },
+  "src/components/PageTransition.tsx": {
+    "mtime": 1782164854.11256,
+    "ast_hash": "04c2b7c16b90fdf601b1d3fc5ec69cac",
+    "semantic_hash": "04c2b7c16b90fdf601b1d3fc5ec69cac"
+  },
+  "src/components/ScrollReveal.tsx": {
+    "mtime": 1782164854.11256,
+    "ast_hash": "cfbb3fc3d5a05fe0eda5c06f93f6b95c",
+    "semantic_hash": "cfbb3fc3d5a05fe0eda5c06f93f6b95c"
+  },
+  "src/components/SiteShell.tsx": {
+    "mtime": 1782839999.1953125,
+    "ast_hash": "2f84dba796a8e51438674c3fee5406d7",
+    "semantic_hash": "2f84dba796a8e51438674c3fee5406d7"
+  },
+  "src/components/VideoAuto.tsx": {
+    "mtime": 1784141799.3059528,
+    "ast_hash": "3e6d53ee64e3bfc41d6359013bf02315",
+    "semantic_hash": "3e6d53ee64e3bfc41d6359013bf02315"
+  },
+  "src/components/ui/TestimonialsColumns.tsx": {
+    "mtime": 1782775072.6760883,
+    "ast_hash": "f7bd6fdf197d92b831f72c9889c7d7e6",
+    "semantic_hash": "f7bd6fdf197d92b831f72c9889c7d7e6"
+  },
+  "src/lib/contact.ts": {
+    "mtime": 1784141799.3059528,
+    "ast_hash": "778ee67e9c0fcf38bb29c4dd58911897",
+    "semantic_hash": "778ee67e9c0fcf38bb29c4dd58911897"
+  },
+  "src/lib/eden-portals.ts": {
+    "mtime": 1784141799.3059528,
+    "ast_hash": "db70c3e140c64202a87954a7aa669688",
+    "semantic_hash": "db70c3e140c64202a87954a7aa669688"
+  },
+  "src/lib/icon-palette.ts": {
+    "mtime": 1782847339.0596735,
+    "ast_hash": "dac9b5f9a3522ea0a917c08a6be77186",
+    "semantic_hash": "dac9b5f9a3522ea0a917c08a6be77186"
+  },
+  "tailwind.config.ts": {
+    "mtime": 1782324729.5805318,
+    "ast_hash": "361694f73ab37edb36a77e1fdb6442d6",
+    "semantic_hash": "361694f73ab37edb36a77e1fdb6442d6"
+  },
+  "tsconfig.json": {
+    "mtime": 1782164109.4353693,
+    "ast_hash": "3bd7a3770c6b44dbcaab1d2f175db8bd",
+    "semantic_hash": "3bd7a3770c6b44dbcaab1d2f175db8bd"
+  },
+  ".continue/agents/new-config.yaml": {
+    "mtime": 1782511618.2309165,
+    "ast_hash": "b6b0196cc4d216252c70f9988588f264",
+    "semantic_hash": "b6b0196cc4d216252c70f9988588f264"
+  },
+  "LAD CODIGOS A ACOMODAR.txt": {
+    "mtime": 1782164715.9955242,
+    "ast_hash": "d7b8ef174351d965523c30c2f9be1198",
+    "semantic_hash": "d7b8ef174351d965523c30c2f9be1198"
+  },
+  "doc/LAD-1.pdf": {
+    "mtime": 1782156814.2278435,
+    "ast_hash": "04d6159d5a0ca72dfe0206efff96265a",
+    "semantic_hash": "04d6159d5a0ca72dfe0206efff96265a"
+  },
+  "doc/LAD.pdf": {
+    "mtime": 1782156827.2177145,
+    "ast_hash": "04d6159d5a0ca72dfe0206efff96265a",
+    "semantic_hash": "04d6159d5a0ca72dfe0206efff96265a"
+  },
+  "img/ChatGPT-Image-2-jun-2026-12_10_37-p.m-1.png": {
+    "mtime": 1782156700.1269882,
+    "ast_hash": "d2df5e790f241fd5fb7977ee70ab17f7",
+    "semantic_hash": "d2df5e790f241fd5fb7977ee70ab17f7"
+  },
+  "img/ChatGPT-Image-2-jun-2026-12_10_37-p.m.png": {
+    "mtime": 1782156719.1797953,
+    "ast_hash": "d2df5e790f241fd5fb7977ee70ab17f7",
+    "semantic_hash": "d2df5e790f241fd5fb7977ee70ab17f7"
+  },
+  "img/ai-generated-6a1c47083bfcf.png": {
+    "mtime": 1782156799.1219938,
+    "ast_hash": "af58137dc1018f54178a61d48f5b80d9",
+    "semantic_hash": "af58137dc1018f54178a61d48f5b80d9"
+  },
+  "img/ai-generated-6a1c4771ba72a.png": {
+    "mtime": 1782156781.1231732,
+    "ast_hash": "1c5baedfd274bcebaea84b77c5772c51",
+    "semantic_hash": "1c5baedfd274bcebaea84b77c5772c51"
+  },
+  "img/ai-generated-6a1dc1076908f.png": {
+    "mtime": 1782156747.3545115,
+    "ast_hash": "b594a50ddd6771e5a57cc5f5e42f0e7d",
+    "semantic_hash": "b594a50ddd6771e5a57cc5f5e42f0e7d"
+  },
+  "img/image-1.png": {
+    "mtime": 1782156733.173654,
+    "ast_hash": "d7885bb26642fe0991708355bb4bded8",
+    "semantic_hash": "d7885bb26642fe0991708355bb4bded8"
+  },
+  "img/image.png": {
+    "mtime": 1782156766.1743226,
+    "ast_hash": "03c925dde36d3f7e6223f823c4f1db2c",
+    "semantic_hash": "03c925dde36d3f7e6223f823c4f1db2c"
+  },
+  "inspiracion/1a4c824e3e6de2584c020b17e66483e1.jpg": {
+    "mtime": 1782158787.8403883,
+    "ast_hash": "9bf1e9fb290b492fe7a4641672883ea7",
+    "semantic_hash": "9bf1e9fb290b492fe7a4641672883ea7"
+  },
+  "inspiracion/7723e2985b67e3d0a70a10e71bd8a07b.jpg": {
+    "mtime": 1782158640.4896383,
+    "ast_hash": "7d1674d756f7466c5378cb8695b45e97",
+    "semantic_hash": "7d1674d756f7466c5378cb8695b45e97"
+  },
+  "inspiracion/Gemini_Generated_Image_ozc7nlozc7nlozc7.png": {
+    "mtime": 1782158149.4505014,
+    "ast_hash": "731cab3ce6ab41515cab3995bed8f027",
+    "semantic_hash": "731cab3ce6ab41515cab3995bed8f027"
+  },
+  "inspiracion/Gemini_Generated_Image_tr1lsttr1lsttr1l.png": {
+    "mtime": 1782158303.387837,
+    "ast_hash": "c72474cc988bba3b6b6d7ebefc501d19",
+    "semantic_hash": "c72474cc988bba3b6b6d7ebefc501d19"
+  },
+  "logo/logo lad.png": {
+    "mtime": 1782319766.231048,
+    "ast_hash": "37dbdea3ed480dbab01da74717982b65",
+    "semantic_hash": "37dbdea3ed480dbab01da74717982b65"
+  },
+  "public/img/ChatGPT-Image-2-jun-2026-12_10_37-p.m-1.png": {
+    "mtime": 1782163751.5360727,
+    "ast_hash": "d2df5e790f241fd5fb7977ee70ab17f7",
+    "semantic_hash": "d2df5e790f241fd5fb7977ee70ab17f7"
+  },
+  "public/img/ChatGPT-Image-2-jun-2026-12_10_37-p.m.png": {
+    "mtime": 1782163751.5366428,
+    "ast_hash": "d2df5e790f241fd5fb7977ee70ab17f7",
+    "semantic_hash": "d2df5e790f241fd5fb7977ee70ab17f7"
+  },
+  "public/img/ai-generated-6a1c47083bfcf.png": {
+    "mtime": 1782163751.5372145,
+    "ast_hash": "af58137dc1018f54178a61d48f5b80d9",
+    "semantic_hash": "af58137dc1018f54178a61d48f5b80d9"
+  },
+  "public/img/ai-generated-6a1c4771ba72a.png": {
+    "mtime": 1782163751.5376227,
+    "ast_hash": "1c5baedfd274bcebaea84b77c5772c51",
+    "semantic_hash": "1c5baedfd274bcebaea84b77c5772c51"
+  },
+  "public/img/ai-generated-6a1dc1076908f.png": {
+    "mtime": 1782163751.5380812,
+    "ast_hash": "b594a50ddd6771e5a57cc5f5e42f0e7d",
+    "semantic_hash": "b594a50ddd6771e5a57cc5f5e42f0e7d"
+  },
+  "public/img/image-1.png": {
+    "mtime": 1782163751.5385237,
+    "ast_hash": "d7885bb26642fe0991708355bb4bded8",
+    "semantic_hash": "d7885bb26642fe0991708355bb4bded8"
+  },
+  "public/img/image.png": {
+    "mtime": 1782163751.5391424,
+    "ast_hash": "03c925dde36d3f7e6223f823c4f1db2c",
+    "semantic_hash": "03c925dde36d3f7e6223f823c4f1db2c"
+  },
+  "public/inspiracion/1a4c824e3e6de2584c020b17e66483e1.jpg": {
+    "mtime": 1782163751.5413115,
+    "ast_hash": "9bf1e9fb290b492fe7a4641672883ea7",
+    "semantic_hash": "9bf1e9fb290b492fe7a4641672883ea7"
+  },
+  "public/inspiracion/7723e2985b67e3d0a70a10e71bd8a07b.jpg": {
+    "mtime": 1782163751.5414019,
+    "ast_hash": "7d1674d756f7466c5378cb8695b45e97",
+    "semantic_hash": "7d1674d756f7466c5378cb8695b45e97"
+  },
+  "public/inspiracion/Gemini_Generated_Image_ozc7nlozc7nlozc7.png": {
+    "mtime": 1782163751.54194,
+    "ast_hash": "731cab3ce6ab41515cab3995bed8f027",
+    "semantic_hash": "731cab3ce6ab41515cab3995bed8f027"
+  },
+  "public/inspiracion/Gemini_Generated_Image_tr1lsttr1lsttr1l.png": {
+    "mtime": 1782163751.5459397,
+    "ast_hash": "c72474cc988bba3b6b6d7ebefc501d19",
+    "semantic_hash": "c72474cc988bba3b6b6d7ebefc501d19"
+  },
+  "public/logo/logo-lad.png": {
+    "mtime": 1782321949.8795328,
+    "ast_hash": "37dbdea3ed480dbab01da74717982b65",
+    "semantic_hash": "37dbdea3ed480dbab01da74717982b65"
+  },
+  "public/vids/contacto/hero.mp4": {
+    "mtime": 1782501467.0872607,
+    "ast_hash": "df0d9a12c7f7819c25d1d22d399960cc",
+    "semantic_hash": "df0d9a12c7f7819c25d1d22d399960cc"
+  },
+  "public/vids/estudios/hero.mp4": {
+    "mtime": 1782501491.6420102,
+    "ast_hash": "24518937af466bf3d4358b500c72ae70",
+    "semantic_hash": "24518937af466bf3d4358b500c72ae70"
+  },
+  "public/vids/inicio/hero1.mp4": {
+    "mtime": 1782501517.72015,
+    "ast_hash": "ec76f5f9d533095d628f0c116a1c640c",
+    "semantic_hash": "ec76f5f9d533095d628f0c116a1c640c"
+  },
+  "public/vids/inicio/hero2.mp4": {
+    "mtime": 1782501549.4072673,
+    "ast_hash": "9454a2a4f1bd10a3fc03bef2a753e4bf",
+    "semantic_hash": "9454a2a4f1bd10a3fc03bef2a753e4bf"
+  },
+  "public/vids/inicio/hero3.mp4": {
+    "mtime": 1782501566.0863621,
+    "ast_hash": "a29bfac4a9b512fba46f00140f1bfc25",
+    "semantic_hash": "a29bfac4a9b512fba46f00140f1bfc25"
+  },
+  "public/vids/inicio/quienes-somos.mp4": {
+    "mtime": 1782501637.5354826,
+    "ast_hash": "9ebb30640c614cabc6548e3ceab52dbe",
+    "semantic_hash": "9ebb30640c614cabc6548e3ceab52dbe"
+  },
+  "public/vids/nosotros/hematologia1.mp4": {
+    "mtime": 1782501659.1774971,
+    "ast_hash": "a54263e070094edc422676bcc336f2e6",
+    "semantic_hash": "a54263e070094edc422676bcc336f2e6"
+  },
+  "public/vids/nosotros/hematologia2.mp4": {
+    "mtime": 1782501686.7722428,
+    "ast_hash": "fec1d53933210d3388702bd552ed4fd9",
+    "semantic_hash": "fec1d53933210d3388702bd552ed4fd9"
+  },
+  "public/vids/nosotros/hero.mp4": {
+    "mtime": 1782501710.3712354,
+    "ast_hash": "2f716637dd3a688dbecd9bcbba0ff56b",
+    "semantic_hash": "2f716637dd3a688dbecd9bcbba0ff56b"
+  },
+  "public/vids/nosotros/mision.mp4": {
+    "mtime": 1782501721.9471552,
+    "ast_hash": "27cc04e1911ec7ebc4750ba2001b1feb",
+    "semantic_hash": "27cc04e1911ec7ebc4750ba2001b1feb"
+  },
+  "public/vids/nosotros/resonancia.mp4": {
+    "mtime": 1782501773.5295446,
+    "ast_hash": "d65c49678252db5b3cc745a880125c99",
+    "semantic_hash": "d65c49678252db5b3cc745a880125c99"
+  },
+  "public/vids/nosotros/xray1.mp4": {
+    "mtime": 1782501866.6573474,
+    "ast_hash": "4a0d30b920395902dbb0520db49a8ffd",
+    "semantic_hash": "4a0d30b920395902dbb0520db49a8ffd"
+  },
+  "public/vids/nosotros/xray2.mp4": {
+    "mtime": 1782501910.2647793,
+    "ast_hash": "7ce8194198c7618e811036ff973cfc39",
+    "semantic_hash": "7ce8194198c7618e811036ff973cfc39"
+  },
+  "public/vids/unete/hero.mp4": {
+    "mtime": 1782501936.1939602,
+    "ast_hash": "fb1cb66b9a45f6322c3f13faf254fe14",
+    "semantic_hash": "fb1cb66b9a45f6322c3f13faf254fe14"
+  },
+  "public/vids/vid1.mp4": {
+    "mtime": 1782501936.2734826,
+    "ast_hash": "9454a2a4f1bd10a3fc03bef2a753e4bf",
+    "semantic_hash": "9454a2a4f1bd10a3fc03bef2a753e4bf"
+  },
+  "public/vids/vid2.mp4": {
+    "mtime": 1782501936.2774825,
+    "ast_hash": "24518937af466bf3d4358b500c72ae70",
+    "semantic_hash": "24518937af466bf3d4358b500c72ae70"
+  },
+  "public/vids/vid3.mp4": {
+    "mtime": 1782501936.2824826,
+    "ast_hash": "d65c49678252db5b3cc745a880125c99",
+    "semantic_hash": "d65c49678252db5b3cc745a880125c99"
+  },
+  "public/vids/vid4.mp4": {
+    "mtime": 1782501936.2857983,
+    "ast_hash": "a29bfac4a9b512fba46f00140f1bfc25",
+    "semantic_hash": "a29bfac4a9b512fba46f00140f1bfc25"
+  }
+}

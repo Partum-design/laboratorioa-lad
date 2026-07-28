@@ -12,6 +12,14 @@ export interface EdenNamed {
   name?: string | null;
 }
 
+/**
+ * Sucursal. `external_identifier` es la clave que Eden nos comparte para
+ * identificarla ("matriz"); no confundirla con `id`, que es el UUID interno.
+ */
+export interface EdenFacility extends EdenNamed {
+  external_identifier?: string | null;
+}
+
 export interface EdenModality {
   id?: string;
   identifier?: string | null;
@@ -82,7 +90,7 @@ export interface EdenOrder {
   management_study?: EdenManagementStudy | null;
   patient?: EdenPatient | null;
   modality?: EdenModality | null;
-  facility?: EdenNamed | null;
+  facility?: EdenFacility | null;
   room?: EdenNamed | null;
   appointment?: EdenAppointment | null;
 }

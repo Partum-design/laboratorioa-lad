@@ -121,8 +121,9 @@ export async function obtenerOrdenPorFolio(valor: string): Promise<EdenResultado
     // identificador de paciente, sin gastar otra petición.
     const coincide = ventana.valor.filter(
       (orden) =>
-        (orden.folio ?? "").trim().toUpperCase() === buscado ||
-        (orden.patient?.identifier ?? "").trim().toUpperCase() === buscado,
+        esDeLaSucursal(config, orden) &&
+        ((orden.folio ?? "").trim().toUpperCase() === buscado ||
+          (orden.patient?.identifier ?? "").trim().toUpperCase() === buscado),
     );
     if (coincide.length > 0) return { estado: "ok", valor: masReciente(coincide) };
   }
@@ -172,6 +173,24 @@ function ventanaMensual(mesesAtras: number): { inicio: string; fin: string } {
   return { inicio: inicio.toISOString(), fin: fin.toISOString() };
 }
 
+/**
+ * Deja pasar sólo las órdenes de nuestra sucursal.
+ *
+ * Se resuelve aquí y no en la petición porque el listado no sabe filtrarla:
+ * `?facility_identifier=` se **ignora** (devuelve lo mismo con un valor
+ * inexistente) y `?facility=` espera el UUID interno de Eden, no el
+ * identificador que nos comparten. Verificado contra producción.
+ *
+ * Una orden sin sucursal informada pasa el filtro: preferimos mostrarla a
+ * esconderle a un paciente su estudio por un dato incompleto de Eden.
+ */
+function esDeLaSucursal(config: EdenConfig, orden: EdenOrder): boolean {
+  if (!config.sucursal) return true;
+
+  const suya = orden.facility?.external_identifier?.trim().toLowerCase();
+  return !suya || suya === config.sucursal;
+}
+
 /** Ante varias órdenes con el mismo identificador, la más nueva es la relevante. */
 function masReciente(ordenes: EdenOrder[]): EdenOrder {
   return ordenes.reduce((mejor, actual) => {
@@ -205,6 +224,8 @@ async function consultarOrdenPorId(config: EdenConfig, id: string): Promise<Eden
   const contenido = sobre.data;
   const orden = Array.isArray(contenido) ? contenido[0] : contenido;
   if (!orden || !orden.id) return { estado: "no_encontrado" };
+  // Pegar el UUID no debe ser una vía para ver órdenes de otra sucursal.
+  if (!esDeLaSucursal(config, orden)) return { estado: "no_encontrado" };
 
   return { estado: "ok", valor: orden };
 }

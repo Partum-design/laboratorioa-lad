@@ -12,24 +12,35 @@ obtiene el avance y sus documentos, leyendo en vivo el API REST de Eden.
 |---|---|---|
 | `EDEN_API_URL` | sí | URL base del API **incluyendo `/api/v1`**. |
 | `EDEN_API_TOKEN` | sí | Token de Eden. Se envía como `Authorization: Token <valor>`. **Secreto.** |
+| `EDEN_FACILITY_IDENTIFIER` | no | Sucursal (`facility.external_identifier`). En producción `matriz`. Vacío = sin filtro. |
 | `EDEN_REQUIRE_BIRTH_DATE` | no | `true` pide además la fecha de nacimiento del paciente y la verifica contra Eden. Default `false`. |
 | `EDEN_API_TIMEOUT_MS` | no | Timeout por petición. Default `12000`. |
-| `EDEN_SEARCH_MONTHS` | no | Meses hacia atrás que recorre la búsqueda. Default `3`. |
+| `EDEN_SEARCH_MONTHS` | no | Meses hacia atrás que recorre la búsqueda. Default `3`; en producción `4`. |
 | `EDEN_PAGE_LIMIT` | no | Órdenes que se traen por mes. Default `500`. |
 
 ### Ambientes
 
-| | URL |
-|---|---|
-| Staging | `https://middleware-staging.dev-land.space/api/v1` |
-| Producción | `https://middleware.evacenter.com/api/v1` |
+| | URL | Estado |
+|---|---|---|
+| Staging | `https://middleware-staging.dev-land.space/api/v1` | validado |
+| Producción | `https://middleware.evacenter.com/api/v1` | **validado en vivo** |
 
-La documentación de Eden no publica la URL productiva. La de arriba responde con
-el mismo API (mismo sobre de error ante una petición sin token) y es coherente
-con el PACS productivo, `pacs.evacenter.com` — **pero hay que confirmarla con
-Eden junto con el token de producción**, que es distinto al de staging y se
-entrega hasta validar la integración en pruebas. Contacto:
-integraciones@edenmed.com
+La URL productiva **quedó confirmada contra el API real**: responde `200` con el
+token de producción y devuelve las órdenes de la sucursal Matriz. La
+documentación de Eden sigue sin publicarla.
+
+### Sucursal
+
+Eden identifica la sucursal con `facility.external_identifier`, que en producción
+es **`matriz`** (`facility.name` = "Matriz", UUID
+`5187366f-4ed0-4dd8-8d10-af331f0e1f97`). La integración sólo muestra estudios de
+la sucursal configurada, y el filtro se aplica también cuando el paciente pega el
+UUID de una orden, para que ese no sea un rodeo.
+
+El filtro se resuelve **sobre los resultados, no en la petición**, porque el
+listado no sabe filtrar por sucursal (ver §3). Una orden que llegue sin
+`facility` pasa el filtro: es preferible mostrarla a esconderle un estudio a un
+paciente por un dato incompleto de Eden.
 
 Ninguna lleva el prefijo `NEXT_PUBLIC_`: el token vive sólo en el servidor.
 Verificado: no aparece en el HTML ni en los bundles de `.next/static`.
@@ -46,13 +57,26 @@ npm run dev
 ### Vercel
 
 1. Proyecto → **Settings → Environment Variables**.
-2. Alta de `EDEN_API_URL`, `EDEN_API_TOKEN`, `EDEN_REQUIRE_BIRTH_DATE` (y
-   opcionalmente `EDEN_API_TIMEOUT_MS`).
+2. Alta de `EDEN_API_URL`, `EDEN_API_TOKEN`, `EDEN_FACILITY_IDENTIFIER`,
+   `EDEN_REQUIRE_BIRTH_DATE`, `EDEN_SEARCH_MONTHS` (y opcionalmente
+   `EDEN_API_TIMEOUT_MS` y `EDEN_PAGE_LIMIT`).
 3. Marca `EDEN_API_TOKEN` como **Sensitive**.
-4. Ambientes: usa el token de **staging** en Preview/Development y el de
-   **producción** en Production. Eden entrega el token productivo hasta validar
-   la integración en el ambiente de pruebas.
+4. Ambientes: el token de **staging** en Preview/Development y el de
+   **producción** en Production. Conviene mantenerlos separados: la cuota es por
+   token, así que un Preview activo le comería peticiones al sitio en vivo.
 5. Redeploy — las variables sólo se aplican en un build nuevo.
+
+Los valores de producción, tal como quedaron en `.env.local`:
+
+```
+EDEN_API_URL=https://middleware.evacenter.com/api/v1
+EDEN_API_TOKEN=<el token de producción — Sensitive>
+EDEN_FACILITY_IDENTIFIER=matriz
+EDEN_REQUIRE_BIRTH_DATE=false
+EDEN_API_TIMEOUT_MS=12000
+EDEN_SEARCH_MONTHS=4
+EDEN_PAGE_LIMIT=500
+```
 
 Si falta cualquiera de las dos obligatorias, la página no truena: el endpoint
 responde `503` con un mensaje que invita a contactar al laboratorio.
@@ -64,8 +88,11 @@ Navegador
    │  POST /api/eden/consulta { folio, fechaNacimiento? }
    ▼
 Route handler (servidor, Node runtime)
-   │  GET /orders/{folio}/            ← Authorization: Token …
-   │  GET /studies/link/?folio=…      ← sólo si falta el enlace público
+   │  GET /orders/?start_date=…&end_date=…   ← Authorization: Token …
+   │     (listado del mes, cacheado 60 s; el folio y la sucursal se
+   │      comparan aquí porque el API no sabe filtrarlos — ver §3)
+   │  GET /orders/{uuid}/                    ← sólo si tecleó un UUID
+   │  GET /studies/link/?order_id=…          ← respaldo: estudio sin orden
    ▼
 Middleware de Eden
 ```
@@ -88,15 +115,21 @@ cachea una consulta de expediente.
 
 ## 3. Endpoints de Eden que se consumen
 
-> Lo que sigue está verificado **contra el staging real**, no sólo leído en la
-> documentación. Varias cosas no coinciden con lo documentado.
+> Lo que sigue está verificado **contra staging y contra producción**, no sólo
+> leído en la documentación. Varias cosas no coinciden con lo documentado, y
+> **producción se comporta igual que staging en todos los puntos**.
 
 ### Límite de peticiones (lo que más condiciona el diseño)
 
-Eden responde `403` con `errors.code = "Ratelimited"` a partir de la **décima
-petición por minuto**, y el límite es **por token**, es decir compartido por
-todos los visitantes del sitio a la vez. Medido: 9 peticiones seguidas pasan, la
-10 se bloquea; se libera en menos de un minuto.
+Eden responde `403` con `errors.code = "Ratelimited"`, y el límite es **por
+token**, es decir compartido por todos los visitantes del sitio a la vez.
+Medido en producción: **10 peticiones seguidas pasan, la 11 se bloquea**; se
+libera en menos de un minuto. (En staging fue 9 y la 10.)
+
+Lo que hace sostenible ese número es que el caché es por ventana de fechas y no
+por paciente: el costo es de `EDEN_SEARCH_MONTHS` peticiones **por minuto para
+todo el sitio**, no por visitante. Con `4` quedan 6 peticiones de holgura para
+los enlaces del visor.
 
 De ahí el diseño: **una búsqueda gasta una sola petición**, y el resultado se
 cachea por ventana de fechas (`src/lib/eden/cache.ts`, 60 s), no por paciente.
@@ -118,6 +151,10 @@ Es de donde sale todo. Comportamiento verificado:
 - **`?folio=` se ignora**: devuelve resultados aunque el folio no exista. Por eso
   el folio se compara en nuestro código, no en el de Eden.
 - `?patient_identifier=` sí filtra, igual que `?status=`.
+- **`?facility_identifier=` se ignora**: con `matriz` y con un valor inexistente
+  devuelve exactamente lo mismo. `?facility=` sí filtra, pero espera el **UUID**
+  de la sucursal, no el identificador que Eden nos comparte. Por eso la sucursal
+  se filtra del lado nuestro.
 - `?modality=` y `?search=` **rompen la respuesta** (`data: null`). No usarlos.
 - `data` es un **arreglo** cuando hay resultados y `{ total_count, results }`
   cuando está vacío. El cliente contempla las dos formas.
@@ -193,6 +230,30 @@ que es más específico y tiene prioridad. Se agrupan en cuatro etapas visibles:
 `CANCELLED` se muestra aparte. Un estatus desconocido cae en "Registrado" en vez
 de romper la vista.
 
+### Los PDF: `pdf_url` no siempre es un PDF
+
+Detectado en producción y no documentado por Eden. Cuando el archivo todavía no
+existe, `files.evacenter.com` **no responde 404**: contesta `302` hacia el portal
+interno del personal (`apps.evacenter.com/management/order-detail/…`), que a su
+vez responde `200` con el HTML de su aplicación Angular.
+
+Dos consecuencias, las dos resueltas en `src/app/api/eden/documento/route.ts`:
+
+1. Sin comprobarlo, al paciente se le entregaba esa página HTML renombrada como
+   `.pdf`. Ahora se valida el `content-type` de la respuesta y, si no es un PDF,
+   se responde "documento todavía no disponible".
+2. La URL de ese redirect lleva **credenciales del personal** en el parámetro
+   `ac=` (base64 de `user=…&password=…`). Nunca se sigue hacia el navegador: la
+   petición se resuelve en el servidor y sólo se transmite el cuerpo si es un
+   PDF, así que ni la URL ni las credenciales salen de ahí.
+
+Como el enlace de descarga abre en pestaña nueva, los errores de esa ruta se
+responden como **página HTML** cuando la petición viene de un navegador (y como
+JSON en cualquier otro caso). Antes el paciente veía el JSON crudo en pantalla.
+
+> Vale la pena preguntarle a Eden si `pdf_url` debería venir en `null` mientras
+> el documento no exista, en vez de apuntar a un redirect con credenciales.
+
 ## 4. Manejo de datos personales
 
 El folio por sí solo es un identificador adivinable, así que la respuesta pública
@@ -209,47 +270,70 @@ está recortada a propósito:
   **por instancia**, así que no es una defensa dura. Para un límite estricto,
   sustituir por Upstash/Redis sin tocar el resto del código.
 
-**Recomendación para producción:** activar `EDEN_REQUIRE_BIRTH_DATE=true`. Con el
-folio solo, cualquiera que teclee folios válidos ve el nombre parcial y el tipo de
-estudio. Con el segundo factor activo, una fecha equivocada responde exactamente
-igual que un folio inexistente, para no confirmar que el folio existe.
+**Sobre `EDEN_REQUIRE_BIRTH_DATE`:** se decidió dejarlo en `false` para el
+arranque en producción. Es una compensación consciente: con el folio solo,
+cualquiera que teclee folios válidos ve el nombre parcial y el tipo de estudio,
+pero a cambio siguen funcionando los estudios que sólo existen en el PACS, que es
+el caso más frecuente. Activarlo es cambiar una variable de entorno y
+redesplegar; con el segundo factor puesto, una fecha equivocada responde
+exactamente igual que un folio inexistente, para no confirmar que el folio
+existe.
 
 ## 5. Estado de las pruebas
 
-Contra el **staging real**, con la orden `LAD-PRUEBA-001` (paciente
-`LAD-PAC-001`, sucursal Matriz) creada por API para estas pruebas:
+### Contra producción (`middleware.evacenter.com`)
+
+Con las órdenes reales de la sucursal Matriz, `m-00001-1` y `m-00003-1`
+(paciente `PRE080301-001`):
 
 | Caso | Resultado |
 |---|---|
-| Folio de la orden | encontrada, detalle completo |
-| Identificador de paciente | encontrada, misma orden |
-| Minúsculas y espacios sobrantes | encontrada |
+| Folio `m-00001-1` | encontrada, detalle completo, 3.4 s |
+| Segunda consulta (caché) | **5 ms** |
+| Folio en MAYÚSCULAS y con espacios | encontrada |
+| Identificador de paciente `PRE080301-001` | encontrada |
 | UUID de Eden | encontrada |
-| `EVA-PTT-0001000` (PACS sin orden) | `origen: "visor"`, con enlace firmado |
-| Identificador inexistente | `404` |
-| Segunda consulta (caché) | 9 ms contra 1003 ms de la primera |
+| Folio inexistente | `404` |
+| Sucursal distinta (`EDEN_FACILITY_IDENTIFIER=otra`) | `404`, también por UUID |
+| Descarga del PDF de la orden | `404` "todavía no disponible" (ver §3, `pdf_url`) |
+| Cuota de peticiones | 10 pasan, la 11 responde `403 Ratelimited` |
+| Token en los bundles del cliente | ausente (`grep` sobre `.next/static`) |
 
-Contra un **mock** con la forma del OpenAPI, lo que staging aún no permite
-reproducir: estatus `SIGNED` con reporte firmado, descarga del PDF, y el segundo
-factor con fecha correcta e incorrecta.
+Falta por validar en producción, porque todavía no existe el dato: una orden con
+**reporte firmado** (`SIGNED`) y su PDF, y un estudio cargado directo en el PACS
+(hoy `/studies/link/` responde `study_not_found` para todo). Ambos caminos están
+probados contra staging y contra un mock con la forma del OpenAPI.
 
-Para crear órdenes de prueba en staging, `facility_identifier` acepta
+### Contra staging
+
+Mismos casos con la orden `LAD-PRUEBA-001` (paciente `LAD-PAC-001`), más
+`EVA-PTT-0001000` para el respaldo del PACS sin orden (`origen: "visor"`, con
+enlace firmado). Para crear órdenes de prueba ahí, `facility_identifier` acepta
 `FACILITY_01` o `FACILITY_02` (viene en la documentación, no en el OpenAPI; el
 `eva-centro` de los ejemplos es rechazado).
 
 ## 6. Pendientes del lado de Eden
 
-Vale la pena plantearles estos tres puntos, en este orden:
+Ya resuelto: la **URL y el token de producción** están confirmados y en uso, y el
+`facility_identifier` de la sucursal es `matriz`.
 
-1. **Subir la cuota de peticiones.** ~10 por minuto por token es muy poco para un
+Sigue pendiente plantearles estos cuatro puntos, en este orden:
+
+1. **Subir la cuota de peticiones.** 10 por minuto por token es muy poco para un
    sitio público: hoy lo sostiene el caché de 60 s, pero cualquier pico lo
    rebasa. Es la limitación más seria de la integración.
-2. **Arreglar `?folio=` en `GET /orders/`**, o habilitar el folio en
+2. **`pdf_url` apunta a un redirect con credenciales del personal** cuando el
+   documento aún no existe, en vez de venir en `null` (ver §3). Es el punto con
+   implicación de seguridad, aunque de nuestro lado ya está contenido.
+3. **Arreglar `?folio=` en `GET /orders/`**, o habilitar el folio en
    `GET /orders/{id}/` como dice la documentación. Con eso la búsqueda sería una
    petición puntual y exacta, en vez de traer el listado del mes y filtrarlo
    aquí. Resolvería también el techo de `EDEN_PAGE_LIMIT`.
-3. **Confirmar la URL y el token de producción** (ver *Ambientes*).
+4. **`?facility_identifier=` no filtra** en `GET /orders/`: acepta cualquier
+   valor y devuelve lo mismo. Si filtrara, la sucursal se resolvería del lado de
+   Eden en vez del nuestro.
 
-Falta además validar contra una orden con reporte firmado: la orden de prueba
-está en `NEW` y no tiene estudio en el PACS, así que la descarga del PDF y las
-etapas finales sólo están probadas contra el mock.
+Falta además validar contra una orden con reporte firmado: las órdenes que hoy
+existen en producción están en `NEW` y `PATIENT_ARRIVED`, sin estudio en el PACS,
+así que la descarga del PDF y las etapas finales sólo están probadas contra el
+mock y contra staging.
