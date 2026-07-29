@@ -1,7 +1,7 @@
 "use client";
 
 import { LAD_WHATSAPP_LINK } from "@/lib/contact";
-import { IconCatalog, IconWhatsAppMark } from "@/components/LadIcons";
+import { IconCatalog, IconWhatsApp, IconWhatsAppMark } from "@/components/LadIcons";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -144,7 +144,7 @@ export default function FloatingButtons() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0, transition: { duration: 0.12 } }}
             transition={{ type: "spring", stiffness: 500, damping: 18, mass: 0.6 }}
-            className="fixed right-[5.75rem] top-1/2 z-[100] hidden w-[220px] -translate-y-1/2 origin-right sm:block"
+            className="fixed right-[6.5rem] top-1/2 z-[100] hidden w-[220px] -translate-y-1/2 origin-right sm:block"
           >
             <button
               type="button"
@@ -171,29 +171,22 @@ export default function FloatingButtons() {
         )}
       </AnimatePresence>
 
-      {/* Botón WhatsApp — una pieza vertical de acceso rápido */}
+      {/* Botón WhatsApp — marca oficial en círculo, sin texto */}
       <button
         type="button"
         onClick={() => (isContactOpen ? setIsContactOpen(false) : openContact())}
         aria-label="Contactar por WhatsApp"
         aria-expanded={isContactOpen}
-        className="group isolate fixed right-4 top-1/2 z-[100] flex h-[92px] w-[62px] -translate-y-1/2 flex-col items-center justify-center gap-1.5 rounded-[1.35rem] border border-white/40 bg-[#25D366] px-2 shadow-[0_18px_45px_-16px_rgba(37,211,102,0.75)] transition-all duration-300 hover:scale-105 hover:bg-[#1DA851] hover:shadow-[0_22px_50px_-16px_rgba(37,211,102,0.9)] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 sm:right-5"
+        className="group fixed right-4 top-1/2 z-[100] flex h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full bg-[#25D366] shadow-[0_10px_28px_-8px_rgba(37,211,102,0.85)] transition-all duration-300 hover:scale-110 hover:bg-[#1DA851] hover:shadow-[0_14px_34px_-8px_rgba(37,211,102,0.95)] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 active:scale-95 sm:right-6 sm:h-16 sm:w-16"
       >
+        {/* Halo que late hacia afuera del círculo */}
         <motion.span
           aria-hidden="true"
-          animate={isContactOpen ? { opacity: 0 } : { opacity: [0.32, 0, 0.32], scale: [1, 1.14, 1] }}
-          transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-          className="pointer-events-none absolute inset-0 rounded-[1.35rem] bg-white/40"
+          animate={isContactOpen ? { opacity: 0, scale: 1 } : { opacity: [0.45, 0], scale: [1, 1.75] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
+          className="pointer-events-none absolute inset-0 rounded-full bg-[#25D366]"
         />
-        <span className="relative z-10 flex h-10 w-10 items-center justify-center text-white transition-transform duration-300 group-hover:rotate-[-6deg]">
-          <IconWhatsAppMark className="h-8 w-8 drop-shadow-[0_2px_4px_rgba(0,0,0,0.18)]" />
-        </span>
-        <span className="relative z-10 text-[9px] font-black uppercase tracking-[0.14em] text-white sm:hidden">
-          Chat
-        </span>
-        <span className="relative z-10 hidden text-[9px] font-black uppercase tracking-[0.12em] text-white sm:block">
-          WhatsApp
-        </span>
+        <IconWhatsApp className="relative z-10 h-8 w-8 text-white transition-transform duration-300 group-hover:scale-110 sm:h-9 sm:w-9" />
       </button>
 
       {/* Botón Ver Estudios — izquierda */}
