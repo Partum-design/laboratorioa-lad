@@ -1,7 +1,7 @@
 "use client";
 
 import { LAD_WHATSAPP_LINK } from "@/lib/contact";
-import { IconCatalog, IconWhatsApp } from "@/components/LadIcons";
+import { IconCatalog, IconWhatsAppMark } from "@/components/LadIcons";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -55,12 +55,12 @@ export default function FloatingButtons() {
               className="relative flex h-[min(36rem,calc(100dvh-1.5rem))] w-full max-w-[calc(100vw-1.5rem)] origin-center flex-col overflow-hidden rounded-[1.4rem] bg-white shadow-[0_24px_80px_-24px_rgba(0,0,0,0.55)] ring-1 ring-black/10 sm:w-[360px] sm:max-w-[calc(100vw-6rem)] sm:origin-right"
             >
               {/* Header */}
-              <div className="relative overflow-hidden bg-[#0f8060] px-5 py-5">
+              <div className="relative overflow-hidden bg-[#075E54] px-5 py-5">
                 <div className="absolute -right-10 -top-14 h-40 w-40 rounded-full border-[18px] border-white/10" />
-                <div className="absolute -bottom-20 -left-10 h-36 w-36 rounded-full bg-[#25D366]/20 blur-2xl" />
+                <div className="absolute -bottom-20 -left-10 h-36 w-36 rounded-full bg-[#25D366]/30 blur-2xl" />
                 <div className="relative flex items-start gap-3">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-[#128C7E] shadow-lg shadow-black/10">
-                    <IconWhatsApp className="h-6 w-6" />
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#25D366] text-white shadow-lg shadow-black/20">
+                    <IconWhatsAppMark className="h-8 w-8" />
                   </span>
                   <div className="min-w-0 flex-1 pt-0.5">
                     <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/70">Atención LAD</p>
@@ -117,11 +117,11 @@ export default function FloatingButtons() {
                   href={LAD_WHATSAPP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex w-full items-center justify-between gap-3 rounded-2xl bg-[#128C7E] px-4 py-3 text-white shadow-lg shadow-[#128C7E]/20 transition hover:bg-[#0b6f62] focus:outline-none focus:ring-2 focus:ring-[#128C7E] focus:ring-offset-2"
+                  className="group flex w-full items-center justify-between gap-3 rounded-2xl bg-[#25D366] px-4 py-3 text-white shadow-lg shadow-[#25D366]/25 transition hover:bg-[#1DA851] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2"
                 >
                   <span className="flex items-center gap-2.5">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/15">
-                      <IconWhatsApp className="h-5 w-5" />
+                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/20">
+                      <IconWhatsAppMark className="h-6 w-6" />
                     </span>
                     <span className="text-left">
                       <span className="block text-sm font-black">Iniciar conversación</span>
@@ -177,16 +177,16 @@ export default function FloatingButtons() {
         onClick={() => (isContactOpen ? setIsContactOpen(false) : openContact())}
         aria-label="Contactar por WhatsApp"
         aria-expanded={isContactOpen}
-        className="group isolate fixed right-4 top-1/2 z-[100] flex h-[92px] w-[62px] -translate-y-1/2 flex-col items-center justify-center gap-1.5 rounded-[1.35rem] border border-white/40 bg-[#128C7E] px-2 shadow-[0_18px_45px_-16px_rgba(18,140,126,0.75)] transition-all duration-300 hover:scale-105 hover:bg-[#0b6f62] hover:shadow-[0_22px_50px_-16px_rgba(18,140,126,0.9)] focus:outline-none focus:ring-2 focus:ring-[#128C7E] focus:ring-offset-2 sm:right-5"
+        className="group isolate fixed right-4 top-1/2 z-[100] flex h-[92px] w-[62px] -translate-y-1/2 flex-col items-center justify-center gap-1.5 rounded-[1.35rem] border border-white/40 bg-[#25D366] px-2 shadow-[0_18px_45px_-16px_rgba(37,211,102,0.75)] transition-all duration-300 hover:scale-105 hover:bg-[#1DA851] hover:shadow-[0_22px_50px_-16px_rgba(37,211,102,0.9)] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 sm:right-5"
       >
         <motion.span
           aria-hidden="true"
-          animate={isContactOpen ? { opacity: 0 } : { opacity: [0.28, 0, 0.28], scale: [1, 1.14, 1] }}
+          animate={isContactOpen ? { opacity: 0 } : { opacity: [0.32, 0, 0.32], scale: [1, 1.14, 1] }}
           transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-          className="pointer-events-none absolute inset-0 rounded-[1.35rem] bg-[#25D366]"
+          className="pointer-events-none absolute inset-0 rounded-[1.35rem] bg-white/40"
         />
-        <span className="relative z-10 flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#128C7E] shadow-md transition-transform duration-300 group-hover:rotate-[-6deg]">
-          <IconWhatsApp className="h-6 w-6" />
+        <span className="relative z-10 flex h-10 w-10 items-center justify-center text-white transition-transform duration-300 group-hover:rotate-[-6deg]">
+          <IconWhatsAppMark className="h-8 w-8 drop-shadow-[0_2px_4px_rgba(0,0,0,0.18)]" />
         </span>
         <span className="relative z-10 text-[9px] font-black uppercase tracking-[0.14em] text-white sm:hidden">
           Chat

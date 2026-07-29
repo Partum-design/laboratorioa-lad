@@ -189,3 +189,21 @@ export function IconWhatsApp(props: IconProps) {
     </svg>
   );
 }
+
+/**
+ * Marca oficial de WhatsApp: burbuja sólida con el auricular recortado
+ * (fill-rule evenodd), de modo que el fondo se vea a través del auricular.
+ * Se colorea con `currentColor` para usarla en blanco sobre verde #25D366
+ * o en verde sobre blanco, que son los dos lockups permitidos por la marca.
+ */
+export function IconWhatsAppMark(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zM8.93 7.03c-.22-.49-.45-.5-.66-.51l-.56-.007c-.196 0-.513.073-.782.366-.27.293-1.026 1.003-1.026 2.445s1.05 2.835 1.197 3.03c.146.196 2.026 3.247 5.007 4.422 2.477.977 2.98.783 3.52.734.538-.05 1.735-.71 1.98-1.394.244-.684.244-1.27.17-1.393-.073-.123-.269-.196-.562-.342-.293-.147-1.735-.857-2.004-.954-.269-.098-.464-.147-.66.146-.195.294-.756.954-.927 1.15-.171.195-.342.219-.635.072-.293-.146-1.237-.456-2.357-1.455-.871-.777-1.46-1.736-1.63-2.03-.172-.293-.019-.45.128-.597.132-.131.293-.341.44-.512.146-.172.195-.294.293-.49.098-.195.049-.366-.025-.512-.073-.147-.643-1.595-.903-2.177z"
+      />
+    </svg>
+  );
+}
