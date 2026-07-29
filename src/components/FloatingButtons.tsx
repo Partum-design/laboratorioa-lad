@@ -1,7 +1,7 @@
 "use client";
 
-import { LAD_WHATSAPP_LINK } from "@/lib/contact";
-import { IconCatalog, IconWhatsApp, IconWhatsAppMark } from "@/components/LadIcons";
+import { LAD_WHATSAPP_LINK, LAD_WHATSAPP_MESSAGE } from "@/lib/contact";
+import { IconCatalog, IconWhatsApp } from "@/components/LadIcons";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -59,8 +59,8 @@ export default function FloatingButtons() {
                 <div className="absolute -right-10 -top-14 h-40 w-40 rounded-full border-[18px] border-white/10" />
                 <div className="absolute -bottom-20 -left-10 h-36 w-36 rounded-full bg-[#25D366]/30 blur-2xl" />
                 <div className="relative flex items-start gap-3">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#25D366] text-white shadow-lg shadow-black/20">
-                    <IconWhatsAppMark className="h-8 w-8" />
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/25 ring-2 ring-white/25">
+                    <IconWhatsApp className="h-7 w-7" />
                   </span>
                   <div className="min-w-0 flex-1 pt-0.5">
                     <p className="text-[10px] font-black uppercase tracking-[0.22em] text-white/70">Atención LAD</p>
@@ -81,14 +81,15 @@ export default function FloatingButtons() {
               </div>
 
               {/* Body */}
-              <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain bg-[#f3f8f5] px-4 pb-4 pt-5">
-                <p className="mb-3 px-1 text-[10px] font-black uppercase tracking-[0.2em] text-[#128C7E]">Estamos para ayudarte</p>
-                <div className="rounded-2xl rounded-tl-sm border border-[#d8ece2] bg-white px-4 py-3.5 shadow-[0_8px_24px_-16px_rgba(15,128,96,0.5)]">
+              <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain bg-[#ECE5DD] px-4 pb-4 pt-5">
+                <p className="mb-3 px-1 text-[10px] font-black uppercase tracking-[0.2em] text-[#075E54]">Estamos para ayudarte</p>
+                {/* Burbuja entrante, como en un chat de WhatsApp */}
+                <div className="rounded-2xl rounded-tl-sm bg-white px-4 py-3.5 shadow-[0_1px_2px_rgba(11,20,26,0.16)]">
                   <p className="text-sm font-bold text-lad-black">¡Hola! 👋</p>
                   <p className="mt-1 text-sm leading-relaxed text-gray-600">Cuéntanos qué necesitas y te ayudamos a encontrar el siguiente paso.</p>
                 </div>
 
-                <dl className="mt-3 space-y-2.5 rounded-2xl border border-[#d8ece2] bg-white/70 px-4 py-3 text-sm">
+                <dl className="mt-3 space-y-2.5 rounded-2xl bg-white px-4 py-3 text-sm shadow-[0_1px_2px_rgba(11,20,26,0.16)]">
                   <div className="flex items-center justify-between gap-3">
                     <dt className="font-bold text-lad-black">Nuestro número</dt>
                     <dd className="text-gray-600">129</dd>
@@ -110,9 +111,18 @@ export default function FloatingButtons() {
                     </dd>
                   </div>
                 </dl>
+
+                {/* Burbuja saliente: adelanta el mensaje que se enviará */}
+                <div className="ml-8 mt-3 rounded-2xl rounded-tr-sm bg-[#DCF8C6] px-4 py-2.5 shadow-[0_1px_2px_rgba(11,20,26,0.16)]">
+                  <p className="text-sm leading-relaxed text-[#111b21]">{LAD_WHATSAPP_MESSAGE}</p>
+                  <p className="mt-0.5 flex items-center justify-end gap-1 text-[10px] text-[#667781]">
+                    Listo para enviar
+                    <span aria-hidden="true" className="text-[#34B7F1]">✓✓</span>
+                  </p>
+                </div>
               </div>
 
-              <div className="shrink-0 border-t border-[#e5eee9] bg-white px-4 pb-4 pt-3.5">
+              <div className="shrink-0 border-t border-black/5 bg-white px-4 pb-4 pt-3.5">
                 <a
                   href={LAD_WHATSAPP_LINK}
                   target="_blank"
@@ -120,8 +130,8 @@ export default function FloatingButtons() {
                   className="group flex w-full items-center justify-between gap-3 rounded-2xl bg-[#25D366] px-4 py-3 text-white shadow-lg shadow-[#25D366]/25 transition hover:bg-[#1DA851] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2"
                 >
                   <span className="flex items-center gap-2.5">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/20">
-                      <IconWhatsAppMark className="h-6 w-6" />
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#25D366] shadow-sm">
+                      <IconWhatsApp className="h-5 w-5" />
                     </span>
                     <span className="text-left">
                       <span className="block text-sm font-black">Iniciar conversación</span>

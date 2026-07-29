@@ -8,9 +8,9 @@ export function buildWhatsAppLink(message?: string) {
   return `${baseUrl}?text=${encodeURIComponent(message)}`;
 }
 
-export const LAD_WHATSAPP_LINK = buildWhatsAppLink(
-  "Hola, necesito atención de LAD. ¿Me pueden ayudar?"
-);
+export const LAD_WHATSAPP_MESSAGE = "Hola, necesito atención de LAD. ¿Me pueden ayudar?";
+
+export const LAD_WHATSAPP_LINK = buildWhatsAppLink(LAD_WHATSAPP_MESSAGE);
 
 export const LAD_ADDRESS_DISPLAY =
   "Dr. Genaro Díaz Manon 129, La Trinidad, 52400 El Salitre, Méx.";
