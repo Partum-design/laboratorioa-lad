@@ -50,9 +50,10 @@ function ContactoBody() {
   const searchParams = useSearchParams();
   const estudioParam = searchParams.get("estudio")?.trim() ?? "";
 
-  const [formData, setFormData] = useState({ nombre: "", email: "", telefono: "", fechaNacimiento: "", fechaCita: "", horaCita: "", servicio: "", mensaje: "" });
+  const [formData, setFormData] = useState({ nombre: "", email: "", telefono: "", fechaNacimiento: "", fechaCita: "", horaCita: "", sinCita: false, servicio: "", mensaje: "" });
   const [enviado, setEnviado] = useState(false);
   const [enviando, setEnviando] = useState(false);
+  const [formError, setFormError] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
@@ -77,6 +78,11 @@ function ContactoBody() {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    if (!formData.sinCita && (!formData.fechaCita || !formData.horaCita)) {
+      setFormError("Indica el día y la hora de tu cita, o marca “No tengo cita todavía” para solicitarla.");
+      return;
+    }
+    setFormError("");
     setEnviando(true);
     const message = [
       "Hola, quiero agendar una cita en LAD.",
@@ -85,8 +91,8 @@ function ContactoBody() {
       formData.email && `Correo: ${formData.email}`,
       formData.servicio && `Servicio: ${formData.servicio}`,
       formData.fechaNacimiento && `Fecha de nacimiento: ${formData.fechaNacimiento}`,
-      formData.fechaCita && `Día de la cita: ${formData.fechaCita}`,
-      formData.horaCita && `Hora de la cita: ${formData.horaCita}`,
+      formData.sinCita ? "No tengo cita previa; solicito apoyo para agendarla." : `Día de la cita: ${formData.fechaCita}`,
+      !formData.sinCita && `Hora de la cita: ${formData.horaCita}`,
       formData.mensaje && `Mensaje: ${formData.mensaje}`,
     ].filter(Boolean).join("\n");
 
@@ -98,6 +104,13 @@ function ContactoBody() {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
+    setFormError("");
+  };
+
+  const handleNoCitaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const sinCita = event.target.checked;
+    setFormData((prev) => ({ ...prev, sinCita, fechaCita: sinCita ? "" : prev.fechaCita, horaCita: sinCita ? "" : prev.horaCita }));
+    setFormError("");
   };
 
   return (
@@ -199,14 +212,22 @@ function ContactoBody() {
                     <label htmlFor="fechaNacimiento" className="mb-2 block text-xs font-bold uppercase tracking-wider text-gray-500">Fecha de nacimiento</label>
                     <input id="fechaNacimiento" className="w-full border border-gray-200 p-3" name="fechaNacimiento" type="date" value={formData.fechaNacimiento} onChange={handleChange} required />
                   </div>
-                  <div className="form-field">
-                    <label htmlFor="fechaCita" className="mb-2 block text-xs font-bold uppercase tracking-wider text-gray-500">Día de la cita</label>
-                    <input id="fechaCita" className="w-full border border-gray-200 p-3" name="fechaCita" type="date" value={formData.fechaCita} onChange={handleChange} />
-                  </div>
-                  <div className="form-field">
-                    <label htmlFor="horaCita" className="mb-2 block text-xs font-bold uppercase tracking-wider text-gray-500">Hora de la cita</label>
-                    <input id="horaCita" className="w-full border border-gray-200 p-3" name="horaCita" type="time" value={formData.horaCita} onChange={handleChange} />
-                  </div>
+                  <label className="form-field flex items-center gap-3 border border-lad-red/30 bg-lad-red/5 p-3 text-sm font-semibold text-lad-black md:col-span-2">
+                    <input type="checkbox" name="sinCita" checked={formData.sinCita} onChange={handleNoCitaChange} className="h-4 w-4 accent-lad-red" />
+                    No tengo cita todavía; quiero solicitarla.
+                  </label>
+                  {!formData.sinCita && (
+                    <>
+                      <div className="form-field">
+                        <label htmlFor="fechaCita" className="mb-2 block text-xs font-bold uppercase tracking-wider text-gray-500">Día de la cita</label>
+                        <input id="fechaCita" className="w-full border border-gray-200 p-3" name="fechaCita" type="date" value={formData.fechaCita} onChange={handleChange} required />
+                      </div>
+                      <div className="form-field">
+                        <label htmlFor="horaCita" className="mb-2 block text-xs font-bold uppercase tracking-wider text-gray-500">Hora de la cita</label>
+                        <input id="horaCita" className="w-full border border-gray-200 p-3" name="horaCita" type="time" value={formData.horaCita} onChange={handleChange} required />
+                      </div>
+                    </>
+                  )}
                   <select className="form-field border border-gray-200 p-3 md:col-span-2" name="servicio" value={formData.servicio} onChange={handleChange}>
                     <option value="">Servicio de interés</option>
                     <option>Análisis clínicos</option>
@@ -214,6 +235,7 @@ function ContactoBody() {
                     <option>Convenio empresarial</option>
                   </select>
                   <textarea className="form-field min-h-36 border border-gray-200 p-3 md:col-span-2" name="mensaje" placeholder="Mensaje o comentarios adicionales" value={formData.mensaje} onChange={handleChange} />
+                  {formError && <p role="alert" className="form-field border-l-4 border-lad-red bg-lad-red/5 px-4 py-3 text-sm font-semibold text-lad-black md:col-span-2">{formError}</p>}
                   <button className="btn-primary flex items-center justify-center gap-2 md:col-span-2" disabled={enviando}>
                     {enviando ? "Abriendo WhatsApp..." : (
                       <>
