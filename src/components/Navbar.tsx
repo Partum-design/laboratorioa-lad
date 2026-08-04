@@ -64,7 +64,7 @@ export default function Navbar() {
               alt="LAD Logo"
               width={52}
               height={52}
-              className="object-contain transition group-hover:scale-95 drop-shadow"
+              className="brand-mark object-contain transition group-hover:scale-95"
             />
             <div className={`transition-colors ${textColor}`}>
               <p className="font-display text-sm font-black uppercase leading-none tracking-wider">Laboratorio de</p>

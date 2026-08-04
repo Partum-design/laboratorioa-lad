@@ -14,7 +14,7 @@ const videos = [
 const STORAGE_KEY = "lad:construction-preview";
 
 // ── Partículas ──────────────────────────────────────────────────────────────
-const COLORS = ["#E30613", "#ff2233", "#c0000f", "#ff4455", "#8b0000", "#ff6677"];
+const COLORS = ["#ED3237", "#F56A6E", "#A63336", "#C75559", "#7F282B", "#F98B8E"];
 
 interface Particle {
   x: number; y: number;

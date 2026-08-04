@@ -13,5 +13,5 @@ export const LAD_WHATSAPP_MESSAGE = "Hola, necesito atención de LAD. ¿Me puede
 export const LAD_WHATSAPP_LINK = buildWhatsAppLink(LAD_WHATSAPP_MESSAGE);
 
 export const LAD_ADDRESS_DISPLAY =
-  "Dr. Genaro Díaz Manon 129, La Trinidad, 52400 El Salitre, Méx.";
+  "Dr. Genaro Díaz Manon 129, La Trinidad, 52436 El Salitre, Méx.";
 export const LAD_MAPS_LINK = "https://maps.app.goo.gl/3LitjXcwihswi6HQ9";

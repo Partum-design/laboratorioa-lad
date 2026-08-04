@@ -22,7 +22,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import VideoAuto from "@/components/VideoAuto";
 import { LAD_WHATSAPP_LINK } from "@/lib/contact";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -55,18 +56,13 @@ const rutasRapidas = [
   { title: "Quiero trabajar en LAD", desc: "Revisa vacantes y envía tu postulación.", href: "/unete#vacantes" },
 ];
 
-const heroVideos = ["/vids/inicio/hero1.mp4", "/vids/inicio/hero3.mp4"];
 const heroTitles = ["precisos", "confiables", "certificados", "inmediatos", "claros"];
 
 export default function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const counterRefs = useRef<HTMLSpanElement[]>([]);
-  const [heroIdx, setHeroIdx] = useState(0);
   const [titleNumber, setTitleNumber] = useState(0);
-  const advanceHero = useCallback(() => {
-    setHeroIdx((i) => (i + 1) % heroVideos.length);
-  }, []);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -130,21 +126,10 @@ export default function HomePage() {
       {/* Hero */}
       <section ref={heroRef} className="relative flex h-screen min-h-[680px] items-center justify-center overflow-hidden text-center">
         <div className="hero-bg absolute inset-0 -top-10">
-          {heroVideos.map((video, idx) => (
-            <VideoAuto
-              key={video}
-              src={video}
-              loop={false}
-              active={heroIdx === idx}
-              stopAt={idx === 0 ? 8 : undefined}
-              onEnded={advanceHero}
-              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out ${
-                heroIdx === idx ? "opacity-100" : "opacity-0"
-              }`}
-            />
-          ))}
+          <Image src="/img/lad-hero-laboratorio.png" alt="Equipo automatizado en un laboratorio clínico" fill priority className="object-cover" />
           <div className="absolute inset-0 bg-lad-black/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-lad-black/95 via-transparent to-lad-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-lad-black/90 via-lad-black/55 to-lad-black/15" />
+          <div className="absolute inset-0 bg-gradient-to-t from-lad-black/90 via-transparent to-lad-black/20" />
         </div>
 
         <div className="container-lad relative z-10">
@@ -174,7 +159,7 @@ export default function HomePage() {
               className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.05] px-5 py-2.5 backdrop-blur-md"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-lad-red animate-pulse" />
-              <span className="text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Certificado ISO 9001:2015</span>
+              <span className="text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Precisión diagnóstica</span>
             </motion.div>
 
             {/* Animated heading */}

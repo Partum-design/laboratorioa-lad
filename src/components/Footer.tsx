@@ -36,7 +36,7 @@ export default function Footer() {
                 alt="LAD Logo"
                 width={60}
                 height={60}
-                className="object-contain drop-shadow"
+                className="brand-mark object-contain"
               />
               <div>
                 <p className="font-display text-sm font-black uppercase tracking-wider">Laboratorio de</p>
@@ -88,7 +88,8 @@ export default function Footer() {
                   WhatsApp para citas y dudas
                 </a>
               </li>
-              <li>Lun a vie: 7:00 am a 6:00 pm<br />Sáb: 7:00 am a 2:00 pm</li>
+              <li>Lun a vie: 7:00 am a 8:00 pm<br />Sáb: 7:00 am a 5:00 pm<br />Dom: 7:00 am a 4:00 pm</li>
+              <li className="border-l-2 border-lad-red pl-3 text-gray-400">Rayos X y tomografía: 24/7, los 365 días.</li>
               <li className="flex items-start gap-2 text-gray-400">
                 <IconMapPin className="mt-0.5 h-4 w-4 flex-none text-lad-red" />
                 <span>{LAD_ADDRESS_DISPLAY}</span>

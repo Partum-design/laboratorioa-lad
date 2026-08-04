@@ -1,7 +1,6 @@
 "use client";
 
 import PageTransition from "@/components/PageTransition";
-import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
 import { IconBadge, IconChip } from "@/components/IconBadge";
 import {
@@ -21,7 +20,7 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 
 if (typeof window !== "undefined") {
@@ -32,24 +31,24 @@ const areas = [
   {
     nombre: "Hematología",
     desc: "Biometría hemática, coagulación y morfología celular con equipos automatizados y revisión del equipo clínico.",
-    video: ["/vids/nosotros/hematologia1.mp4", "/vids/nosotros/hematologia2.mp4"],
-    img: null,
+    video: null,
+    img: "/img/lad-hematologia.png",
     icono: <IconTestTubes />,
     badge: "Área principal",
   },
   {
     nombre: "Resonancia Magnética",
     desc: "Estudios de imagen para tejidos blandos, articulaciones y órganos internos, con atención al detalle desde la toma hasta el reporte.",
-    video: ["/vids/nosotros/resonancia.mp4"],
-    img: null,
+    video: null,
+    img: "/img/lad-radiologia.png",
     icono: <IconScan />,
     badge: "",
   },
   {
     nombre: "Rayos X / Radiología",
     desc: "Radiología digital con procesamiento de imagen y entrega práctica para pacientes y médicos.",
-    video: ["/vids/nosotros/xray1.mp4", "/vids/nosotros/xray2.mp4"],
-    img: null,
+    video: null,
+    img: "/img/lad-radiologia.png",
     icono: <IconXRay />,
     badge: "",
   },
@@ -57,7 +56,7 @@ const areas = [
     nombre: "Química Clínica",
     desc: "Química sanguínea, perfiles metabólicos, hepáticos, renales y lipídicos con procesos controlados.",
     video: null,
-    img: "/img/ai-generated-6a1dc1076908f.png",
+    img: "/img/lad-quimica.png",
     icono: <IconTestTubes />,
     badge: "",
   },
@@ -65,7 +64,7 @@ const areas = [
     nombre: "Microbiología",
     desc: "Cultivos, antibiogramas e identificación bacteriana con tiempos claros de seguimiento.",
     video: null,
-    img: "/img/ChatGPT-Image-2-jun-2026-12_10_37-p.m-1.png",
+    img: "/img/lad-hematologia.png",
     icono: <IconCulture />,
     badge: "",
   },
@@ -73,7 +72,7 @@ const areas = [
     nombre: "Inmunología y Hormonas",
     desc: "Pruebas hormonales, infecciosas y autoinmunes para apoyar decisiones médicas específicas.",
     video: null,
-    img: "/img/image-1.png",
+    img: "/img/lad-ultrasonido.png",
     icono: <IconShieldCheck />,
     badge: "",
   },
@@ -94,38 +93,6 @@ const valores = [
 ];
 
 function AreaMedia({ area }: { area: typeof areas[0] }) {
-  const [idx, setIdx] = useState(0);
-  const advance = useCallback(() => {
-    setIdx((i) => (i + 1) % (area.video?.length ?? 1));
-  }, [area.video?.length]);
-
-  if (area.video) {
-    if (area.video.length === 1) {
-      return (
-        <VideoAuto
-          src={area.video[0]}
-          loop
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-      );
-    }
-    return (
-      <div className="relative h-full w-full">
-        {area.video.map((video, videoIdx) => (
-          <VideoAuto
-            key={video}
-            src={video}
-            loop={false}
-            active={idx === videoIdx}
-            onEnded={advance}
-            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out group-hover:scale-105 ${
-              idx === videoIdx ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        ))}
-      </div>
-    );
-  }
   return (
     <Image
       src={area.img!}
@@ -158,8 +125,8 @@ export default function NosotrosPage() {
       {/* Hero */}
       <section className="relative overflow-hidden pb-24 pt-36">
         <div className="absolute inset-0">
-          <VideoAuto src="/vids/nosotros/hero.mp4" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-lad-black/85" />
+          <Image src="/img/lad-hero-laboratorio.png" alt="Laboratorio clínico LAD" fill className="object-cover" />
+          <div className="absolute inset-0 bg-lad-black/80" />
         </div>
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />
         <div className="container-lad relative z-10 text-center">
@@ -204,7 +171,7 @@ export default function NosotrosPage() {
           </ScrollReveal>
           <ScrollReveal direction="right">
             <div className="relative h-[520px] overflow-hidden">
-              <VideoAuto src="/vids/nosotros/mision.mp4" className="h-full w-full object-cover" />
+              <Image src="/img/lad-hero-laboratorio.png" alt="Equipo clínico de LAD" fill className="object-cover" />
             </div>
           </ScrollReveal>
         </div>

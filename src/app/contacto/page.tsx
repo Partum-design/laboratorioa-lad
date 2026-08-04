@@ -19,9 +19,9 @@ import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef, useState } from "react";
 
 const horarios = [
-  { dia: "Lunes a viernes", hora: "7:00 am a 6:00 pm" },
-  { dia: "Sábado", hora: "7:00 am a 2:00 pm" },
-  { dia: "Domingo", hora: "Cerrado" },
+  { dia: "Lunes a viernes", hora: "7:00 am a 8:00 pm" },
+  { dia: "Sábado", hora: "7:00 am a 5:00 pm" },
+  { dia: "Domingo", hora: "7:00 am a 4:00 pm" },
 ];
 
 export default function ContactoPage() {
@@ -50,7 +50,7 @@ function ContactoBody() {
   const searchParams = useSearchParams();
   const estudioParam = searchParams.get("estudio")?.trim() ?? "";
 
-  const [formData, setFormData] = useState({ nombre: "", email: "", telefono: "", servicio: "", fecha: "", mensaje: "" });
+  const [formData, setFormData] = useState({ nombre: "", email: "", telefono: "", fechaNacimiento: "", fechaCita: "", horaCita: "", servicio: "", mensaje: "" });
   const [enviado, setEnviado] = useState(false);
   const [enviando, setEnviando] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
@@ -84,7 +84,9 @@ function ContactoBody() {
       formData.telefono && `Telefono: ${formData.telefono}`,
       formData.email && `Correo: ${formData.email}`,
       formData.servicio && `Servicio: ${formData.servicio}`,
-      formData.fecha && `Fecha tentativa: ${formData.fecha}`,
+      formData.fechaNacimiento && `Fecha de nacimiento: ${formData.fechaNacimiento}`,
+      formData.fechaCita && `Día de la cita: ${formData.fechaCita}`,
+      formData.horaCita && `Hora de la cita: ${formData.horaCita}`,
       formData.mensaje && `Mensaje: ${formData.mensaje}`,
     ].filter(Boolean).join("\n");
 
@@ -150,6 +152,9 @@ function ContactoBody() {
                   <span className={h.hora === "Cerrado" ? "text-gray-400" : "font-semibold text-lad-red"}>{h.hora}</span>
                 </div>
               ))}
+              <p className="mt-4 border-l-2 border-lad-red bg-lad-red/5 px-3 py-2 text-xs leading-relaxed text-gray-600">
+                Servicio especial de <strong className="text-lad-black">Rayos X y tomografía las 24 horas, los 365 días del año.</strong>
+              </p>
             </div>
 
             <div className="mt-8 h-64 overflow-hidden border border-gray-100">
@@ -190,7 +195,18 @@ function ContactoBody() {
                   <input className="form-field border border-gray-200 p-3" name="nombre" placeholder="Nombre completo" value={formData.nombre} onChange={handleChange} required />
                   <input className="form-field border border-gray-200 p-3" name="email" type="email" placeholder="Correo electrónico (opcional)" value={formData.email} onChange={handleChange} />
                   <input className="form-field border border-gray-200 p-3" name="telefono" placeholder="Teléfono" value={formData.telefono} onChange={handleChange} required />
-                  <input className="form-field border border-gray-200 p-3" name="fecha" type="date" value={formData.fecha} onChange={handleChange} />
+                  <div className="form-field">
+                    <label htmlFor="fechaNacimiento" className="mb-2 block text-xs font-bold uppercase tracking-wider text-gray-500">Fecha de nacimiento</label>
+                    <input id="fechaNacimiento" className="w-full border border-gray-200 p-3" name="fechaNacimiento" type="date" value={formData.fechaNacimiento} onChange={handleChange} required />
+                  </div>
+                  <div className="form-field">
+                    <label htmlFor="fechaCita" className="mb-2 block text-xs font-bold uppercase tracking-wider text-gray-500">Día de la cita</label>
+                    <input id="fechaCita" className="w-full border border-gray-200 p-3" name="fechaCita" type="date" value={formData.fechaCita} onChange={handleChange} />
+                  </div>
+                  <div className="form-field">
+                    <label htmlFor="horaCita" className="mb-2 block text-xs font-bold uppercase tracking-wider text-gray-500">Hora de la cita</label>
+                    <input id="horaCita" className="w-full border border-gray-200 p-3" name="horaCita" type="time" value={formData.horaCita} onChange={handleChange} />
+                  </div>
                   <select className="form-field border border-gray-200 p-3 md:col-span-2" name="servicio" value={formData.servicio} onChange={handleChange}>
                     <option value="">Servicio de interés</option>
                     <option>Análisis clínicos</option>

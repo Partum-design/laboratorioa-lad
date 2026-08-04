@@ -1,15 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-inter: "Inter", sans-serif;
-  --font-montserrat: "Montserrat", sans-serif;
-  --lad-red: #E30613;
-  --lad-black: #0a0a0a;
-  --lad-white: #ffffff;
+  --font-body: "Gilroy", "Manrope", sans-serif;
+  --font-display: "Bell MT", "Cormorant Garamond", Georgia, serif;
+  --lad-red: #ED3237;
+  --lad-red-dark: #A63336;
+  --lad-black: #201E1E;
+  --lad-white: #FEFEFE;
 }
 
 * {
@@ -24,15 +25,15 @@ html {
 
 body {
   background: #ffffff;
-  color: #0a0a0a;
-  font-family: var(--font-inter);
+  color: #201E1E;
+  font-family: var(--font-body);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: #c8102e;
+  background: var(--lad-red);
   color: #ffffff;
 }
 
@@ -45,7 +46,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c8102e;
+  background: var(--lad-red);
   border-radius: 999px;
 }
 
@@ -91,12 +92,26 @@ body {
   }
 
   .video-frame {
-    @apply overflow-hidden rounded-2xl ring-1 ring-white/10;
+    @apply overflow-hidden rounded-none ring-1 ring-black/5;
   }
 
   .border-lad {
     @apply border-l-4 border-lad-red bg-white p-6 shadow-sm;
   }
+}
+
+.brand-mark {
+  border-radius: 22%;
+  box-shadow: 0 10px 30px rgba(32, 30, 30, 0.12);
+}
+
+input, select, textarea {
+  border-radius: 0.15rem;
+}
+
+input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible {
+  outline: 3px solid rgba(237, 50, 55, 0.35);
+  outline-offset: 3px;
 }
 
 .bg-grid {

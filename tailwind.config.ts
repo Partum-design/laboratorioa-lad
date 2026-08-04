@@ -10,19 +10,19 @@ const config: Config = {
     extend: {
       colors: {
         lad: {
-          red: "#E30613",
-          "red-dark": "#B3000E",
-          "red-light": "#FF1A27",
-          black: "#0A0A0A",
-          "gray-dark": "#1A1A1A",
-          "gray-mid": "#2D2D2D",
-          "gray-light": "#F5F5F5",
-          white: "#FFFFFF",
+          red: "#ED3237",
+          "red-dark": "#A63336",
+          "red-light": "#F56A6E",
+          black: "#201E1E",
+          "gray-dark": "#302B2B",
+          "gray-mid": "#5A5353",
+          "gray-light": "#F6F3F2",
+          white: "#FEFEFE",
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-montserrat)", "system-ui", "sans-serif"],
+        sans: ["var(--font-body)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "Georgia", "serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out forwards",

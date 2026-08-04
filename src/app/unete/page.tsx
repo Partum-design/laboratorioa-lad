@@ -1,7 +1,6 @@
 "use client";
 
 import PageTransition from "@/components/PageTransition";
-import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
 import { IconBadge, IconChip } from "@/components/IconBadge";
 import {
@@ -20,6 +19,7 @@ import { iconColorAt } from "@/lib/icon-palette";
 import { buildWhatsAppLink } from "@/lib/contact";
 import { AnimatePresence, motion } from "framer-motion";
 import { gsap } from "gsap";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const posiciones = [
@@ -105,7 +105,7 @@ export default function UnetePage() {
       {/* Hero */}
       <section ref={heroRef} className="relative overflow-hidden bg-lad-black pb-28 pt-36">
         <div className="absolute inset-0">
-          <VideoAuto src="/vids/unete/hero.mp4" className="h-full w-full object-cover opacity-30" />
+          <Image src="/img/lad-hero-laboratorio.png" alt="Interior de un laboratorio clínico" fill className="object-cover opacity-25" />
           <div className="absolute inset-0 bg-gradient-to-r from-lad-black via-lad-black/95 to-lad-black/70" />
         </div>
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />

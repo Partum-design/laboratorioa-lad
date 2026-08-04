@@ -55,7 +55,7 @@ export default function LoadingScreen() {
             className="pointer-events-none absolute inset-x-0 h-px"
             style={{
               background:
-                "linear-gradient(90deg, transparent 0%, #E30613 40%, #ff2233 50%, #E30613 60%, transparent 100%)",
+                "linear-gradient(90deg, transparent 0%, #A63336 40%, #ED3237 50%, #A63336 60%, transparent 100%)",
               opacity: 0.5,
             }}
             initial={{ top: "-1%" }}
@@ -182,7 +182,7 @@ export default function LoadingScreen() {
                 className="absolute inset-y-0 left-0 transition-none"
                 style={{
                   width: `${pct}%`,
-                  background: "linear-gradient(90deg, #B3000E, #E30613, #ff2233)",
+                  background: "linear-gradient(90deg, #A63336, #ED3237, #F56A6E)",
                 }}
               />
             </div>
