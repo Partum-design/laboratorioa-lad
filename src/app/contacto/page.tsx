@@ -10,6 +10,7 @@ import {
   LAD_ADDRESS_DISPLAY,
   LAD_MAPS_LINK,
   LAD_PHONE_DISPLAY,
+  LAD_SUCURSALES,
   LAD_TEL_LINK,
   LAD_WHATSAPP_LINK,
 } from "@/lib/contact";
@@ -114,6 +115,7 @@ function ContactoBody() {
   };
 
   return (
+    <>
     <section id="agenda" className="section-padding scroll-mt-24 bg-white">
       <div className="container-lad grid grid-cols-1 gap-12 lg:grid-cols-5">
         {/* Información de contacto */}
@@ -251,5 +253,46 @@ function ContactoBody() {
         </div>
       </div>
     </section>
+
+    <section className="section-padding bg-lad-gray-light">
+      <div className="container-lad">
+        <ScrollReveal>
+          <div className="mb-12 text-center">
+            <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Dónde encontrarnos</p>
+            <h2 className="heading-lg">Nuestras <span className="text-lad-red">sucursales</span></h2>
+          </div>
+        </ScrollReveal>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {LAD_SUCURSALES.map((sucursal, index) => (
+            <ScrollReveal key={sucursal.slug} delay={index * 0.1}>
+              <div className="h-full border border-gray-200 bg-white p-6">
+                <div className="mb-4 flex items-center gap-3">
+                  <IconChip color={iconColorAt(index)}><IconMapPin /></IconChip>
+                  <h3 className="font-display text-lg font-bold text-lad-black">{sucursal.nombre}</h3>
+                </div>
+                <p className="text-sm text-gray-600">{sucursal.direccion}</p>
+                <div className="mt-4 space-y-1 text-sm">
+                  {sucursal.horario.map((linea) => (
+                    <p key={linea} className="text-gray-600">{linea}</p>
+                  ))}
+                </div>
+                <a href={sucursal.telefonoTelLink} className="mt-4 block text-sm font-semibold text-lad-red transition hover:text-lad-black">
+                  {sucursal.telefonoDisplay}
+                </a>
+                <a
+                  href={`https://www.google.com/maps?q=${encodeURIComponent(sucursal.direccion)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-block text-sm font-semibold text-lad-black underline decoration-lad-red decoration-2 underline-offset-4 transition hover:text-lad-red"
+                >
+                  Ver en Google Maps →
+                </a>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </section>
+    </>
   );
 }

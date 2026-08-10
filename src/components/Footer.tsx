@@ -1,9 +1,9 @@
 "use client";
 
 import {
-  LAD_ADDRESS_DISPLAY,
   LAD_MAPS_LINK,
   LAD_PHONE_DISPLAY,
+  LAD_SUCURSALES,
   LAD_TEL_LINK,
   LAD_WHATSAPP_LINK,
 } from "@/lib/contact";
@@ -88,12 +88,7 @@ export default function Footer() {
                   WhatsApp para citas y dudas
                 </a>
               </li>
-              <li>Lun a vie: 7:00 am a 8:00 pm<br />Sáb: 7:00 am a 5:00 pm<br />Dom: 7:00 am a 4:00 pm</li>
               <li className="border-l-2 border-lad-red pl-3 text-gray-400">Rayos X y tomografía: 24/7, los 365 días.</li>
-              <li className="flex items-start gap-2 text-gray-400">
-                <IconMapPin className="mt-0.5 h-4 w-4 flex-none text-lad-red" />
-                <span>{LAD_ADDRESS_DISPLAY}</span>
-              </li>
               <li>
                 <a
                   href={LAD_MAPS_LINK}
@@ -106,6 +101,29 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
+          </div>
+        </div>
+
+        <div className="mt-12 border-t border-gray-800 pt-8">
+          <h4 className="mb-6 font-display text-sm font-bold uppercase tracking-widest text-gray-400">Nuestras sucursales</h4>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+            {LAD_SUCURSALES.map((sucursal) => (
+              <div key={sucursal.slug} className="border border-gray-800 p-4">
+                <p className="flex items-start gap-2 text-sm font-bold text-white">
+                  <IconMapPin className="mt-0.5 h-4 w-4 flex-none text-lad-red" />
+                  {sucursal.nombre}
+                </p>
+                <p className="mt-2 text-xs leading-relaxed text-gray-400">{sucursal.direccion}</p>
+                <p className="mt-2 text-xs text-gray-500">
+                  {sucursal.horario.map((linea) => (
+                    <span key={linea} className="block">{linea}</span>
+                  ))}
+                </p>
+                <a href={sucursal.telefonoTelLink} className="mt-2 inline-block text-xs font-semibold text-lad-red transition hover:text-white">
+                  {sucursal.telefonoDisplay}
+                </a>
+              </div>
+            ))}
           </div>
         </div>
 

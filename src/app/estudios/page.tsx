@@ -4,7 +4,7 @@ import PageTransition from "@/components/PageTransition";
 import VideoAuto from "@/components/VideoAuto";
 import ScrollReveal from "@/components/ScrollReveal";
 import { IconChip } from "@/components/IconBadge";
-import { IconClipboard, IconClock, IconFilter, IconSearch, IconTag, IconWhatsApp } from "@/components/LadIcons";
+import { IconClipboard, IconClock, IconCreditCard, IconFilter, IconSearch, IconTag, IconWhatsApp } from "@/components/LadIcons";
 import { ICON_COLORS, iconColorAt } from "@/lib/icon-palette";
 import { buildWhatsAppLink } from "@/lib/contact";
 import { AnimatePresence, motion } from "framer-motion";
@@ -70,6 +70,26 @@ export default function EstudiosPage() {
           >
             <IconWhatsApp className="h-5 w-5" />
             Preguntar por WhatsApp
+          </a>
+        </div>
+      </section>
+
+      {/* Pago en línea */}
+      <section className="bg-lad-red">
+        <div className="container-lad flex flex-col items-center gap-4 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
+          <div className="flex items-center gap-4">
+            <IconChip color="#ffffff" size="h-6 w-6"><IconCreditCard /></IconChip>
+            <p className="font-display text-lg font-bold text-white sm:text-xl">
+              Paga en línea y obtén un descuento especial.
+            </p>
+          </div>
+          <a
+            href={buildWhatsAppLink("Hola, quiero pagar en línea mi estudio y aprovechar el descuento especial. ¿Me pueden ayudar?")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-white shrink-0"
+          >
+            Quiero pagar en línea
           </a>
         </div>
       </section>

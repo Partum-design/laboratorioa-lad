@@ -203,7 +203,7 @@ export default function FloatingButtons() {
       <Link
         href="/estudios#catalogo"
         aria-label="Ver catálogo de estudios"
-        className="group fixed bottom-8 left-6 z-[100] flex items-center gap-3 rounded-full bg-lad-red px-4 py-3 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+        className="group fixed bottom-8 left-6 z-[100] flex items-center rounded-full bg-lad-red px-4 py-3 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
       >
         <motion.span
           animate={{ y: [0, -3, 0] }}
@@ -211,7 +211,7 @@ export default function FloatingButtons() {
         >
           <IconCatalog />
         </motion.span>
-        <span className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-bold text-white transition-all duration-300 group-hover:max-w-xs">
+        <span className="max-w-0 overflow-hidden whitespace-nowrap pl-0 text-sm font-bold text-white transition-all duration-300 group-hover:max-w-xs group-hover:pl-3">
           Ver estudios
         </span>
       </Link>

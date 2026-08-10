@@ -10,7 +10,6 @@ import {
   IconEye,
   IconFocus,
   IconLock,
-  IconScan,
   IconShieldCheck,
   IconTestTubes,
   IconXRay,
@@ -35,14 +34,6 @@ const areas = [
     img: "/img/lad-area-hematologia.png",
     icono: <IconTestTubes />,
     badge: "Área principal",
-  },
-  {
-    nombre: "Resonancia Magnética",
-    desc: "Estudios de imagen para tejidos blandos, articulaciones y órganos internos, con atención al detalle desde la toma hasta el reporte.",
-    video: null,
-    img: "/img/lad-area-resonancia.png",
-    icono: <IconScan />,
-    badge: "",
   },
   {
     nombre: "Rayos X / Radiología",

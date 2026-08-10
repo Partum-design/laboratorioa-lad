@@ -139,7 +139,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: -28, scale: 0.92 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="relative mb-6 inline-flex flex-col items-center"
+              className="relative mb-6 flex w-full flex-col items-center"
             >
               <span className="absolute inset-0 -z-10 rounded-full bg-lad-red/50 blur-2xl animate-pulse" />
               <div className="flex flex-col items-center gap-1 rounded-full border-2 border-lad-red bg-lad-red px-9 py-3.5 shadow-[0_0_50px_rgba(191,29,32,0.6)] sm:flex-row sm:gap-3 sm:px-10">
@@ -156,7 +156,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: -16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.05] px-5 py-2.5 backdrop-blur-md"
+              className="mx-auto mb-8 flex w-fit items-center gap-3 rounded-full border border-white/10 bg-white/[0.05] px-5 py-2.5 backdrop-blur-md"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-lad-red animate-pulse" />
               <span className="text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Precisión diagnóstica</span>
@@ -290,7 +290,7 @@ export default function HomePage() {
           <ScrollReveal direction="left">
             <div className="video-frame group relative aspect-[4/3] w-full lg:aspect-auto lg:h-[480px]">
               <VideoAuto
-                src="/vids/inicio/quienes-somos.mp4"
+                src="/vids/inicio/quienes-somos-recortado.mp4"
                 className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-lad-black/40 to-transparent" />
