@@ -3,10 +3,11 @@
 import PageTransition from "@/components/PageTransition";
 import ScrollReveal from "@/components/ScrollReveal";
 import { TestimonialsSection } from "@/components/ui/TestimonialsColumns";
-import { IconBadge } from "@/components/IconBadge";
+import { IconBadge, IconChip } from "@/components/IconBadge";
 import {
   IconCheck,
   IconClock,
+  IconCreditCard,
   IconFocus,
   IconPackage,
   IconPhone,
@@ -20,7 +21,7 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import VideoAuto from "@/components/VideoAuto";
-import { LAD_WHATSAPP_LINK } from "@/lib/contact";
+import { LAD_METEPEC_MAPS_LINK, LAD_WHATSAPP_LINK, buildWhatsAppLink } from "@/lib/contact";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -142,13 +143,18 @@ export default function HomePage() {
               className="relative mb-6 flex w-full flex-col items-center"
             >
               <span className="absolute inset-0 -z-10 rounded-full bg-lad-red/50 blur-2xl animate-pulse" />
-              <div className="flex flex-col items-center gap-1 rounded-full border-2 border-lad-red bg-lad-red px-9 py-3.5 shadow-[0_0_50px_rgba(191,29,32,0.6)] sm:flex-row sm:gap-3 sm:px-10">
+              <a
+                href={LAD_METEPEC_MAPS_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-1 rounded-full border-2 border-lad-red bg-lad-red px-9 py-3.5 shadow-[0_0_50px_rgba(191,29,32,0.6)] transition hover:bg-lad-red-dark sm:flex-row sm:gap-3 sm:px-10"
+              >
                 <span className="text-[11px] font-black uppercase tracking-[0.35em] text-white/90">Nueva sucursal</span>
                 <span className="hidden h-4 w-px bg-white/30 sm:block" />
                 <span className="font-display text-2xl font-black uppercase leading-none tracking-tight text-white sm:text-3xl">
                   LAD<span className="align-super text-xs sm:text-sm">®</span> Metepec
                 </span>
-              </div>
+              </a>
             </motion.div>
 
             {/* Badge */}
@@ -252,6 +258,26 @@ export default function HomePage() {
           ))}
         </div>
       </div>
+
+      {/* Pago en línea */}
+      <section className="bg-lad-red">
+        <div className="container-lad flex flex-col items-center gap-4 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
+          <div className="flex items-center gap-4">
+            <IconChip color="#ffffff" size="h-6 w-6"><IconCreditCard /></IconChip>
+            <p className="font-display text-lg font-bold text-white sm:text-xl">
+              Paga en línea y obtén un descuento especial.
+            </p>
+          </div>
+          <a
+            href={buildWhatsAppLink("Hola, quiero pagar en línea mi estudio y aprovechar el descuento especial. ¿Me pueden ayudar?")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-white shrink-0"
+          >
+            Quiero pagar en línea
+          </a>
+        </div>
+      </section>
 
       {/* Servicios */}
       <section className="section-padding bg-white">

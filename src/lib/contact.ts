@@ -13,23 +13,40 @@ export const LAD_WHATSAPP_MESSAGE = "Hola, necesito atención de LAD. ¿Me puede
 export const LAD_WHATSAPP_LINK = buildWhatsAppLink(LAD_WHATSAPP_MESSAGE);
 
 export const LAD_ADDRESS_DISPLAY =
-  "Calle Genaro Díaz Mañón No. 129, Colonia La Trinidad, C.P. 52436, Metepec, Méx.";
-export const LAD_MAPS_LINK = "https://maps.app.goo.gl/3LitjXcwihswi6HQ9";
+  "Av. Morelos No. 301-A, Colonia Centro, C.P. 52400, Tenancingo, Estado de México.";
+export const LAD_MAPS_LINK = `https://www.google.com/maps?q=${encodeURIComponent(LAD_ADDRESS_DISPLAY)}`;
+
+export const LAD_METEPEC_MAPS_LINK = "https://maps.app.goo.gl/r1PAVeH5PM2bXLhA8";
 
 export interface LadSucursal {
   slug: string;
   nombre: string;
   direccion: string;
   horario: string[];
-  telefonoDisplay: string;
-  telefonoTelLink: string;
+  telefonoDisplay?: string;
+  telefonoTelLink?: string;
+  mapsLink?: string;
+  esMatriz?: boolean;
 }
 
 export const LAD_SUCURSALES: LadSucursal[] = [
   {
-    slug: "metepec",
-    nombre: "LAD Metepec (La Trinidad)",
+    slug: "tenancingo",
+    nombre: "LAD Tenancingo (Matriz)",
     direccion: LAD_ADDRESS_DISPLAY,
+    horario: [
+      "Lun a vie: 7:00 am a 8:00 pm",
+      "Sáb: 7:00 am a 5:00 pm",
+      "Dom: 7:00 am a 4:00 pm",
+    ],
+    mapsLink: LAD_MAPS_LINK,
+    esMatriz: true,
+  },
+  {
+    slug: "metepec",
+    nombre: "LAD Metepec",
+    direccion:
+      "Calle Benito Juárez García No. 514 Norte, Colonia San Mateo, C.P. 52140, Metepec, Estado de México (Entre Mariano Matamoros y Josefa Ortiz de Domínguez).",
     horario: [
       "Lun a vie: 7:00 am a 8:00 pm",
       "Sáb: 7:00 am a 5:00 pm",
@@ -37,6 +54,7 @@ export const LAD_SUCURSALES: LadSucursal[] = [
     ],
     telefonoDisplay: LAD_PHONE_DISPLAY,
     telefonoTelLink: LAD_TEL_LINK,
+    mapsLink: LAD_METEPEC_MAPS_LINK,
   },
   {
     slug: "chalma",

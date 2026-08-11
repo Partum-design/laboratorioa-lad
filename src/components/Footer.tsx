@@ -106,22 +106,29 @@ export default function Footer() {
 
         <div className="mt-12 border-t border-gray-800 pt-8">
           <h4 className="mb-6 font-display text-sm font-bold uppercase tracking-widest text-gray-400">Nuestras sucursales</h4>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {LAD_SUCURSALES.map((sucursal) => (
               <div key={sucursal.slug} className="border border-gray-800 p-4">
                 <p className="flex items-start gap-2 text-sm font-bold text-white">
                   <IconMapPin className="mt-0.5 h-4 w-4 flex-none text-lad-red" />
                   {sucursal.nombre}
                 </p>
+                {sucursal.esMatriz && (
+                  <span className="mt-2 inline-block bg-lad-red px-2 py-0.5 text-[9px] font-black uppercase tracking-widest text-white">
+                    Matriz
+                  </span>
+                )}
                 <p className="mt-2 text-xs leading-relaxed text-gray-400">{sucursal.direccion}</p>
                 <p className="mt-2 text-xs text-gray-500">
                   {sucursal.horario.map((linea) => (
                     <span key={linea} className="block">{linea}</span>
                   ))}
                 </p>
-                <a href={sucursal.telefonoTelLink} className="mt-2 inline-block text-xs font-semibold text-lad-red transition hover:text-white">
-                  {sucursal.telefonoDisplay}
-                </a>
+                {sucursal.telefonoDisplay && sucursal.telefonoTelLink && (
+                  <a href={sucursal.telefonoTelLink} className="mt-2 inline-block text-xs font-semibold text-lad-red transition hover:text-white">
+                    {sucursal.telefonoDisplay}
+                  </a>
+                )}
               </div>
             ))}
           </div>

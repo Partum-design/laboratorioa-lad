@@ -262,7 +262,7 @@ function ContactoBody() {
             <h2 className="heading-lg">Nuestras <span className="text-lad-red">sucursales</span></h2>
           </div>
         </ScrollReveal>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {LAD_SUCURSALES.map((sucursal, index) => (
             <ScrollReveal key={sucursal.slug} delay={index * 0.1}>
               <div className="h-full border border-gray-200 bg-white p-6">
@@ -270,17 +270,24 @@ function ContactoBody() {
                   <IconChip color={iconColorAt(index)}><IconMapPin /></IconChip>
                   <h3 className="font-display text-lg font-bold text-lad-black">{sucursal.nombre}</h3>
                 </div>
+                {sucursal.esMatriz && (
+                  <span className="mb-3 inline-block bg-lad-red px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-white">
+                    Matriz
+                  </span>
+                )}
                 <p className="text-sm text-gray-600">{sucursal.direccion}</p>
                 <div className="mt-4 space-y-1 text-sm">
                   {sucursal.horario.map((linea) => (
                     <p key={linea} className="text-gray-600">{linea}</p>
                   ))}
                 </div>
-                <a href={sucursal.telefonoTelLink} className="mt-4 block text-sm font-semibold text-lad-red transition hover:text-lad-black">
-                  {sucursal.telefonoDisplay}
-                </a>
+                {sucursal.telefonoDisplay && sucursal.telefonoTelLink && (
+                  <a href={sucursal.telefonoTelLink} className="mt-4 block text-sm font-semibold text-lad-red transition hover:text-lad-black">
+                    {sucursal.telefonoDisplay}
+                  </a>
+                )}
                 <a
-                  href={`https://www.google.com/maps?q=${encodeURIComponent(sucursal.direccion)}`}
+                  href={sucursal.mapsLink ?? `https://www.google.com/maps?q=${encodeURIComponent(sucursal.direccion)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-4 inline-block text-sm font-semibold text-lad-black underline decoration-lad-red decoration-2 underline-offset-4 transition hover:text-lad-red"
