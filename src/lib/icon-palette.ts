@@ -1,10 +1,10 @@
 // Una sola voz visual: todos los iconos usan el rojo institucional de LAD.
 export const ICON_COLORS = {
-  red: "#E44B14",
+  red: "#E30613",
   amber: "#A63336",
-  teal: "#E44B14",
+  teal: "#E30613",
   violet: "#A63336",
-  green: "#E44B14",
+  green: "#E30613",
   sky: "#A63336",
 } as const;
 

@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         lad: {
-          red: "#E44B14",
+          red: "#E30613",
           "red-dark": "#A63336",
           "red-light": "#F56A6E",
           black: "#201E1E",
