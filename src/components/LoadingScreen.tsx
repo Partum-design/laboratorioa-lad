@@ -55,7 +55,7 @@ export default function LoadingScreen() {
             className="pointer-events-none absolute inset-x-0 h-px"
             style={{
               background:
-                "linear-gradient(90deg, transparent 0%, #A63336 40%, #ED3237 50%, #A63336 60%, transparent 100%)",
+                "linear-gradient(90deg, transparent 0%, #A63336 40%, #E44B14 50%, #A63336 60%, transparent 100%)",
               opacity: 0.5,
             }}
             initial={{ top: "-1%" }}
@@ -69,7 +69,7 @@ export default function LoadingScreen() {
             style={{
               width: 500,
               height: 500,
-              background: "radial-gradient(circle, rgba(227,6,19,0.12) 0%, transparent 68%)",
+              background: "radial-gradient(circle, rgba(228,75,20,0.12) 0%, transparent 68%)",
             }}
             initial={{ scale: 0.4, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -95,7 +95,7 @@ export default function LoadingScreen() {
                 cy="150"
                 r="138"
                 fill="none"
-                stroke="rgba(227,6,19,0.18)"
+                stroke="rgba(228,75,20,0.18)"
                 strokeWidth="1"
                 strokeDasharray="6 18"
                 strokeLinecap="round"
@@ -122,7 +122,7 @@ export default function LoadingScreen() {
                 cy="110"
                 r="100"
                 fill="none"
-                stroke="rgba(227,6,19,0.30)"
+                stroke="rgba(228,75,20,0.30)"
                 strokeWidth="1.5"
                 strokeDasharray="2.5 20"
                 strokeLinecap="round"
@@ -151,7 +151,7 @@ export default function LoadingScreen() {
               width={130}
               height={130}
               className="object-contain"
-              style={{ filter: "drop-shadow(0 0 28px rgba(227,6,19,0.45))" }}
+              style={{ filter: "drop-shadow(0 0 28px rgba(228,75,20,0.45))" }}
               priority
             />
           </motion.div>
@@ -159,7 +159,7 @@ export default function LoadingScreen() {
           {/* Subtitle */}
           <motion.p
             className="relative z-10 mt-8 max-w-xs px-6 text-center font-display text-lg font-black uppercase leading-snug tracking-[0.12em] text-white sm:max-w-sm sm:text-2xl sm:tracking-[0.15em]"
-            style={{ textShadow: "0 0 24px rgba(227,6,19,0.55)" }}
+            style={{ textShadow: "0 0 24px rgba(228,75,20,0.55)" }}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.65, ease: "easeOut" }}
@@ -183,7 +183,7 @@ export default function LoadingScreen() {
                 className="absolute inset-y-0 left-0 transition-none"
                 style={{
                   width: `${pct}%`,
-                  background: "linear-gradient(90deg, #A63336, #ED3237, #F56A6E)",
+                  background: "linear-gradient(90deg, #A63336, #E44B14, #F56A6E)",
                 }}
               />
             </div>
@@ -250,7 +250,7 @@ function CornerBracket({
           transform: `rotate(${isTop && isLeft ? 0 : isTop && !isLeft ? 90 : !isTop && isLeft ? 270 : 180}deg)`,
         }}
       >
-        <path d="M0 16 L0 0 L16 0" stroke="rgba(227,6,19,0.45)" strokeWidth="1.5" />
+        <path d="M0 16 L0 0 L16 0" stroke="rgba(228,75,20,0.45)" strokeWidth="1.5" />
       </svg>
     </motion.div>
   );

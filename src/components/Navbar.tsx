@@ -95,13 +95,9 @@ export default function Navbar() {
         <div className="hidden items-center md:flex">
           <Link
             href="/acceder"
-            className={`flex items-center gap-2.5 border-2 px-6 py-3 text-sm font-bold tracking-wider transition ${
-              pathname === "/acceder"
-                ? "border-lad-red bg-lad-red text-white"
-                : scrolled
-                  ? "border-lad-black/20 text-lad-black hover:border-lad-red hover:text-lad-red"
-                  : "border-white/40 text-white hover:border-lad-red hover:text-lad-red"
-            }`}
+            className={`flex items-center gap-2.5 border-2 border-lad-red bg-lad-red px-6 py-3 text-sm font-bold tracking-wider text-white shadow-md shadow-lad-red/30 transition hover:border-lad-red-dark hover:bg-lad-red-dark hover:shadow-lg hover:shadow-lad-red/40 ${
+              pathname === "/acceder" ? "ring-2 ring-white/60 ring-offset-2" : ""
+            } ${scrolled ? "ring-offset-white" : "ring-offset-transparent"}`}
           >
             <IconChip color="currentColor" size="h-5 w-5"><IconSearch /></IconChip>
             Mis resultados
@@ -140,9 +136,7 @@ export default function Navbar() {
               ))}
               <Link
                 href="/acceder"
-                className={`mt-2 flex items-center justify-center gap-2.5 border-2 py-4 text-base font-bold tracking-wider ${
-                  pathname === "/acceder" ? "border-lad-red bg-lad-red text-white" : "border-lad-black/20 text-lad-black"
-                }`}
+                className="mt-2 flex items-center justify-center gap-2.5 border-2 border-lad-red bg-lad-red py-4 text-base font-bold tracking-wider text-white shadow-md shadow-lad-red/30"
               >
                 <IconChip color="currentColor" size="h-5 w-5"><IconSearch /></IconChip>
                 Consultar mis resultados

@@ -147,12 +147,12 @@ export default function HomePage() {
                 href={LAD_METEPEC_MAPS_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-col items-center gap-1 rounded-full border-2 border-lad-red bg-lad-red px-9 py-3.5 shadow-[0_0_50px_rgba(191,29,32,0.6)] transition hover:bg-lad-red-dark sm:flex-row sm:gap-3 sm:px-10"
+                className="flex max-w-full flex-col items-center gap-1 rounded-full border-2 border-lad-red bg-lad-red px-9 py-3.5 shadow-[0_0_50px_rgba(228,75,20,0.6)] transition hover:bg-lad-red-dark sm:flex-row sm:gap-2 sm:px-5 sm:py-2.5 md:gap-2.5 md:px-7 md:py-3 lg:gap-3 lg:px-10 lg:py-3.5"
               >
-                <span className="text-[11px] font-black uppercase tracking-[0.35em] text-white/90">Nueva sucursal</span>
+                <span className="whitespace-nowrap text-[11px] font-black uppercase tracking-[0.35em] text-white/90 sm:text-[9px] sm:tracking-[0.22em] md:text-[10px] md:tracking-[0.28em] lg:text-[11px] lg:tracking-[0.35em]">Nueva sucursal</span>
                 <span className="hidden h-4 w-px bg-white/30 sm:block" />
-                <span className="font-display text-2xl font-black uppercase leading-none tracking-tight text-white sm:text-3xl">
-                  LAD<span className="align-super text-xs sm:text-sm">®</span> Metepec
+                <span className="whitespace-nowrap font-display text-2xl font-black uppercase leading-none tracking-tight text-white sm:text-lg md:text-xl lg:text-3xl">
+                  LAD<span className="align-super text-[9px] sm:text-[10px] md:text-xs lg:text-sm">®</span> Metepec
                 </span>
               </a>
             </motion.div>

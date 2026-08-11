@@ -7,7 +7,7 @@
 :root {
   --font-body: "Gilroy", "Manrope", sans-serif;
   --font-display: "Bell MT", "Cormorant Garamond", Georgia, serif;
-  --lad-red: #ED3237;
+  --lad-red: #E44B14;
   --lad-red-dark: #A63336;
   --lad-black: #201E1E;
   --lad-white: #FEFEFE;
@@ -110,7 +110,7 @@ input, select, textarea {
 }
 
 input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible {
-  outline: 3px solid rgba(237, 50, 55, 0.35);
+  outline: 3px solid rgba(228, 75, 20, 0.35);
   outline-offset: 3px;
 }
 
