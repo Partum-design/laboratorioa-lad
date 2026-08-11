@@ -158,7 +158,8 @@ export default function LoadingScreen() {
 
           {/* Subtitle */}
           <motion.p
-            className="relative z-10 mt-7 font-display text-[9px] font-bold uppercase tracking-[0.55em] text-white/35"
+            className="relative z-10 mt-8 max-w-xs px-6 text-center font-display text-lg font-black uppercase leading-snug tracking-[0.12em] text-white sm:max-w-sm sm:text-2xl sm:tracking-[0.15em]"
+            style={{ textShadow: "0 0 24px rgba(227,6,19,0.55)" }}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.65, ease: "easeOut" }}

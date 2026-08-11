@@ -95,7 +95,7 @@ export default function Navbar() {
         <div className="hidden items-center md:flex">
           <Link
             href="/acceder"
-            className={`flex items-center gap-2 border px-4 py-2 text-xs font-bold tracking-wider transition ${
+            className={`flex items-center gap-2.5 border-2 px-6 py-3 text-sm font-bold tracking-wider transition ${
               pathname === "/acceder"
                 ? "border-lad-red bg-lad-red text-white"
                 : scrolled
@@ -103,7 +103,7 @@ export default function Navbar() {
                   : "border-white/40 text-white hover:border-lad-red hover:text-lad-red"
             }`}
           >
-            <IconChip color="currentColor" size="h-4 w-4"><IconSearch /></IconChip>
+            <IconChip color="currentColor" size="h-5 w-5"><IconSearch /></IconChip>
             Mis resultados
           </Link>
         </div>
@@ -140,11 +140,11 @@ export default function Navbar() {
               ))}
               <Link
                 href="/acceder"
-                className={`mt-2 flex items-center justify-center gap-2 border py-3 text-sm font-bold tracking-wider ${
+                className={`mt-2 flex items-center justify-center gap-2.5 border-2 py-4 text-base font-bold tracking-wider ${
                   pathname === "/acceder" ? "border-lad-red bg-lad-red text-white" : "border-lad-black/20 text-lad-black"
                 }`}
               >
-                <IconChip color="currentColor" size="h-4 w-4"><IconSearch /></IconChip>
+                <IconChip color="currentColor" size="h-5 w-5"><IconSearch /></IconChip>
                 Consultar mis resultados
               </Link>
             </div>
