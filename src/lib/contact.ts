@@ -13,10 +13,16 @@ export const LAD_WHATSAPP_MESSAGE = "Hola, necesito atención de LAD. ¿Me puede
 export const LAD_WHATSAPP_LINK = buildWhatsAppLink(LAD_WHATSAPP_MESSAGE);
 
 export const LAD_ADDRESS_DISPLAY =
-  "Av. Morelos No. 301-A, Colonia Centro, C.P. 52400, Tenancingo, Estado de México.";
-export const LAD_MAPS_LINK = `https://www.google.com/maps?q=${encodeURIComponent(LAD_ADDRESS_DISPLAY)}`;
+  "Dr. Genaro Díaz Manon 129, La Trinidad, 52400 El Salitre, Estado de México.";
+export const LAD_MAPS_LINK = "https://maps.app.goo.gl/QwrJPLhwEguEfzeY8";
 
-export const LAD_METEPEC_MAPS_LINK = "https://maps.app.goo.gl/r1PAVeH5PM2bXLhA8";
+export const LAD_METEPEC_ADDRESS =
+  "Calle Benito Juárez García No. 514 Norte, Colonia San Mateo, C.P. 52140, Metepec, Estado de México.";
+export const LAD_METEPEC_MAPS_LINK = `https://www.google.com/maps?q=${encodeURIComponent(LAD_METEPEC_ADDRESS)}`;
+
+export const LAD_TENANCINGO_CENTRO_ADDRESS =
+  "Av. Morelos No. 301-A, Colonia Centro, C.P. 52400, Tenancingo, Estado de México.";
+export const LAD_TENANCINGO_CENTRO_MAPS_LINK = `https://www.google.com/maps?q=${encodeURIComponent(LAD_TENANCINGO_CENTRO_ADDRESS)}`;
 
 export interface LadSucursal {
   slug: string;
@@ -31,16 +37,29 @@ export interface LadSucursal {
 
 export const LAD_SUCURSALES: LadSucursal[] = [
   {
-    slug: "tenancingo",
-    nombre: "LAD Tenancingo (Matriz)",
+    slug: "matriz",
+    nombre: "LAD El Salitre (Matriz)",
     direccion: LAD_ADDRESS_DISPLAY,
+    horario: [
+      "Lun a vie: 7:00 am a 8:00 pm",
+      "Sáb: 7:30 am a 8:00 pm",
+      "Dom: 7:30 am a 4:00 pm",
+    ],
+    telefonoDisplay: LAD_PHONE_DISPLAY,
+    telefonoTelLink: LAD_TEL_LINK,
+    mapsLink: LAD_MAPS_LINK,
+    esMatriz: true,
+  },
+  {
+    slug: "tenancingo-centro",
+    nombre: "LAD Tenancingo — Centro Médico Av. Morelos",
+    direccion: LAD_TENANCINGO_CENTRO_ADDRESS,
     horario: [
       "Lun a vie: 7:00 am a 8:00 pm",
       "Sáb: 7:00 am a 5:00 pm",
       "Dom: 7:00 am a 4:00 pm",
     ],
-    mapsLink: LAD_MAPS_LINK,
-    esMatriz: true,
+    mapsLink: LAD_TENANCINGO_CENTRO_MAPS_LINK,
   },
   {
     slug: "metepec",
@@ -63,6 +82,7 @@ export const LAD_SUCURSALES: LadSucursal[] = [
     horario: ["Lun a vie: 7:00 am a 3:00 pm"],
     telefonoDisplay: "714 191 02 77",
     telefonoTelLink: "tel:+527141910277",
+    mapsLink: `https://www.google.com/maps?q=${encodeURIComponent("Calle Miguel Hidalgo #657, Chalma, Estado de México.")}`,
   },
   {
     slug: "malinalco",
@@ -71,5 +91,6 @@ export const LAD_SUCURSALES: LadSucursal[] = [
     horario: ["Lun a sáb: 8:00 am a 3:00 pm"],
     telefonoDisplay: "714 147 19 14",
     telefonoTelLink: "tel:+527141471914",
+    mapsLink: `https://www.google.com/maps?q=${encodeURIComponent("Calle Hidalgo #201, Barrio San Juan, Malinalco, Estado de México.")}`,
   },
 ];

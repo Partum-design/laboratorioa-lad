@@ -21,8 +21,8 @@ import { Suspense, useEffect, useRef, useState } from "react";
 
 const horarios = [
   { dia: "Lunes a viernes", hora: "7:00 am a 8:00 pm" },
-  { dia: "Sábado", hora: "7:00 am a 5:00 pm" },
-  { dia: "Domingo", hora: "7:00 am a 4:00 pm" },
+  { dia: "Sábado", hora: "7:30 am a 8:00 pm" },
+  { dia: "Domingo", hora: "7:30 am a 4:00 pm" },
 ];
 
 export default function ContactoPage() {
