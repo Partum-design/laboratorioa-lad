@@ -30,6 +30,11 @@ function whatsappLinkFor(nombre: string, precio: string) {
   );
 }
 
+function pagoLinkFor(nombre: string, precio: string) {
+  const monto = precio.replace(/[^0-9.]/g, "");
+  return `/pago-en-linea?estudio=${encodeURIComponent(nombre)}&precio=${encodeURIComponent(monto)}`;
+}
+
 export default function EstudiosPage() {
   const [activeCat, setActiveCat] = useState("Todos");
   const [query, setQuery] = useState("");
@@ -83,14 +88,9 @@ export default function EstudiosPage() {
               Paga en línea y obtén un descuento especial.
             </p>
           </div>
-          <a
-            href={buildWhatsAppLink("Hola, quiero pagar en línea mi estudio y aprovechar el descuento especial. ¿Me pueden ayudar?")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-white shrink-0"
-          >
+          <Link href="/pago-en-linea" className="btn-white shrink-0">
             Quiero pagar en línea
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -148,11 +148,18 @@ export default function EstudiosPage() {
                     <span className="flex items-center gap-1"><IconChip color={ICON_COLORS.amber} size="h-4 w-4"><IconClipboard /></IconChip> {INDICACION_LABEL[estudio.indicacion] ?? estudio.indicacion}</span>
                     <span className="flex items-center gap-1 font-bold text-lad-red"><IconChip color={ICON_COLORS.red} size="h-4 w-4"><IconTag /></IconChip> {estudio.precio}</span>
                   </div>
+                  <Link
+                    href={pagoLinkFor(estudio.nombre, estudio.precio)}
+                    className="mt-4 flex items-center justify-center gap-2 bg-lad-red py-2.5 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-lad-red-dark"
+                  >
+                    <IconCreditCard className="h-4 w-4" />
+                    Pagar este estudio
+                  </Link>
                   <a
                     href={whatsappLinkFor(estudio.nombre, estudio.precio)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 flex items-center justify-center gap-2 border border-[#25D366] py-2.5 text-xs font-bold uppercase tracking-wider text-[#128C4A] transition hover:bg-[#25D366] hover:text-white"
+                    className="mt-2 flex items-center justify-center gap-2 border border-[#25D366] py-2.5 text-xs font-bold uppercase tracking-wider text-[#128C4A] transition hover:bg-[#25D366] hover:text-white"
                   >
                     <IconWhatsApp className="h-4 w-4" />
                     Preguntar por WhatsApp

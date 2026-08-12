@@ -164,6 +164,26 @@ export function IconPaperclip(props: IconProps) {
   return <IconBase {...props}><path d="m9.5 12.5 5.7-5.7a3 3 0 0 1 4.3 4.2l-7.8 7.8a5 5 0 0 1-7.1-7.1l7.6-7.6" /><path d="m7.4 14.8 7.4-7.4" /></IconBase>;
 }
 
+export function IconChatBot(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <rect x="4" y="5" width="16" height="12" rx="3.5" />
+      <path d="M9 21v-4M15 21v-4" />
+      <circle cx="9" cy="11" r="1" fill="currentColor" stroke="none" />
+      <circle cx="15" cy="11" r="1" fill="currentColor" stroke="none" />
+    </IconBase>
+  );
+}
+
+export function IconSparkles(props: IconProps) {
+  return (
+    <IconBase {...props}>
+      <path d="M12 3v3.2M12 17.8V21M4.2 12H7M17 12h2.8M6.3 6.3l2 2M15.7 15.7l2 2M17.7 6.3l-2 2M8.3 15.7l-2 2" />
+      <circle cx="12" cy="12" r="2.6" />
+    </IconBase>
+  );
+}
+
 export function IconCatalog(props: IconProps) {
   return <IconBase {...props}><rect x="4" y="3" width="16" height="18" rx="2.5" /><path d="M8 8h8M8 12h8M8 16h5" /></IconBase>;
 }

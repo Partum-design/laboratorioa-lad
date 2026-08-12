@@ -3,6 +3,7 @@
 import { AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import ChatbotWidget from "./ChatbotWidget";
 import FloatingButtons from "./FloatingButtons";
 import Footer from "./Footer";
 import LoadingScreen from "./LoadingScreen";
@@ -19,6 +20,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
     <>
       <LoadingScreen />
       <FloatingButtons />
+      <ChatbotWidget />
       <Navbar />
       <AnimatePresence mode="wait" initial={false}>
         <main key={pathname} className="min-h-screen">

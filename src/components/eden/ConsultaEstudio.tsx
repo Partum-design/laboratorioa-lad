@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 import { IconChip } from "@/components/IconBadge";
 import {
@@ -213,6 +213,7 @@ interface ConsultaEstudioProps {
 export default function ConsultaEstudio({ requiereFechaNacimiento }: ConsultaEstudioProps) {
   const idFolio = useId();
   const idFecha = useId();
+  const inputFolioRef = useRef<HTMLInputElement>(null);
 
   const [folio, setFolio] = useState("");
   const [fechaNacimiento, setFechaNacimiento] = useState("");
@@ -221,6 +222,14 @@ export default function ConsultaEstudio({ requiereFechaNacimiento }: ConsultaEst
   const [error, setError] = useState<string | null>(null);
   // Se conserva la fecha con la que se validó, para firmar las descargas.
   const [fechaValidada, setFechaValidada] = useState("");
+
+  // Quien llega desde "Mis resultados" (enlace con #consulta) quiere teclear el
+  // folio de inmediato, sin un clic extra para enfocar el campo.
+  useEffect(() => {
+    if (window.location.hash === "#consulta") {
+      inputFolioRef.current?.focus();
+    }
+  }, []);
 
   async function consultar(evento: React.FormEvent) {
     evento.preventDefault();
@@ -268,6 +277,7 @@ export default function ConsultaEstudio({ requiereFechaNacimiento }: ConsultaEst
             </label>
             <input
               id={idFolio}
+              ref={inputFolioRef}
               name="folio"
               value={folio}
               onChange={(evento) => setFolio(evento.target.value)}

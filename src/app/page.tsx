@@ -21,7 +21,7 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import VideoAuto from "@/components/VideoAuto";
-import { LAD_METEPEC_MAPS_LINK, LAD_WHATSAPP_LINK, buildWhatsAppLink } from "@/lib/contact";
+import { LAD_METEPEC_MAPS_LINK, LAD_WHATSAPP_LINK } from "@/lib/contact";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -32,7 +32,7 @@ if (typeof window !== "undefined") {
 
 const stats = [
   { value: "40+", label: "Años de experiencia", icon: <IconClock /> },
-  { value: "200+", label: "Estudios disponibles", icon: <IconTestTubes /> },
+  { value: "500+", label: "Estudios disponibles", icon: <IconTestTubes /> },
   { value: "ISO", label: "Sistema de calidad", icon: <IconShieldCheck /> },
   { value: "Digital", label: "Resultados disponibles", icon: <IconResults /> },
 ];
@@ -268,14 +268,9 @@ export default function HomePage() {
               Paga en línea y obtén un descuento especial.
             </p>
           </div>
-          <a
-            href={buildWhatsAppLink("Hola, quiero pagar en línea mi estudio y aprovechar el descuento especial. ¿Me pueden ayudar?")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-white shrink-0"
-          >
+          <Link href="/pago-en-linea" className="btn-white shrink-0">
             Quiero pagar en línea
-          </a>
+          </Link>
         </div>
       </section>
 

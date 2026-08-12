@@ -57,14 +57,14 @@ export default function Navbar() {
       }`}
     >
       <nav ref={navRef} className="container-lad flex h-20 items-center justify-between">
-        <div ref={logoRef}>
+        <div ref={logoRef} className="-ml-2 sm:-ml-3 lg:-ml-4">
           <Link href="/" className="group flex items-center gap-2">
             <Image
               src="/logo/logo-lad.png"
               alt="LAD Logo"
-              width={52}
-              height={52}
-              className="brand-mark object-contain transition group-hover:scale-95"
+              width={80}
+              height={80}
+              className="brand-mark h-16 w-16 object-contain transition group-hover:scale-95 sm:h-[4.5rem] sm:w-[4.5rem]"
             />
             <div className={`transition-colors ${textColor}`}>
               <p className="font-display text-sm font-black uppercase leading-none tracking-wider">Laboratorio de</p>
@@ -94,7 +94,7 @@ export default function Navbar() {
 
         <div className="hidden items-center md:flex">
           <Link
-            href="/acceder"
+            href="/acceder#consulta"
             className={`flex items-center gap-2.5 border-2 border-lad-red bg-lad-red px-6 py-3 text-sm font-bold tracking-wider text-white shadow-md shadow-lad-red/30 transition hover:border-lad-red-dark hover:bg-lad-red-dark hover:shadow-lg hover:shadow-lad-red/40 ${
               pathname === "/acceder" ? "ring-2 ring-white/60 ring-offset-2" : ""
             } ${scrolled ? "ring-offset-white" : "ring-offset-transparent"}`}
@@ -135,7 +135,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <Link
-                href="/acceder"
+                href="/acceder#consulta"
                 className="mt-2 flex items-center justify-center gap-2.5 border-2 border-lad-red bg-lad-red py-4 text-base font-bold tracking-wider text-white shadow-md shadow-lad-red/30"
               >
                 <IconChip color="currentColor" size="h-5 w-5"><IconSearch /></IconChip>
