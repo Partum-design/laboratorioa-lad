@@ -8,6 +8,7 @@ import FloatingButtons from "./FloatingButtons";
 import Footer from "./Footer";
 import LoadingScreen from "./LoadingScreen";
 import Navbar from "./Navbar";
+import PayOnlineBanner from "./PayOnlineBanner";
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -21,6 +22,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
       <LoadingScreen />
       <FloatingButtons />
       <ChatbotWidget />
+      <PayOnlineBanner />
       <Navbar />
       <AnimatePresence mode="wait" initial={false}>
         <main key={pathname} className="min-h-screen">
