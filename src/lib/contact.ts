@@ -18,7 +18,7 @@ export const LAD_MAPS_LINK = "https://maps.app.goo.gl/QwrJPLhwEguEfzeY8";
 
 export const LAD_METEPEC_ADDRESS =
   "Calle Benito Juárez García No. 514 Norte, Colonia San Mateo, C.P. 52140, Metepec, Estado de México.";
-export const LAD_METEPEC_MAPS_LINK = `https://www.google.com/maps?q=${encodeURIComponent(LAD_METEPEC_ADDRESS)}`;
+export const LAD_METEPEC_MAPS_LINK = "https://maps.app.goo.gl/tpyLhPCzGz4DtDtD6?g_st=iw";
 
 export const LAD_TENANCINGO_CENTRO_ADDRESS =
   "Av. Morelos No. 301-A, Colonia Centro, C.P. 52400, Tenancingo, Estado de México.";

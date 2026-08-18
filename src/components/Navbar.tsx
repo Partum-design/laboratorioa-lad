@@ -56,15 +56,15 @@ export default function Navbar() {
         scrolled || menuOpen ? "border-b border-gray-100 bg-white/95 shadow-sm backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <nav ref={navRef} className="container-lad flex h-20 items-center justify-between">
-        <div ref={logoRef} className="-ml-2 sm:-ml-3 lg:-ml-4">
+      <nav ref={navRef} className="container-lad flex h-20 items-center justify-between sm:h-24 lg:h-28">
+        <div ref={logoRef} className="-ml-3 sm:-ml-5 lg:-ml-8">
           <Link href="/" className="group flex items-center gap-2">
             <Image
               src="/logo/logo-lad.png"
               alt="LAD Logo"
-              width={80}
-              height={80}
-              className="brand-mark h-16 w-16 object-contain transition group-hover:scale-95 sm:h-[4.5rem] sm:w-[4.5rem]"
+              width={112}
+              height={112}
+              className="brand-mark h-20 w-20 object-contain transition group-hover:scale-95 sm:h-24 sm:w-24 lg:h-28 lg:w-28"
             />
             <div className={`transition-colors ${textColor}`}>
               <p className="font-display text-sm font-black uppercase leading-none tracking-wider">Laboratorio de</p>
