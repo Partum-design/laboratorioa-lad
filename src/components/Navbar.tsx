@@ -66,7 +66,7 @@ export default function Navbar() {
               height={112}
               className="brand-mark h-20 w-20 object-contain transition group-hover:scale-95 sm:h-24 sm:w-24 lg:h-28 lg:w-28"
             />
-            <div className={`transition-colors ${textColor}`}>
+            <div className={`text-center transition-colors ${textColor}`}>
               <p className="font-display text-sm font-black uppercase leading-none tracking-wider">Laboratorio de</p>
               <p className="mt-0.5 text-xs font-light leading-none opacity-70">Apoyo y Diagnóstico</p>
             </div>
