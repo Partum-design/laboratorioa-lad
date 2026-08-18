@@ -1,7 +1,7 @@
 "use client";
 
 import { LAD_WHATSAPP_LINK, LAD_WHATSAPP_MESSAGE } from "@/lib/contact";
-import { IconCatalog, IconWhatsApp } from "@/components/LadIcons";
+import { IconCatalog, IconCreditCard, IconWhatsApp } from "@/components/LadIcons";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -213,6 +213,24 @@ export default function FloatingButtons() {
         </motion.span>
         <span className="max-w-0 overflow-hidden whitespace-nowrap pl-0 text-sm font-bold text-white transition-all duration-300 group-hover:max-w-xs group-hover:pl-3">
           Ver estudios
+        </span>
+      </Link>
+
+      {/* Botón Quiero pagar en línea — izquierda, debajo de Ver estudios */}
+      <Link
+        href="/estudios"
+        aria-label="Quiero pagar en línea"
+        className="group fixed bottom-24 left-6 z-[100] flex items-center rounded-full bg-white px-4 py-3 shadow-lg ring-1 ring-black/10 transition-all hover:scale-105 hover:shadow-xl"
+      >
+        <motion.span
+          animate={{ y: [0, -3, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+          className="text-lad-red"
+        >
+          <IconCreditCard />
+        </motion.span>
+        <span className="max-w-0 overflow-hidden whitespace-nowrap pl-0 text-sm font-bold text-lad-black transition-all duration-300 group-hover:max-w-xs group-hover:pl-3">
+          Quiero pagar en línea
         </span>
       </Link>
     </>
