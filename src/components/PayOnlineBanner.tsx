@@ -31,7 +31,7 @@ export default function PayOnlineBanner() {
   if (!isVisible) return null;
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-28 z-[90] flex justify-center px-4 sm:px-6">
+    <div className="pointer-events-none fixed inset-x-0 bottom-4 z-[90] flex justify-center px-3 sm:px-6">
       <AnimatePresence mode="wait">
         {isDismissed ? (
           <motion.button
@@ -55,19 +55,20 @@ export default function PayOnlineBanner() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="pointer-events-auto flex w-full max-w-md items-center gap-3 rounded-2xl border-l-4 border-lad-red bg-white px-4 py-3 shadow-[0_18px_40px_-18px_rgba(0,0,0,0.45)] ring-1 ring-black/5 sm:gap-4 sm:px-5"
+            className="pointer-events-auto flex items-center gap-2 rounded-full border-l-4 border-lad-red bg-white py-2 pl-3 pr-2 shadow-[0_18px_40px_-18px_rgba(0,0,0,0.45)] ring-1 ring-black/5 sm:w-full sm:max-w-md sm:gap-4 sm:rounded-2xl sm:py-3 sm:pl-5 sm:pr-3"
           >
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-lad-red/10 text-lad-red">
-              <IconCreditCard className="h-5 w-5" />
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-lad-red/10 text-lad-red sm:h-9 sm:w-9">
+              <IconCreditCard className="h-4 w-4 sm:h-5 sm:w-5" />
             </span>
-            <p className="min-w-0 flex-1 text-xs font-semibold leading-snug text-lad-black sm:text-sm">
+            <p className="hidden min-w-0 flex-1 text-sm font-semibold leading-snug text-lad-black sm:block">
               ¿Quieres pagar en línea?
             </p>
             <Link
               href="/estudios"
-              className="shrink-0 whitespace-nowrap rounded-full bg-lad-red px-3.5 py-2 text-[11px] font-bold uppercase tracking-wide text-white shadow-md shadow-lad-red/30 transition hover:bg-lad-red-dark sm:text-xs"
+              className="shrink-0 whitespace-nowrap rounded-full bg-lad-red px-3 py-1.5 text-[11px] font-bold uppercase tracking-wide text-white shadow-md shadow-lad-red/30 transition hover:bg-lad-red-dark sm:px-3.5 sm:py-2 sm:text-xs"
             >
-              Pagar ahora
+              <span className="sm:hidden">Pagar en línea</span>
+              <span className="hidden sm:inline">Pagar ahora</span>
             </Link>
             <button
               type="button"
