@@ -1,7 +1,7 @@
 "use client";
 
 import { LAD_PHONE_DISPLAY, LAD_TEL_LINK, LAD_WHATSAPP_LINK, LAD_WHATSAPP_MESSAGE } from "@/lib/contact";
-import { IconCatalog, IconPhone, IconWhatsApp } from "@/components/LadIcons";
+import { IconCatalog, IconPhoneModern, IconWhatsApp } from "@/components/LadIcons";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -206,10 +206,10 @@ export default function FloatingButtons() {
       <a
         href={LAD_TEL_LINK}
         aria-label={`Llamar ahora al ${LAD_PHONE_DISPLAY}`}
-        className="group fixed bottom-60 left-0 z-[100] flex items-center gap-2.5 rounded-r-full border-y-2 border-r-2 border-lad-black bg-white py-2 pl-1 pr-4 shadow-lg transition-all duration-300 hover:pr-5 hover:shadow-xl sm:bottom-64 sm:gap-3 sm:py-2.5"
+        className="group fixed bottom-64 left-0 z-[100] flex items-center gap-2.5 rounded-r-full border-y-2 border-r-2 border-lad-black bg-white py-2 pl-1 pr-4 shadow-lg transition-all duration-300 hover:pr-5 hover:shadow-xl sm:bottom-72 sm:gap-3 sm:py-2.5"
       >
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-lad-black transition-colors group-hover:bg-lad-red sm:h-11 sm:w-11">
-          <IconPhone className="h-5 w-5 text-white sm:h-6 sm:w-6" />
+          <IconPhoneModern className="h-5 w-5 text-white sm:h-6 sm:w-6" />
         </span>
         <span className="whitespace-nowrap text-sm font-bold text-lad-black sm:text-base">{LAD_PHONE_DISPLAY}</span>
       </a>
