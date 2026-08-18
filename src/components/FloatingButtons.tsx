@@ -1,7 +1,7 @@
 "use client";
 
-import { LAD_WHATSAPP_LINK, LAD_WHATSAPP_MESSAGE } from "@/lib/contact";
-import { IconCatalog, IconWhatsApp } from "@/components/LadIcons";
+import { LAD_PHONE_DISPLAY, LAD_TEL_LINK, LAD_WHATSAPP_LINK, LAD_WHATSAPP_MESSAGE } from "@/lib/contact";
+import { IconCatalog, IconPhone, IconWhatsApp } from "@/components/LadIcons";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -198,6 +198,18 @@ export default function FloatingButtons() {
         />
         <IconWhatsApp className="relative z-10 h-8 w-8 text-white transition-transform duration-300 group-hover:scale-110 sm:h-9 sm:w-9" />
       </button>
+
+      {/* Botón Llamar ahora — izquierda, arriba de WhatsApp */}
+      <a
+        href={LAD_TEL_LINK}
+        aria-label={`Llamar ahora al ${LAD_PHONE_DISPLAY}`}
+        className="group fixed bottom-40 left-6 z-[100] flex items-center rounded-full bg-lad-black px-4 py-3 shadow-lg transition-all hover:scale-105 hover:bg-lad-red hover:shadow-xl sm:bottom-48"
+      >
+        <IconPhone className="h-7 w-7 shrink-0 text-white" />
+        <span className="max-w-0 overflow-hidden whitespace-nowrap pl-0 text-sm font-bold text-white transition-all duration-300 group-hover:max-w-xs group-hover:pl-3">
+          Llamar ahora · {LAD_PHONE_DISPLAY}
+        </span>
+      </a>
 
       {/* Botón Ver Estudios — izquierda */}
       <Link
