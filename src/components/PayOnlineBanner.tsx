@@ -55,7 +55,7 @@ export default function PayOnlineBanner() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="pointer-events-auto relative flex w-full max-w-sm flex-col gap-2.5 overflow-hidden rounded-2xl border border-lad-red/10 bg-gradient-to-br from-white to-red-50/60 p-3.5 shadow-[0_18px_40px_-18px_rgba(0,0,0,0.45)] ring-1 ring-black/5 sm:max-w-xl sm:flex-row sm:items-center sm:gap-4 sm:p-4"
+            className="pointer-events-auto relative flex w-full max-w-sm flex-col gap-2.5 overflow-hidden rounded-2xl border border-lad-red/10 bg-gradient-to-br from-white/80 to-red-50/40 p-3.5 shadow-[0_18px_40px_-18px_rgba(0,0,0,0.45)] ring-1 ring-black/5 backdrop-blur-md sm:max-w-xl sm:flex-row sm:items-center sm:gap-4 sm:p-4"
           >
             <span className="absolute -right-6 -top-8 h-24 w-24 rounded-full bg-lad-red/10 blur-2xl" aria-hidden="true" />
 
