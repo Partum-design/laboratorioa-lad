@@ -154,7 +154,7 @@ export default function FloatingButtons() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0, transition: { duration: 0.12 } }}
             transition={{ type: "spring", stiffness: 500, damping: 18, mass: 0.6 }}
-            className="fixed bottom-24 left-[6.5rem] z-[100] hidden w-[220px] origin-left sm:block sm:bottom-28"
+            className="fixed bottom-40 left-48 z-[100] hidden w-[220px] origin-left sm:block sm:bottom-44"
           >
             <button
               type="button"
@@ -181,34 +181,37 @@ export default function FloatingButtons() {
         )}
       </AnimatePresence>
 
-      {/* Botón WhatsApp — marca oficial en círculo, sin texto */}
+      {/* Botón WhatsApp — pastilla que sale del borde izquierdo, con número visible */}
       <button
         type="button"
         onClick={() => (isContactOpen ? setIsContactOpen(false) : openContact())}
         aria-label="Contactar por WhatsApp"
         aria-expanded={isContactOpen}
-        className="group fixed bottom-24 left-6 z-[100] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-[0_10px_28px_-8px_rgba(37,211,102,0.85)] transition-all duration-300 hover:scale-110 hover:bg-[#1DA851] hover:shadow-[0_14px_34px_-8px_rgba(37,211,102,0.95)] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 active:scale-95 sm:bottom-28 sm:h-16 sm:w-16"
+        className="group fixed bottom-40 left-0 z-[100] flex items-center gap-2.5 rounded-r-full border-y-2 border-r-2 border-[#25D366] bg-white py-2 pl-1 pr-4 shadow-[0_10px_28px_-8px_rgba(37,211,102,0.45)] transition-all duration-300 hover:pr-5 hover:shadow-[0_14px_34px_-8px_rgba(37,211,102,0.55)] focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 active:scale-95 sm:bottom-44 sm:gap-3 sm:py-2.5"
       >
-        {/* Halo que late hacia afuera del círculo */}
-        <motion.span
-          aria-hidden="true"
-          animate={isContactOpen ? { opacity: 0, scale: 1 } : { opacity: [0.45, 0], scale: [1, 1.75] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
-          className="pointer-events-none absolute inset-0 rounded-full bg-[#25D366]"
-        />
-        <IconWhatsApp className="relative z-10 h-8 w-8 text-white transition-transform duration-300 group-hover:scale-110 sm:h-9 sm:w-9" />
+        <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#25D366] shadow-sm sm:h-11 sm:w-11">
+          {/* Halo que late hacia afuera del círculo */}
+          <motion.span
+            aria-hidden="true"
+            animate={isContactOpen ? { opacity: 0, scale: 1 } : { opacity: [0.45, 0], scale: [1, 1.7] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: "easeOut" }}
+            className="pointer-events-none absolute inset-0 rounded-full bg-[#25D366]"
+          />
+          <IconWhatsApp className="relative z-10 h-5 w-5 text-white transition-transform duration-300 group-hover:scale-110 sm:h-6 sm:w-6" />
+        </span>
+        <span className="whitespace-nowrap text-sm font-bold text-lad-black sm:text-base">{LAD_PHONE_DISPLAY}</span>
       </button>
 
-      {/* Botón Llamar ahora — izquierda, arriba de WhatsApp */}
+      {/* Botón Llamar ahora — pastilla que sale del borde izquierdo, arriba de WhatsApp */}
       <a
         href={LAD_TEL_LINK}
         aria-label={`Llamar ahora al ${LAD_PHONE_DISPLAY}`}
-        className="group fixed bottom-40 left-6 z-[100] flex items-center rounded-full bg-lad-black px-4 py-3 shadow-lg transition-all hover:scale-105 hover:bg-lad-red hover:shadow-xl sm:bottom-48"
+        className="group fixed bottom-60 left-0 z-[100] flex items-center gap-2.5 rounded-r-full border-y-2 border-r-2 border-lad-black bg-white py-2 pl-1 pr-4 shadow-lg transition-all duration-300 hover:pr-5 hover:shadow-xl sm:bottom-64 sm:gap-3 sm:py-2.5"
       >
-        <IconPhone className="h-7 w-7 shrink-0 text-white" />
-        <span className="max-w-0 overflow-hidden whitespace-nowrap pl-0 text-sm font-bold text-white transition-all duration-300 group-hover:max-w-xs group-hover:pl-3">
-          Llamar ahora · {LAD_PHONE_DISPLAY}
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-lad-black transition-colors group-hover:bg-lad-red sm:h-11 sm:w-11">
+          <IconPhone className="h-5 w-5 text-white sm:h-6 sm:w-6" />
         </span>
+        <span className="whitespace-nowrap text-sm font-bold text-lad-black sm:text-base">{LAD_PHONE_DISPLAY}</span>
       </a>
 
       {/* Botón Ver Estudios — izquierda */}
