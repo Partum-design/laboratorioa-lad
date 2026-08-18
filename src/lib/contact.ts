@@ -13,7 +13,7 @@ export const LAD_WHATSAPP_MESSAGE = "Hola, necesito atención de LAD. ¿Me puede
 export const LAD_WHATSAPP_LINK = buildWhatsAppLink(LAD_WHATSAPP_MESSAGE);
 
 export const LAD_ADDRESS_DISPLAY =
-  "Dr. Genaro Díaz Manon 129, La Trinidad, 52400 El Salitre, Estado de México.";
+  "Dr. Genaro Díaz Manon 129, La Trinidad, C.P. 52400, Estado de México.";
 export const LAD_MAPS_LINK = "https://maps.app.goo.gl/QwrJPLhwEguEfzeY8";
 
 export const LAD_METEPEC_ADDRESS =
@@ -38,7 +38,7 @@ export interface LadSucursal {
 export const LAD_SUCURSALES: LadSucursal[] = [
   {
     slug: "matriz",
-    nombre: "LAD El Salitre (Matriz)",
+    nombre: "LAD Matriz",
     direccion: LAD_ADDRESS_DISPLAY,
     horario: [
       "Lun a vie: 7:00 am a 8:00 pm",

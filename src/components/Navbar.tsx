@@ -1,7 +1,7 @@
 "use client";
 
 import { IconChip } from "@/components/IconBadge";
-import { IconSearch } from "@/components/LadIcons";
+import { IconMapPin, IconSearch } from "@/components/LadIcons";
 import { AnimatePresence, motion } from "framer-motion";
 import { gsap } from "gsap";
 import Image from "next/image";
@@ -92,7 +92,16 @@ export default function Navbar() {
           })}
         </ul>
 
-        <div className="hidden items-center md:flex">
+        <div className="hidden items-center gap-5 md:flex">
+          <Link
+            href="/contacto#sucursales"
+            className={`flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide transition ${
+              scrolled ? "text-lad-black/60 hover:text-lad-red" : "text-white/75 hover:text-white"
+            }`}
+          >
+            <IconMapPin className="h-3.5 w-3.5" />
+            Sucursales
+          </Link>
           <Link
             href="/acceder#consulta"
             className={`flex items-center gap-2.5 border-2 border-lad-red bg-lad-red px-6 py-3 text-sm font-bold tracking-wider text-white shadow-md shadow-lad-red/30 transition hover:border-lad-red-dark hover:bg-lad-red-dark hover:shadow-lg hover:shadow-lad-red/40 ${
@@ -134,6 +143,13 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
+              <Link
+                href="/contacto#sucursales"
+                className="flex items-center gap-2 py-4 text-xs font-semibold uppercase tracking-wide text-lad-black/60"
+              >
+                <IconMapPin className="h-3.5 w-3.5" />
+                Sucursales
+              </Link>
               <Link
                 href="/acceder#consulta"
                 className="mt-2 flex items-center justify-center gap-2.5 border-2 border-lad-red bg-lad-red py-4 text-base font-bold tracking-wider text-white shadow-md shadow-lad-red/30"

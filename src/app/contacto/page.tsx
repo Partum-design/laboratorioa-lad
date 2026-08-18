@@ -14,7 +14,7 @@ import {
   LAD_TEL_LINK,
   LAD_WHATSAPP_LINK,
 } from "@/lib/contact";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { gsap } from "gsap";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef, useState } from "react";
@@ -55,6 +55,7 @@ function ContactoBody() {
   const [enviado, setEnviado] = useState(false);
   const [enviando, setEnviando] = useState(false);
   const [formError, setFormError] = useState("");
+  const [sucursalAbierta, setSucursalAbierta] = useState<string | null>(LAD_SUCURSALES[0]?.slug ?? null);
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
@@ -254,7 +255,7 @@ function ContactoBody() {
       </div>
     </section>
 
-    <section className="section-padding bg-lad-gray-light">
+    <section id="sucursales" className="section-padding scroll-mt-24 bg-lad-gray-light">
       <div className="container-lad">
         <ScrollReveal>
           <div className="mb-12 text-center">
@@ -262,41 +263,86 @@ function ContactoBody() {
             <h2 className="heading-lg">Nuestras <span className="text-lad-red">sucursales</span></h2>
           </div>
         </ScrollReveal>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {LAD_SUCURSALES.map((sucursal, index) => (
-            <ScrollReveal key={sucursal.slug} delay={index * 0.1}>
-              <div className="h-full border border-gray-200 bg-white p-6">
-                <div className="mb-4 flex items-center gap-3">
-                  <IconChip color={iconColorAt(index)}><IconMapPin /></IconChip>
-                  <h3 className="font-display text-lg font-bold text-lad-black">{sucursal.nombre}</h3>
-                </div>
-                {sucursal.esMatriz && (
-                  <span className="mb-3 inline-block bg-lad-red px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-white">
-                    Matriz
-                  </span>
-                )}
-                <p className="text-sm text-gray-600">{sucursal.direccion}</p>
-                <div className="mt-4 space-y-1 text-sm">
-                  {sucursal.horario.map((linea) => (
-                    <p key={linea} className="text-gray-600">{linea}</p>
-                  ))}
-                </div>
-                {sucursal.telefonoDisplay && sucursal.telefonoTelLink && (
-                  <a href={sucursal.telefonoTelLink} className="mt-4 block text-sm font-semibold text-lad-red transition hover:text-lad-black">
-                    {sucursal.telefonoDisplay}
-                  </a>
-                )}
-                <a
-                  href={sucursal.mapsLink ?? `https://www.google.com/maps?q=${encodeURIComponent(sucursal.direccion)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-block text-sm font-semibold text-lad-black underline decoration-lad-red decoration-2 underline-offset-4 transition hover:text-lad-red"
+        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2">
+          {LAD_SUCURSALES.map((sucursal, index) => {
+            const isOpen = sucursalAbierta === sucursal.slug;
+            return (
+              <ScrollReveal key={sucursal.slug} delay={index * 0.06}>
+                <div
+                  className={`overflow-hidden rounded-2xl border bg-white transition-colors ${
+                    isOpen ? "border-lad-red shadow-md" : "border-gray-200 hover:border-lad-red/40"
+                  }`}
                 >
-                  Ver en Google Maps →
-                </a>
-              </div>
-            </ScrollReveal>
-          ))}
+                  <button
+                    type="button"
+                    onClick={() => setSucursalAbierta(isOpen ? null : sucursal.slug)}
+                    aria-expanded={isOpen}
+                    className="flex w-full items-center gap-3 px-5 py-4 text-left"
+                  >
+                    <span
+                      className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-base font-black leading-none transition-colors ${
+                        isOpen ? "bg-lad-red text-white" : "bg-lad-red/10 text-lad-red"
+                      }`}
+                    >
+                      {isOpen ? "−" : "+"}
+                    </span>
+                    <span className="flex-1 font-display text-[15px] font-bold leading-snug text-lad-black">{sucursal.nombre}</span>
+                    {sucursal.esMatriz && (
+                      <span className="shrink-0 rounded-full bg-lad-red px-2.5 py-1 text-[9px] font-black uppercase tracking-widest text-white">
+                        Matriz
+                      </span>
+                    )}
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="space-y-3 border-t border-gray-100 px-5 pb-5 pt-4">
+                          <p className="flex items-start gap-2.5 text-sm text-gray-600">
+                            <IconMapPin className="mt-0.5 h-4 w-4 flex-none text-lad-red" />
+                            {sucursal.direccion}
+                          </p>
+                          <div className="flex items-start gap-2.5 text-sm text-gray-600">
+                            <IconClock className="mt-0.5 h-4 w-4 flex-none text-lad-red" />
+                            <div>
+                              {sucursal.horario.map((linea) => (
+                                <p key={linea}>{linea}</p>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="flex flex-wrap gap-2 pt-1">
+                            <a
+                              href={sucursal.mapsLink ?? `https://www.google.com/maps?q=${encodeURIComponent(sucursal.direccion)}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 rounded-full bg-lad-black px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-lad-red"
+                            >
+                              <IconMapPin className="h-4 w-4" />
+                              Ver mapa
+                            </a>
+                            {sucursal.telefonoDisplay && sucursal.telefonoTelLink && (
+                              <a
+                                href={sucursal.telefonoTelLink}
+                                className="inline-flex items-center gap-2 rounded-full bg-[#0d9488] px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-[#0f766e]"
+                              >
+                                <IconPhone className="h-4 w-4" />
+                                {sucursal.telefonoDisplay}
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </ScrollReveal>
+            );
+          })}
         </div>
       </div>
     </section>
