@@ -29,12 +29,13 @@ export default function ContactoPage() {
   return (
     <PageTransition>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-lad-gray-light pb-20 pt-32">
+      <section className="hero-dark relative overflow-hidden pb-20 pt-32">
+        <div className="hero-noise absolute inset-0" />
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />
         <div className="container-lad relative z-10">
           <p className="mb-6 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Contáctanos</p>
-          <h1 className="heading-xl mb-4 text-lad-black">Agenda tu <span className="text-lad-red">cita</span></h1>
-          <p className="body-lg max-w-xl text-justify text-gray-600">
+          <h1 className="heading-xl mb-4 text-white">Agenda tu <span className="text-lad-red">cita</span></h1>
+          <p className="body-lg max-w-xl text-justify text-gray-300">
             Escríbenos por WhatsApp o déjanos tus datos. Te orientamos con horarios y preparación antes de tu visita.
           </p>
         </div>

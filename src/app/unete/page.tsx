@@ -103,18 +103,19 @@ export default function UnetePage() {
   return (
     <PageTransition>
       {/* Hero */}
-      <section ref={heroRef} className="relative overflow-hidden bg-lad-gray-light pb-28 pt-36">
+      <section ref={heroRef} className="relative overflow-hidden pb-28 pt-36">
         <div className="absolute inset-0">
-          <Image src="/img/lad-hero-laboratorio.png" alt="Interior de un laboratorio clínico" fill className="object-cover opacity-15" />
-          <div className="absolute inset-0 bg-gradient-to-r from-lad-gray-light via-lad-gray-light/95 to-lad-gray-light/70" />
+          <Image src="/img/lad-hero-laboratorio.png" alt="Interior de un laboratorio clínico" fill className="object-cover opacity-25 mix-blend-luminosity" />
+          <div className="hero-dark absolute inset-0" />
+          <div className="hero-noise absolute inset-0" />
         </div>
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />
         <div className="container-lad relative z-10">
           <p className="hero-el mb-6 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Oportunidades</p>
-          <h1 className="hero-el heading-xl mb-6 max-w-3xl text-lad-black">
+          <h1 className="hero-el heading-xl mb-6 max-w-3xl text-white">
             Vacantes en <span className="text-lad-red">LAD</span>
           </h1>
-          <p className="hero-el body-lg mb-10 max-w-xl text-justify text-gray-600">
+          <p className="hero-el body-lg mb-10 max-w-xl text-justify text-gray-300">
             Buscamos personas cuidadosas, puntuales y con buen trato al paciente. Si quieres crecer en diagnóstico clínico, revisa las vacantes.
           </p>
           <a href="#vacantes" className="hero-el btn-primary inline-flex items-center gap-2">

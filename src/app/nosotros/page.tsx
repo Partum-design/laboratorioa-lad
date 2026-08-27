@@ -116,18 +116,19 @@ export default function NosotrosPage() {
       {/* Hero */}
       <section className="relative overflow-hidden pb-24 pt-36">
         <div className="absolute inset-0">
-          <Image src="/img/lad-hero-laboratorio.png" alt="Laboratorio clínico LAD" fill className="object-cover" />
-          <div className="absolute inset-0 bg-white/80" />
+          <Image src="/img/lad-hero-laboratorio.png" alt="Laboratorio clínico LAD" fill className="object-cover opacity-30 mix-blend-luminosity" />
+          <div className="hero-dark absolute inset-0" />
+          <div className="hero-noise absolute inset-0" />
         </div>
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />
         <div className="container-lad relative z-10 text-center">
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">
             Nosotros
           </motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="heading-xl mb-6 text-lad-black">
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="heading-xl mb-6 text-white">
             40+ años de <span className="text-lad-red">experiencia</span> al servicio de tu salud
           </motion.h1>
-          <p className="body-lg mx-auto max-w-2xl text-justify text-gray-600">
+          <p className="body-lg mx-auto max-w-2xl text-justify text-gray-300">
             Somos un laboratorio que cuida el proceso completo: toma de muestra, análisis, entrega y explicación cuando el paciente la necesita.
           </p>
         </div>

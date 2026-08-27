@@ -54,16 +54,17 @@ export default function EstudiosPage() {
   return (
     <PageTransition>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-lad-gray-light pb-24 pt-32">
+      <section className="relative overflow-hidden pb-24 pt-32">
         <div className="absolute inset-0">
-          <VideoAuto src="/vids/estudios/hero.mp4" className="h-full w-full object-cover opacity-20" />
-          <div className="absolute inset-0 bg-gradient-to-r from-lad-gray-light/95 via-lad-gray-light/85 to-lad-gray-light/40" />
+          <VideoAuto src="/vids/estudios/hero.mp4" className="h-full w-full object-cover opacity-25 mix-blend-luminosity" />
+          <div className="hero-dark absolute inset-0" />
+          <div className="hero-noise absolute inset-0" />
         </div>
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />
         <div className="container-lad relative z-10">
           <p className="mb-6 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Catálogo</p>
-          <h1 className="heading-xl mb-4 text-lad-black">Nuestros <span className="text-lad-red">Estudios</span></h1>
-          <p className="body-lg max-w-2xl text-justify text-gray-600">
+          <h1 className="heading-xl mb-4 text-white">Nuestros <span className="text-lad-red">Estudios</span></h1>
+          <p className="body-lg max-w-2xl text-justify text-gray-300">
             Consulta nuestro catálogo de más de 500 estudios con precios e indicaciones de preparación. ¿No
             encuentras el tuyo o tienes dudas? Pregúntanos directo por WhatsApp.
           </p>
