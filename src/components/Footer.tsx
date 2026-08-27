@@ -26,7 +26,7 @@ const LAD_FACEBOOK_LINK = "https://www.facebook.com/LADTenancingo";
 
 export default function Footer() {
   return (
-    <footer className="bg-lad-black text-white">
+    <footer className="bg-lad-gray-light text-lad-black">
       <div className="container-lad py-16">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
           <div className="space-y-4">
@@ -43,7 +43,7 @@ export default function Footer() {
                 <p className="mt-0.5 text-xs font-light opacity-60">Apoyo y Diagnóstico</p>
               </div>
             </Link>
-            <p className="max-w-xs text-justify text-sm leading-relaxed text-gray-400">
+            <p className="max-w-xs text-justify text-sm leading-relaxed text-lad-black/70">
               Diagnóstico clínico con procesos certificados, trato claro y resultados listos para tomar decisiones médicas.
             </p>
             <div className="flex items-center gap-2">
@@ -55,18 +55,18 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook de LAD Tenancingo"
-              className="group inline-flex h-10 w-10 items-center justify-center border border-gray-800 text-gray-300 transition hover:border-lad-red hover:text-lad-red"
+              className="group inline-flex h-10 w-10 items-center justify-center border border-lad-black/15 text-lad-black/60 transition hover:border-lad-red hover:text-lad-red"
             >
               <IconFacebook className="h-4 w-4" />
             </a>
           </div>
 
           <div>
-            <h4 className="mb-6 font-display text-sm font-bold uppercase tracking-widest text-gray-400">Navegación</h4>
+            <h4 className="mb-6 font-display text-sm font-bold uppercase tracking-widest text-lad-black/60">Navegación</h4>
             <ul className="space-y-3">
               {links.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="group flex items-center gap-2 text-sm text-gray-300 transition hover:text-lad-red">
+                  <Link href={link.href} className="group flex items-center gap-2 text-sm text-lad-black/80 transition hover:text-lad-red">
                     <span className="block h-px w-0 bg-lad-red transition-all group-hover:w-4" />
                     {link.label}
                   </Link>
@@ -76,8 +76,8 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-6 font-display text-sm font-bold uppercase tracking-widest text-gray-400">Contacto</h4>
-            <ul className="space-y-4 text-sm text-gray-300">
+            <h4 className="mb-6 font-display text-sm font-bold uppercase tracking-widest text-lad-black/60">Contacto</h4>
+            <ul className="space-y-4 text-sm text-lad-black/80">
               <li>
                 <a href={LAD_TEL_LINK} className="transition hover:text-lad-red">
                   {LAD_PHONE_DISPLAY}
@@ -88,13 +88,13 @@ export default function Footer() {
                   WhatsApp para citas y dudas
                 </a>
               </li>
-              <li className="border-l-2 border-lad-red pl-3 text-gray-400">Rayos X y tomografía: 24/7, los 365 días.</li>
+              <li className="border-l-2 border-lad-red pl-3 text-lad-black/60">Rayos X y tomografía: 24/7, los 365 días.</li>
               <li>
                 <a
                   href={LAD_MAPS_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 border border-lad-red/60 bg-lad-red/10 px-4 py-2 text-xs font-bold uppercase tracking-widest text-white transition hover:bg-lad-red"
+                  className="group inline-flex items-center gap-2 border border-lad-red/60 bg-lad-red/10 px-4 py-2 text-xs font-bold uppercase tracking-widest text-lad-red transition hover:bg-lad-red hover:text-white"
                 >
                   <IconMapPin className="h-4 w-4" />
                   Ver sucursal en Maps
@@ -104,12 +104,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-gray-800 pt-8">
-          <h4 className="mb-6 font-display text-sm font-bold uppercase tracking-widest text-gray-400">Nuestras sucursales</h4>
+        <div className="mt-12 border-t border-black/10 pt-8">
+          <h4 className="mb-6 font-display text-sm font-bold uppercase tracking-widest text-lad-black/60">Nuestras sucursales</h4>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {LAD_SUCURSALES.map((sucursal) => (
-              <div key={sucursal.slug} className="border border-gray-800 p-4">
-                <p className="flex items-start gap-2 text-sm font-bold text-white">
+              <div key={sucursal.slug} className="border border-black/10 bg-white p-4">
+                <p className="flex items-start gap-2 text-sm font-bold text-lad-black">
                   <IconMapPin className="mt-0.5 h-4 w-4 flex-none text-lad-red" />
                   {sucursal.nombre}
                 </p>
@@ -118,14 +118,14 @@ export default function Footer() {
                     Matriz
                   </span>
                 )}
-                <p className="mt-2 text-xs leading-relaxed text-gray-400">{sucursal.direccion}</p>
-                <p className="mt-2 text-xs text-gray-500">
+                <p className="mt-2 text-xs leading-relaxed text-lad-black/60">{sucursal.direccion}</p>
+                <p className="mt-2 text-xs text-lad-black/50">
                   {sucursal.horario.map((linea) => (
                     <span key={linea} className="block">{linea}</span>
                   ))}
                 </p>
                 {sucursal.telefonoDisplay && sucursal.telefonoTelLink && (
-                  <a href={sucursal.telefonoTelLink} className="mt-2 inline-block text-xs font-semibold text-lad-red transition hover:text-white">
+                  <a href={sucursal.telefonoTelLink} className="mt-2 inline-block text-xs font-semibold text-lad-red transition hover:text-lad-black">
                     {sucursal.telefonoDisplay}
                   </a>
                 )}
@@ -134,12 +134,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-gray-800 pt-8">
+        <div className="mt-12 border-t border-black/10 pt-8">
           <div className="mb-5 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-            <h4 className="font-display text-sm font-bold uppercase tracking-widest text-gray-400">
+            <h4 className="font-display text-sm font-bold uppercase tracking-widest text-lad-black/60">
               Portal del personal — Ecosistema eden
             </h4>
-            <Link href="/acceder#personal" className="text-xs font-bold uppercase tracking-widest text-lad-red transition hover:text-white">
+            <Link href="/acceder#personal" className="text-xs font-bold uppercase tracking-widest text-lad-red transition hover:text-lad-black">
               Ver todos los accesos →
             </Link>
           </div>
@@ -150,23 +150,23 @@ export default function Footer() {
                 href={portal.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group border border-gray-800 px-3 py-3 transition hover:border-lad-red"
+                className="group border border-black/10 bg-white px-3 py-3 transition hover:border-lad-red"
               >
-                <EdenMark suffix={portal.suffix} size="h-3.5 w-3.5" textClassName="text-xs text-gray-300 group-hover:text-white" />
+                <EdenMark suffix={portal.suffix} size="h-3.5 w-3.5" textClassName="text-xs text-lad-black/70 group-hover:text-lad-red" />
               </a>
             ))}
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-gray-800 pt-8 sm:flex-row">
-          <p className="text-xs text-gray-500">
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-black/10 pt-8 sm:flex-row">
+          <p className="text-xs text-lad-black/50">
             © {new Date().getFullYear()} LAD Laboratorio de Apoyo y Diagnóstico. Todos los derechos reservados.
           </p>
           <a
             href="https://partumdesign.com.mx"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[10px] font-bold uppercase tracking-[0.35em] text-gray-600 transition hover:text-lad-red"
+            className="text-[10px] font-bold uppercase tracking-[0.35em] text-lad-black/40 transition hover:text-lad-red"
           >
             Partum Design
           </a>

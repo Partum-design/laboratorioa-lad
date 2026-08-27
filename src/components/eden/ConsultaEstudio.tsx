@@ -105,15 +105,15 @@ function Resultado({ estudio, fechaNacimiento }: { estudio: EstudioPublico; fech
       className="mt-10 border-2 border-gray-200 bg-white shadow-sm"
     >
       {/* Encabezado */}
-      <header className="flex flex-col gap-4 border-b border-gray-200 bg-lad-black p-6 text-white sm:flex-row sm:items-center sm:justify-between sm:p-8">
+      <header className="flex flex-col gap-4 border-b border-gray-200 bg-lad-gray-light p-6 text-lad-black sm:flex-row sm:items-center sm:justify-between sm:p-8">
         <div>
           <p className="text-[0.65rem] font-bold uppercase tracking-[0.28em] text-lad-red">Folio {estudio.folio}</p>
           <h3 className="mt-2 font-display text-2xl font-black leading-tight sm:text-3xl">
             {estudio.estudio.nombre ?? "Estudio de imagen"}
           </h3>
           {estudio.paciente.nombreEnmascarado && (
-            <p className="mt-2 text-sm text-gray-400">
-              Paciente: <span className="font-semibold text-gray-200">{estudio.paciente.nombreEnmascarado}</span>
+            <p className="mt-2 text-sm text-gray-500">
+              Paciente: <span className="font-semibold text-lad-black">{estudio.paciente.nombreEnmascarado}</span>
               {estudio.paciente.edad !== null && <span className="text-gray-500"> · {estudio.paciente.edad} años</span>}
             </p>
           )}
@@ -121,10 +121,10 @@ function Resultado({ estudio, fechaNacimiento }: { estudio: EstudioPublico; fech
         <span
           className={`inline-flex shrink-0 items-center gap-2 border px-4 py-2 text-xs font-bold uppercase tracking-wider ${
             cancelado
-              ? "border-gray-500 text-gray-300"
+              ? "border-gray-400 text-gray-500"
               : listo
                 ? "border-lad-red bg-lad-red text-white"
-                : "border-white/30 text-white"
+                : "border-lad-black/30 text-lad-black"
           }`}
         >
           <IconChip color="currentColor" size="h-4 w-4">

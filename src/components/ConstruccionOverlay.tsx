@@ -223,17 +223,17 @@ export default function ConstruccionOverlay() {
     <AnimatePresence>
       {!hidden && (
       <motion.div
-        className="fixed inset-0 z-[200] flex flex-col overflow-hidden bg-lad-black"
+        className="fixed inset-0 z-[200] flex flex-col overflow-hidden bg-white"
         exit={{ opacity: 0 }}
         transition={{ duration: 0.35 }}
       >
         {/* Videos de fondo */}
         <VideoMosaic />
 
-        {/* Overlay oscuro */}
-        <div className="absolute inset-0 bg-lad-black/75" />
-        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-lad-black to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-lad-black to-transparent" />
+        {/* Overlay claro */}
+        <div className="absolute inset-0 bg-white/85" />
+        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white to-transparent" />
 
         {/* Canvas de partículas */}
         <canvas ref={canvasRef} className="absolute inset-0 z-[1]" />
@@ -271,15 +271,15 @@ export default function ConstruccionOverlay() {
               <div className="h-px w-10 bg-lad-red" />
             </div>
 
-            <h1 className="font-display text-4xl font-black uppercase leading-tight tracking-wider text-white md:text-6xl lg:text-7xl">
+            <h1 className="font-display text-4xl font-black uppercase leading-tight tracking-wider text-lad-black md:text-6xl lg:text-7xl">
               Estamos afinando<br />
               <span className="text-lad-red">los últimos</span><br />
               detalles
             </h1>
 
-            <p className="mx-auto max-w-2xl text-balance text-base leading-relaxed text-gray-200 md:text-lg">
+            <p className="mx-auto max-w-2xl text-balance text-base leading-relaxed text-lad-black/70 md:text-lg">
               Si necesitas atención inmediata, llámanos o envíanos un WhatsApp al teléfono{" "}
-              <span className="font-bold text-white">{LAD_PHONE_DISPLAY}</span>.
+              <span className="font-bold text-lad-black">{LAD_PHONE_DISPLAY}</span>.
             </p>
 
             <div className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row">
@@ -313,7 +313,7 @@ export default function ConstruccionOverlay() {
             href="https://partumdesign.com.mx"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[10px] font-light uppercase tracking-[0.45em] text-white/30 transition hover:text-lad-red"
+            className="text-[10px] font-light uppercase tracking-[0.45em] text-lad-black/30 transition hover:text-lad-red"
           >
             Partum Design · Desarrollo en proceso
           </a>
@@ -322,7 +322,7 @@ export default function ConstruccionOverlay() {
           type="button"
           aria-label="Ver sitio principal"
           onClick={unlockPreview}
-          className="absolute bottom-3 left-3 z-[3] h-9 w-9 rounded-full border border-white/20 bg-white/10 text-[0px] opacity-0 outline-none transition hover:w-auto hover:px-3 hover:text-[10px] hover:font-bold hover:uppercase hover:tracking-[0.25em] hover:text-white hover:opacity-100 focus:w-auto focus:px-3 focus:text-[10px] focus:font-bold focus:uppercase focus:tracking-[0.25em] focus:text-white focus:opacity-100"
+          className="absolute bottom-3 left-3 z-[3] h-9 w-9 rounded-full border border-black/15 bg-black/5 text-[0px] opacity-0 outline-none transition hover:w-auto hover:px-3 hover:text-[10px] hover:font-bold hover:uppercase hover:tracking-[0.25em] hover:text-lad-black hover:opacity-100 focus:w-auto focus:px-3 focus:text-[10px] focus:font-bold focus:uppercase focus:tracking-[0.25em] focus:text-lad-black focus:opacity-100"
         >
           Ver sitio
         </button>

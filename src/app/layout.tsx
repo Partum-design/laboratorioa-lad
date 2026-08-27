@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es">
       <body className="bg-white text-lad-black">
-        <div id="construccion-flash-block" style={{ position: "fixed", inset: 0, zIndex: 9999, background: "#201E1E" }} />
+        <div id="construccion-flash-block" style={{ position: "fixed", inset: 0, zIndex: 9999, background: "#FEFEFE" }} />
         <SiteShell>{children}</SiteShell>
       </body>
     </html>

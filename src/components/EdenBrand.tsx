@@ -24,7 +24,7 @@ interface EdenMarkProps {
 }
 
 // Icono tipo "app launcher" + wordmark, para usarse como logo del portal Eden.
-export function EdenMark({ suffix, size = "h-5 w-5", textClassName = "text-base text-white" }: EdenMarkProps) {
+export function EdenMark({ suffix, size = "h-5 w-5", textClassName = "text-base text-lad-black" }: EdenMarkProps) {
   return (
     <span className="inline-flex items-center gap-2">
       <IconGrid className={`${size} text-lad-red`} />

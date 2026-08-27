@@ -46,7 +46,7 @@ export default function LoadingScreen() {
       {visible && (
         <motion.div
           className="fixed inset-0 z-[9999] flex flex-col items-center justify-center overflow-hidden"
-          style={{ background: "#080808" }}
+          style={{ background: "#FEFEFE" }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.65, ease: [0.4, 0, 0.2, 1] }}
         >
@@ -158,8 +158,8 @@ export default function LoadingScreen() {
 
           {/* Subtitle */}
           <motion.p
-            className="relative z-10 mt-8 max-w-xs px-6 text-center font-display text-lg font-black uppercase leading-snug tracking-[0.12em] text-white sm:max-w-sm sm:text-2xl sm:tracking-[0.15em]"
-            style={{ textShadow: "0 0 24px rgba(228,75,20,0.55)" }}
+            className="relative z-10 mt-8 max-w-xs px-6 text-center font-display text-lg font-black uppercase leading-snug tracking-[0.12em] text-lad-black sm:max-w-sm sm:text-2xl sm:tracking-[0.15em]"
+            style={{ textShadow: "none" }}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.65, ease: "easeOut" }}
@@ -177,7 +177,7 @@ export default function LoadingScreen() {
           >
             <div
               className="relative h-px w-full overflow-hidden"
-              style={{ background: "rgba(255,255,255,0.08)" }}
+              style={{ background: "rgba(32,30,30,0.12)" }}
             >
               <div
                 className="absolute inset-y-0 left-0 transition-none"
@@ -189,7 +189,7 @@ export default function LoadingScreen() {
             </div>
             <div className="mt-3 flex items-center justify-between">
               <motion.span
-                className="text-[8px] font-bold uppercase tracking-[0.4em] text-white/20"
+                className="text-[8px] font-bold uppercase tracking-[0.4em] text-lad-black/30"
                 animate={{ opacity: [0.3, 0.8, 0.3] }}
                 transition={{ duration: 1.4, repeat: Infinity }}
               >

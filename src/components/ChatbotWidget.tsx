@@ -113,23 +113,23 @@ export default function ChatbotWidget() {
             aria-labelledby="chatbot-title"
             className="fixed bottom-24 right-4 z-[110] flex h-[min(32rem,calc(100dvh-8rem))] w-[min(23rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-[1.4rem] bg-white shadow-[0_24px_80px_-24px_rgba(0,0,0,0.55)] ring-1 ring-black/10 sm:right-6"
           >
-            <div className="relative overflow-hidden bg-lad-black px-5 py-4">
-              <div className="absolute -right-8 -top-10 h-32 w-32 rounded-full bg-lad-red/30 blur-2xl" />
+            <div className="relative overflow-hidden border-b border-black/5 bg-lad-gray-light px-5 py-4">
+              <div className="absolute -right-8 -top-10 h-32 w-32 rounded-full bg-lad-red/20 blur-2xl" />
               <div className="relative flex items-center gap-3">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-lad-red text-white">
                   <IconSparkles className="h-5 w-5" />
                 </span>
                 <div className="min-w-0 flex-1">
-                  <h2 id="chatbot-title" className="font-display text-sm font-black leading-snug text-white">
+                  <h2 id="chatbot-title" className="font-display text-sm font-black leading-snug text-lad-black">
                     Asistente LAD
                   </h2>
-                  <p className="text-[11px] text-white/60">Estudios, precios, pagos y resultados</p>
+                  <p className="text-[11px] text-lad-black/60">Estudios, precios, pagos y resultados</p>
                 </div>
                 <button
                   type="button"
                   onClick={() => setAbierto(false)}
                   aria-label="Cerrar asistente"
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 text-lg text-white/90 transition hover:bg-white/20"
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-black/5 text-lg text-lad-black/80 transition hover:bg-black/10"
                 >
                   ×
                 </button>

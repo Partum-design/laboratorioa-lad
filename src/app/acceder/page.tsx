@@ -32,28 +32,28 @@ export default function AccederPage() {
   return (
     <PageTransition>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-lad-black pb-20 pt-32">
+      <section className="relative overflow-hidden bg-white pb-20 pt-32">
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />
         <div className="container-lad relative z-10">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Consulta de resultados</p>
-            <EdenMark size="h-4 w-4" textClassName="text-sm text-gray-400" />
+            <EdenMark size="h-4 w-4" textClassName="text-sm text-gray-600" />
           </div>
-          <h1 className="heading-xl mb-4 mt-6 text-white">
+          <h1 className="heading-xl mb-4 mt-6 text-lad-black">
             Tus estudios, <span className="text-lad-red">al momento</span>
           </h1>
-          <p className="body-lg max-w-2xl text-justify text-gray-400">
+          <p className="body-lg max-w-2xl text-justify text-gray-600">
             Escribe el folio de tu estudio y consulta en qué etapa va, en qué sucursal se realizó y descarga tu reporte
             firmado en cuanto esté listo. La información viene directo de nuestro expediente clínico, sin necesidad de
             crear una cuenta.
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 border border-white/10 bg-white/5 p-5 sm:flex-row sm:items-center sm:gap-4">
+          <div className="mt-8 flex flex-col gap-3 border border-black/10 bg-white p-5 sm:flex-row sm:items-center sm:gap-4">
             <IconChip color={ICON_COLORS.red} size="h-6 w-6"><IconShieldCheck /></IconChip>
-            <p className="text-sm text-gray-300">
+            <p className="text-sm text-gray-600">
               Tu información es confidencial. LAD nunca te pedirá contraseñas ni datos bancarios por teléfono, WhatsApp
               o correo. Si tienes dudas sobre tu reporte,{" "}
-              <Link href="/contacto" className="font-bold text-white underline decoration-lad-red underline-offset-4 hover:text-lad-red">
+              <Link href="/contacto" className="font-bold text-lad-black underline decoration-lad-red underline-offset-4 hover:text-lad-red">
                 comunícate con nosotros
               </Link>
               .
@@ -106,7 +106,7 @@ export default function AccederPage() {
                     href={portal.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="card-hover flex h-full flex-col justify-between border-2 border-gray-200 bg-lad-black p-6 text-white"
+                    className="card-hover flex h-full flex-col justify-between border-2 border-gray-200 bg-white p-6 text-lad-black"
                   >
                     <div>
                       <IconBadge color={ICON_COLORS.red}><Icon /></IconBadge>
@@ -115,7 +115,7 @@ export default function AccederPage() {
                       </h3>
                       <p className="text-[0.65rem] font-bold uppercase tracking-wider text-lad-red">{portal.resumen}</p>
                     </div>
-                    <span className="mt-6 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-400">
+                    <span className="mt-6 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gray-500">
                       <IconChip color="currentColor" size="h-4 w-4"><IconLogin /></IconChip>
                       Iniciar sesión
                     </span>

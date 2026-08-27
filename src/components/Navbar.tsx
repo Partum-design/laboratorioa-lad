@@ -48,7 +48,7 @@ export default function Navbar() {
     setMenuOpen(false);
   }, [pathname]);
 
-  const textColor = scrolled || menuOpen ? "text-lad-black" : "text-white";
+  const textColor = "text-lad-black";
 
   return (
     <header
@@ -81,7 +81,7 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   className={`relative pb-1 text-sm font-semibold uppercase tracking-wide transition ${
-                    isActive ? "text-lad-red" : scrolled ? "text-lad-black hover:text-lad-red" : "text-white hover:text-red-200"
+                    isActive ? "text-lad-red" : "text-lad-black hover:text-lad-red"
                   }`}
                 >
                   {link.label}
@@ -95,9 +95,7 @@ export default function Navbar() {
         <div className="hidden items-center gap-5 md:flex">
           <Link
             href="/contacto#sucursales"
-            className={`flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide transition ${
-              scrolled ? "text-lad-black/60 hover:text-lad-red" : "text-white/75 hover:text-white"
-            }`}
+            className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-lad-black/60 transition hover:text-lad-red"
           >
             <IconMapPin className="h-3.5 w-3.5" />
             Sucursales

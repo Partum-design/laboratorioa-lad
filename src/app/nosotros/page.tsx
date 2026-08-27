@@ -117,17 +117,17 @@ export default function NosotrosPage() {
       <section className="relative overflow-hidden pb-24 pt-36">
         <div className="absolute inset-0">
           <Image src="/img/lad-hero-laboratorio.png" alt="Laboratorio clínico LAD" fill className="object-cover" />
-          <div className="absolute inset-0 bg-lad-black/80" />
+          <div className="absolute inset-0 bg-white/80" />
         </div>
         <div className="absolute bottom-0 left-0 top-0 w-1 bg-lad-red" />
         <div className="container-lad relative z-10 text-center">
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">
             Nosotros
           </motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="heading-xl mb-6 text-white">
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="heading-xl mb-6 text-lad-black">
             40+ años de <span className="text-lad-red">experiencia</span> al servicio de tu salud
           </motion.h1>
-          <p className="body-lg mx-auto max-w-2xl text-justify text-gray-300">
+          <p className="body-lg mx-auto max-w-2xl text-justify text-gray-600">
             Somos un laboratorio que cuida el proceso completo: toma de muestra, análisis, entrega y explicación cuando el paciente la necesita.
           </p>
         </div>
@@ -169,7 +169,7 @@ export default function NosotrosPage() {
       </section>
 
       {/* Historia */}
-      <section className="section-padding bg-lad-black text-white">
+      <section className="section-padding bg-lad-gray-light text-lad-black">
         <div className="container-lad">
           <div className="mb-16 text-center">
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Historia</p>
@@ -177,10 +177,10 @@ export default function NosotrosPage() {
           </div>
           <div ref={timelineRef} className="mx-auto max-w-4xl space-y-8">
             {hitos.map((hito) => (
-              <div key={hito.año} className="timeline-item border-l-4 border-lad-red bg-white/5 p-6">
+              <div key={hito.año} className="timeline-item border-l-4 border-lad-red bg-white p-6 shadow-sm">
                 <p className="font-display text-3xl font-black text-lad-red">{hito.año}</p>
-                <h3 className="mt-2 font-display text-xl font-bold">{hito.titulo}</h3>
-                <p className="mt-2 text-justify text-sm leading-relaxed text-gray-300">{hito.desc}</p>
+                <h3 className="mt-2 font-display text-xl font-bold text-lad-black">{hito.titulo}</h3>
+                <p className="mt-2 text-justify text-sm leading-relaxed text-gray-600">{hito.desc}</p>
               </div>
             ))}
           </div>

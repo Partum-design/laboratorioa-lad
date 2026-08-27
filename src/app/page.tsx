@@ -128,9 +128,9 @@ export default function HomePage() {
       <section ref={heroRef} className="relative flex h-screen min-h-[680px] items-center justify-center overflow-hidden text-center">
         <div className="hero-bg absolute inset-0 -top-10">
           <Image src="/img/lad-hero-laboratorio.png" alt="Equipo automatizado en un laboratorio clínico" fill priority className="object-cover" />
-          <div className="absolute inset-0 bg-lad-black/60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-lad-black/90 via-lad-black/55 to-lad-black/15" />
-          <div className="absolute inset-0 bg-gradient-to-t from-lad-black/90 via-transparent to-lad-black/20" />
+          <div className="absolute inset-0 bg-white/55" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/55 to-white/15" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-white/20" />
         </div>
 
         <div className="container-lad relative z-10">
@@ -162,7 +162,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: -16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="mx-auto mb-8 flex w-fit items-center gap-3 rounded-full border border-white/10 bg-white/[0.05] px-5 py-2.5 backdrop-blur-md"
+              className="mx-auto mb-8 flex w-fit items-center gap-3 rounded-full border border-black/10 bg-black/[0.03] px-5 py-2.5 backdrop-blur-md"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-lad-red animate-pulse" />
               <span className="text-xs font-bold uppercase tracking-[0.3em] text-lad-red">Precisión diagnóstica</span>
@@ -173,7 +173,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="mb-8 font-display text-6xl font-black leading-none tracking-tight text-white md:text-7xl lg:text-8xl"
+              className="mb-8 font-display text-6xl font-black leading-none tracking-tight text-lad-black md:text-7xl lg:text-8xl"
             >
               Resultados
               <span
@@ -203,7 +203,7 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.25 }}
-              className="mx-auto mb-10 max-w-xl text-lg leading-relaxed text-gray-300"
+              className="mx-auto mb-10 max-w-xl text-lg leading-relaxed text-lad-black/70"
             >
               Análisis clínicos, paquetes preventivos y el seguimiento de tus resultados. Procesos certificados y gente que sí se toma el tiempo de explicarte.
             </motion.p>
@@ -232,7 +232,7 @@ export default function HomePage() {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-1.5 text-white/30"
+            className="flex flex-col items-center gap-1.5 text-lad-black/40"
           >
             <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Scroll</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
@@ -314,7 +314,7 @@ export default function HomePage() {
                 src="/vids/inicio/quienes-somos-recortado.mp4"
                 className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-lad-black/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-white/40 to-transparent" />
               <div className="absolute bottom-6 right-6 rounded-xl bg-lad-red p-6 text-center text-white shadow-lg shadow-lad-red/30">
                 <p className="font-display text-3xl font-black">40+</p>
                 <p className="text-xs">años de experiencia</p>
@@ -338,7 +338,7 @@ export default function HomePage() {
       </section>
 
       {/* Rutas rápidas */}
-      <section className="section-padding bg-lad-black text-white">
+      <section className="section-padding bg-lad-gray-light text-lad-black">
         <div className="container-lad">
           <ScrollReveal>
             <div className="mb-12 max-w-2xl">
@@ -349,11 +349,11 @@ export default function HomePage() {
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
             {rutasRapidas.map((ruta, index) => (
               <ScrollReveal key={ruta.title} delay={index * 0.08}>
-                <Link href={ruta.href} className="group flex h-full flex-col justify-between border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-lad-red hover:bg-white/[0.06]">
+                <Link href={ruta.href} className="group flex h-full flex-col justify-between border border-black/10 bg-white p-6 transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:border-lad-red hover:shadow-lg">
                   <span className="mb-8 block h-1 w-10 bg-lad-red transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-16" />
                   <span>
-                    <span className="block font-display text-lg font-bold transition-colors duration-300 group-hover:text-lad-red-light">{ruta.title}</span>
-                    <span className="mt-3 block text-sm leading-relaxed text-gray-400">{ruta.desc}</span>
+                    <span className="block font-display text-lg font-bold text-lad-black transition-colors duration-300 group-hover:text-lad-red">{ruta.title}</span>
+                    <span className="mt-3 block text-sm leading-relaxed text-gray-600">{ruta.desc}</span>
                   </span>
                 </Link>
               </ScrollReveal>
