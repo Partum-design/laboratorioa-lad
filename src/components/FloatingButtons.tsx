@@ -199,16 +199,13 @@ export default function FloatingButtons() {
         <IconWhatsApp className="relative z-10 h-8 w-8 text-white transition-transform duration-300 group-hover:scale-110 sm:h-9 sm:w-9" />
       </button>
 
-      {/* Botón Llamar ahora — pastilla que sale del borde izquierdo, arriba de WhatsApp */}
+      {/* Botón Llamar ahora — círculo alineado con WhatsApp y Ver estudios */}
       <a
         href={LAD_TEL_LINK}
         aria-label={`Llamar ahora al ${LAD_PHONE_DISPLAY}`}
-        className="group fixed bottom-44 left-0 z-[100] flex items-center gap-2.5 rounded-r-full border-y-2 border-r-2 border-lad-black bg-white py-2 pl-1 pr-4 shadow-lg transition-all duration-300 hover:pr-5 hover:shadow-xl sm:bottom-52 sm:gap-3 sm:py-2.5"
+        className="group fixed bottom-44 left-6 z-[100] flex h-14 w-14 items-center justify-center rounded-full bg-lad-black shadow-[0_10px_28px_-8px_rgba(0,0,0,0.55)] transition-all duration-300 hover:scale-110 hover:bg-lad-red hover:shadow-[0_14px_34px_-8px_rgba(228,75,20,0.55)] focus:outline-none focus:ring-2 focus:ring-lad-red focus:ring-offset-2 active:scale-95 sm:bottom-52 sm:h-16 sm:w-16"
       >
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-lad-black transition-colors group-hover:bg-lad-red sm:h-11 sm:w-11">
-          <IconPhoneModern className="h-5 w-5 text-white sm:h-6 sm:w-6" />
-        </span>
-        <span className="whitespace-nowrap text-sm font-bold text-lad-black sm:text-base">Llamar ahora</span>
+        <IconPhoneModern className="h-6 w-6 text-white transition-transform duration-300 group-hover:scale-110 sm:h-7 sm:w-7" />
       </a>
 
       {/* Botón Ver Estudios — izquierda */}
