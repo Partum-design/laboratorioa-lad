@@ -126,22 +126,6 @@ input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-
   background-size: 18px 18px;
 }
 
-/* Fondo dramático rojo/negro para los héroes de página, con resplandor y grano. */
-.hero-dark {
-  background:
-    radial-gradient(65% 65% at 72% 35%, rgba(227, 6, 19, 0.38) 0%, transparent 70%),
-    radial-gradient(90% 70% at 15% 100%, rgba(166, 51, 54, 0.28) 0%, transparent 65%),
-    linear-gradient(135deg, #201e1e 0%, #201e1e 45%, #3a1013 78%, #1a0709 100%);
-}
-
-.hero-noise {
-  pointer-events: none;
-  opacity: 0.16;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 140px 140px;
-}
-
 @keyframes testimonial-scroll {
   0% { transform: translateY(0); }
   100% { transform: translateY(-50%); }
