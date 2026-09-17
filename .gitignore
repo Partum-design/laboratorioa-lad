@@ -32,3 +32,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# unused design-reference images, not referenced by the site
+/inspiracion/
+/public/inspiracion/
