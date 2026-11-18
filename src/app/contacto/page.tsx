@@ -10,6 +10,7 @@ import {
   IconDroplet,
   IconFocus,
   IconHeartPulse,
+  IconLock,
   IconMapPin,
   IconPhone,
   IconScan,
@@ -390,6 +391,15 @@ function ContactoBody() {
                       >
                         <IconPhone className="h-4 w-4" />
                         {sucursal.telefonoDisplay}
+                      </a>
+                    )}
+                    {sucursal.avisoPrivacidadLink && (
+                      <a
+                        href={sucursal.avisoPrivacidadLink}
+                        className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-2 text-xs font-bold text-lad-black shadow-sm transition hover:border-lad-red hover:text-lad-red"
+                      >
+                        <IconLock className="h-4 w-4" />
+                        Aviso de privacidad
                       </a>
                     )}
                   </div>

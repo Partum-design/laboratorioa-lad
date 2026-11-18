@@ -33,6 +33,7 @@ export interface LadSucursal {
   telefonoTelLink?: string;
   mapsLink?: string;
   esMatriz?: boolean;
+  avisoPrivacidadLink?: string;
 }
 
 export const LAD_SUCURSALES: LadSucursal[] = [
@@ -74,6 +75,7 @@ export const LAD_SUCURSALES: LadSucursal[] = [
     telefonoDisplay: LAD_PHONE_DISPLAY,
     telefonoTelLink: LAD_TEL_LINK,
     mapsLink: LAD_METEPEC_MAPS_LINK,
+    avisoPrivacidadLink: "/aviso-de-privacidad/metepec",
   },
   {
     slug: "chalma",
