@@ -129,6 +129,11 @@ export default function Footer() {
                     {sucursal.telefonoDisplay}
                   </a>
                 )}
+                {sucursal.avisoPrivacidadLink && (
+                  <Link href={sucursal.avisoPrivacidadLink} className="mt-2 block text-xs font-semibold text-lad-black/60 underline-offset-2 transition hover:text-lad-red hover:underline">
+                    Aviso de privacidad
+                  </Link>
+                )}
               </div>
             ))}
           </div>
@@ -162,6 +167,16 @@ export default function Footer() {
           <p className="text-xs text-lad-black/50">
             © {new Date().getFullYear()} LAD Laboratorio de Apoyo y Diagnóstico. Todos los derechos reservados.
           </p>
+          <nav aria-label="Avisos de privacidad" className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-lad-black/50">
+            <span>Avisos de privacidad:</span>
+            <Link href="/aviso-de-privacidad/tenancingo" className="font-semibold transition hover:text-lad-red">
+              Matriz Tenancingo
+            </Link>
+            <span aria-hidden="true">·</span>
+            <Link href="/aviso-de-privacidad/metepec" className="font-semibold transition hover:text-lad-red">
+              Metepec
+            </Link>
+          </nav>
           <a
             href="https://partumdesign.com.mx"
             target="_blank"
