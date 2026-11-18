@@ -50,6 +50,7 @@ export const LAD_SUCURSALES: LadSucursal[] = [
     telefonoTelLink: LAD_TEL_LINK,
     mapsLink: LAD_MAPS_LINK,
     esMatriz: true,
+    avisoPrivacidadLink: "/aviso-de-privacidad/tenancingo",
   },
   {
     slug: "tenancingo-centro",
